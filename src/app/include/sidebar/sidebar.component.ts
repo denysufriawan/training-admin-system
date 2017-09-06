@@ -19,7 +19,8 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
       this.route.forEach(element => {
-        if(this.path==element.path)
+        
+        if(this.path.replace("/spiderman","").match(element.path.replace("/spiderman","")))
           element.class='active'
         else
           element.class=''

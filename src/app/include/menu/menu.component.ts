@@ -10,10 +10,12 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  toggle()
-  {
-      $('.ui.sidebar').sidebar('setting', 'transition', 'uncover').sidebar('toggle');
+    $('.ui.sidebar')
+    .sidebar({
+      context: $('.bottom.segment')
+    })
+    $('.toggle-menu').on('mouseover',function(){
+      $('.ui.sidebar').sidebar('show');
+    });
   }
 }

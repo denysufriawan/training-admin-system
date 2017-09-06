@@ -10,18 +10,28 @@ import { EnrollmentComponent } from './enrollment/enrollment.component';
 import { AchievementComponent } from './achievement/achievement.component';
 import { TrainingComponent } from './training/training.component';
 import { LoginComponent } from './login/login.component';
-import { SidebarComponent } from './template/sidebar/sidebar.component';
-import { MenuComponent } from './template/menu/menu.component';
+import { SidebarComponent } from './include/sidebar/sidebar.component';
+import { MenuComponent } from './include/menu/menu.component';
+import { PeriodListComponent } from './period/period-list/period-list.component';
+import { TemplateComponent } from './template/template.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'dashboard',  component: DashboardComponent},
-  { path: 'period', component: PeriodComponent },
-  { path: 'user', component: UserComponent },
-  { path: 'enrollment', component: EnrollmentComponent },
-  { path: 'achievement', component: AchievementComponent },
-  { path: 'training', component: TrainingComponent },
-  { path: 'login', component: LoginComponent}
+
+  { path: 'spiderman',  component: TemplateComponent , children : [
+    { path: 'dashboard',  component: DashboardComponent},
+    { path: 'period', component: PeriodComponent , children : [
+      { path: 'list', component: PeriodListComponent },
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
+      { path: '**', redirectTo: 'list', pathMatch: 'full' }
+    ]},
+    { path: 'user', component: UserComponent },
+    { path: 'enrollment', component: EnrollmentComponent },
+    { path: 'achievement', component: AchievementComponent },
+    { path: 'training', component: TrainingComponent }
+  ]},
+  { path: 'login', component: LoginComponent},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -35,7 +45,9 @@ const routes: Routes = [
     TrainingComponent,
     LoginComponent,
     SidebarComponent,
-    MenuComponent
+    MenuComponent,
+    PeriodListComponent,
+    TemplateComponent
   ],
   imports: [
     BrowserModule,
