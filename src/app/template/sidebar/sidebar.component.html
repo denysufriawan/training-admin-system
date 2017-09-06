@@ -1,3 +1,11 @@
-<p>
-  sidebar works!
-</p>
+<div class="ui sidebar vertical menu">
+  <div class="item">
+    <h2 class="ui purple center aligned icon header">
+      <img class="ui medium circular image" src="../../../assets/img/favicon.ico">
+      SPIDERMAN
+    </h2>
+  </div>
+  <a *ngFor="let menu of route" class="item {{menu.class}}" [routerLink]="['menu.path']">
+    <i class="{{menu.icon}} icon"></i>
+    {{menu.title}}</a>
+</div>

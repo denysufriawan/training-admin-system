@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+declare var $:any;
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -12,4 +12,8 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
+  toggle()
+  {
+      $('.ui.sidebar').sidebar('setting', 'transition', 'uncover').sidebar('toggle');
+  }
 }

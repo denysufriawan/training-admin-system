@@ -21,8 +21,7 @@ const routes: Routes = [
   { path: 'enrollment', component: EnrollmentComponent },
   { path: 'achievement', component: AchievementComponent },
   { path: 'training', component: TrainingComponent },
-  { path: 'login', component: LoginComponent},
-  { path: '**', redirectTo: 'login', pathMatch: 'full' }
+  { path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

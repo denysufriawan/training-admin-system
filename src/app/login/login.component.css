@@ -1,0 +1,26 @@
+.ui[class*="center aligned"].grid {
+    height: 100%;
+}
+
+.ui.header>.image:not(.icon):only-child, .ui.header>img:only-child {
+    margin-top: -100px;
+    width: 110px;
+}
+
+.column {
+    max-width: 450px;
+}
+
+.login-box {
+    align-self: center !important;
+}
+
+.login-form {
+    width: 375px;
+}
+
+.title-login {
+    text-align: center;
+    font-weight: 100;
+    color: blueviolet;
+}

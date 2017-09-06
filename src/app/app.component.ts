@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-declare var $:any;
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ declare var $:any;
 })
 export class AppComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
   
   ngOnInit() {
     
