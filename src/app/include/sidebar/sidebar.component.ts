@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { adminRoutes } from '../../class/sidebarRoute';
 
 declare var $:any;
@@ -12,8 +11,7 @@ export class SidebarComponent implements OnInit {
 
   path:any
   route:any[]
-  constructor(private router: Router) {
-    this.path = this.router.url
+  constructor() {
     this.route=adminRoutes
   }
 
