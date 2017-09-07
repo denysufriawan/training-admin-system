@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     $('.ui.sidebar')
     .sidebar({
-      context: $('.bottom.segment')
+      context: $('body')
     })
     $('.toggle-menu').on('mouseover',function(){
       $('.ui.sidebar').sidebar('show');
