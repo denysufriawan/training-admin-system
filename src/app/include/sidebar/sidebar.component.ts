@@ -16,13 +16,13 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.route.forEach(element => {
+      // this.route.forEach(element => {
         
-        if(this.path.replace("/spiderman","").match(element.path.replace("/spiderman","")))
-          element.class='active'
-        else
-          element.class=''
-      });
+      //   if(this.path.replace("/spiderman","").match(element.path.replace("/spiderman","")))
+      //     element.class='active'
+      //   else
+      //     element.class=''
+      // });
   }
 
 }

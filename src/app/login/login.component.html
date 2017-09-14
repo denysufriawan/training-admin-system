@@ -1,34 +1,38 @@
-<div class="ui middle aligned center aligned grid login-box">
-    <div class="login-box">
-      <div class="column">
-        <h2 class="ui teal center aligned icon header">
-          <img class="ui medium circular image header-logo" src="../../assets/img/favicon.ico">
-        </h2>
-        <h2 class="title-login">TRAINING ADMIN SYSTEM</h2>
+<div class="ui container" style="width:400px">
+  <div class="ui middle aligned grid" style="height: 100vh">
+    <div class="column">
+      <h1 class="ui center aligned icon header">
+        <img class="ui medium circular image header-logo" src="../../assets/img/favicon.ico" style="width: 110px">
+        <div class="content">
+            MITRAIS
+            <div class="sub header">TRAINING ADMIN SYSTEM</div>
+        </div>
+      </h1>
+      <div class="ui raised segment">
+        <span class="ui violet ribbon label">LOGIN TO YOUR ACCOUNT</span>
         <form class="ui large form login-form">
-          <div class="ui stacked segment">
-            <div class="field">
-              <div class="ui left icon input">
-                <i class="user icon"></i>
-                <input type="text" name="email" placeholder="Logon name (eg. Mitrais\Someone)">
-              </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input type="text" name="email" placeholder="Logon name (eg. Mitrais\Someone)">
             </div>
-            <div class="field">
-              <div class="ui left icon input">
-                <i class="lock icon"></i>
-                <input type="password" name="password" placeholder="Password">
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui checkbox">
-                <input type="checkbox" name="remember-me-login">
-                <label>Remember Me</label>
-              </div>
-            </div>
-            <div [routerLink]="['/spiderman/dashboard']" class="ui fluid large violet submit button">Login</div>
           </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" name="password" placeholder="Password">
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui checkbox">
+              <input type="checkbox" name="remember-me-login">
+              <label>Remember Me</label>
+            </div>
+          </div>
+          <div [routerLink]="['/spiderman/dashboard']" class="ui fluid large violet submit button">Login</div>
           <div class="ui error message"></div>
         </form>
       </div>
     </div>
   </div>
+</div>
