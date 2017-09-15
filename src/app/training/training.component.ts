@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarComponent } from '../include/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-training',

@@ -10,6 +10,7 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $('.ui.dropdown').dropdown();
     $('.ui.sidebar')
     .sidebar({
       context: $('body')

@@ -1,0 +1,63 @@
+<div class="ui grid padded c-padded">
+    <div class="one column row">
+        <div class="column">
+            <h2 class="ui header">
+                <i class="disabled plus icon"></i>
+                <div class="content">
+                    Training Period - Create
+                    <div class="sub header">Create new training period</div>
+                </div>
+            </h2>
+        </div>
+    </div>
+
+    <div class="one column row">
+        <div class="column">
+            <div class="ui segment">
+                <div class="ui breadcrumb">
+                    <a class="section" [routerLink]="['/spiderman/dashboard']">Home</a>
+                    <i class="right angle icon divider"></i>
+                    <a class="section" [routerLink]="['/spiderman/period']">Period</a>
+                    <i class="right angle icon divider"></i>
+                    <div class="active section">Training Period - Create</div>
+                </div>
+            </div>      
+        </div>
+    </div>
+
+    <div class="one column row">
+        <div class="column">
+            <div class="ui raised segment violet">
+                <div class="ui grid">
+                    <div class="one column row">
+                        <div class="column"> 
+                            <a class="ui purple ribbon label"><i class="disabled browser icon"></i>Training Period - Create</a>
+                        </div>
+                    </div>
+                    <div class="one column row">
+                        <div class="column"> 
+                            <form class="ui form">
+                                <div class="field">
+                                  <label>Name</label>
+                                  <input placeholder="Period Name" />
+                                </div>
+                                <div class="field">
+                                  <label>Start Date</label>
+                                  <input placeholder="Last Name" />
+                                </div>
+                                <div class="field">
+                                  <div class="ui checkbox">
+                                    <input type="checkbox" name="active">
+                                    <label>Is this enrollment open?</label>
+                                  </div>
+                                </div>
+                                <button type="submit" class="ui button" role="button">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

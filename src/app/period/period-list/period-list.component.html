@@ -1,3 +1,184 @@
-<p>
-  period-list works!
-</p>
+<div class="ui grid padded c-padded">
+    <div class="one column row">
+        <div class="column">
+            <h2 class="ui header">
+                <i class="disabled calendar icon"></i>
+                <div class="content">
+                    Period
+                    <div class="sub header">Display training period information</div>
+                </div>
+            </h2>
+        </div>
+    </div>
+
+    <div class="one column row">
+        <div class="column">
+            <div class="ui segment">
+                <div class="ui breadcrumb">
+                    <a class="section" [routerLink]="['/spiderman/dashboard']">Home</a>
+                    <i class="right angle icon divider"></i>
+                    <div class="active section">Period</div>
+                </div>
+            </div>      
+        </div>
+    </div>
+
+    <div class="one column row">
+        <div class="column">
+            <div class="ui raised segment violet">
+                <div class="ui grid">
+                    <div class="two column row">
+                        <div class="column"> 
+                            <a class="ui purple ribbon label"><i class="disabled browser icon"></i>Period - Index</a>
+                        </div>
+                        <div class="column">
+                            <button class="ui right floated primary button" [routerLink]="['/spiderman/period/add']"><i class="plus icon"></i> Add Period</button>
+                        </div>
+                    </div>
+
+                    <div class="one column row">
+                        <div class="column"> 
+                            <table id="training-period-table" class="ui table" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Active</th>
+                                        <th>Courses</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Created By</th>
+                                        <th>Updated By</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>PGCP - Software Requirements</td>
+                                        <td>No</td>
+                                        <td>1 course</td>
+                                        <td>09 December 2017</td>
+                                        <td>31 December 2017</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td><i class="blue edit icon"></i><i class="red trash icon"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PGCP - Software Requirements</td>
+                                        <td>No</td>
+                                        <td>1 course</td>
+                                        <td>09 December 2017</td>
+                                        <td>31 December 2017</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td><i class="blue edit icon"></i><i class="red trash icon"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PGCP - Software Requirements</td>
+                                        <td>No</td>
+                                        <td>1 course</td>
+                                        <td>09 December 2017</td>
+                                        <td>31 December 2017</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td><i class="blue edit icon"></i><i class="red trash icon"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PGCP - Software Requirements</td>
+                                        <td>No</td>
+                                        <td>1 course</td>
+                                        <td>09 December 2017</td>
+                                        <td>31 December 2017</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td><i class="blue edit icon"></i><i class="red trash icon"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PGCP - Software Requirements</td>
+                                        <td>No</td>
+                                        <td>1 course</td>
+                                        <td>09 December 2017</td>
+                                        <td>31 December 2017</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td><i class="blue edit icon"></i><i class="red trash icon"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PGCP - Software Requirements</td>
+                                        <td>No</td>
+                                        <td>1 course</td>
+                                        <td>09 December 2017</td>
+                                        <td>31 December 2017</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td><i class="blue edit icon"></i><i class="red trash icon"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PGCP - Software Requirements</td>
+                                        <td>No</td>
+                                        <td>1 course</td>
+                                        <td>09 December 2017</td>
+                                        <td>31 December 2017</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td><i class="blue edit icon"></i><i class="red trash icon"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PGCP - Software Requirements</td>
+                                        <td>No</td>
+                                        <td>1 course</td>
+                                        <td>09 December 2017</td>
+                                        <td>31 December 2017</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td><i class="blue edit icon"></i><i class="red trash icon"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PGCP - Software Requirements</td>
+                                        <td>No</td>
+                                        <td>1 course</td>
+                                        <td>09 December 2017</td>
+                                        <td>31 December 2017</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td><i class="blue edit icon"></i><i class="red trash icon"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PGCP - Software Requirements</td>
+                                        <td>No</td>
+                                        <td>1 course</td>
+                                        <td>09 December 2017</td>
+                                        <td>31 December 2017</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td><i class="blue edit icon"></i><i class="red trash icon"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PGCP - Software Requirements</td>
+                                        <td>No</td>
+                                        <td>1 course</td>
+                                        <td>09 December 2017</td>
+                                        <td>31 December 2017</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td><i class="blue edit icon"></i><i class="red trash icon"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PGCP - Software Requirements</td>
+                                        <td>No</td>
+                                        <td>1 course</td>
+                                        <td>09 December 2017</td>
+                                        <td>31 December 2017</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td>Ni Wayan Luh Sukertiasih</td>
+                                        <td><i class="blue edit icon"></i><i class="red trash icon"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

@@ -1,12 +1,26 @@
-<div class="ui purple top attached menu inverted">
+<div class="ui violet top attached menu inverted">
     <a class="item toggle-menu">
         <i class="sidebar icon white"></i>
     </a>
     <a class="item" [routerLink]="['/']">
         <h2 class="ui header">
             <div class="white content">
-                TRAINING ADMIN SYSTEM
+                Training Admin System
             </div>
         </h2>
     </a>
+    <div class="right menu">
+        <div class="ui dropdown link item" [routerLink]="['/spiderman/dashboard']">
+            <i class="home icon" ></i>
+        </div>
+        <div class="ui dropdown link item">
+            <i class="user icon"></i>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                <div class="header">Spiderman</div>
+                <div class="divider"></div>
+                <div class="item" [routerLink]="['/']"><i class="sign out icon"></i>Logout</div>
+            </div>
+        </div>
+    </div>
 </div>
