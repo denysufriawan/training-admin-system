@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 declare var $:any;
 @Component({
   selector: 'app-menu',
@@ -7,16 +9,19 @@ declare var $:any;
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     $('.ui.dropdown').dropdown();
-    $('.ui.sidebar')
-    .sidebar({
-      context: $('body')
+    this.router.events.subscribe((event)=>{
+      if(this.router.url=='/login')
+          $('.top.menu').addClass('hide')
+        else
+          $('.top.menu').removeClass('hide')
     })
-    $('.toggle-menu').on('mouseover',function(){
-      $('.ui.sidebar').sidebar('toggle');
-    });
+  }
+
+  toggle(){
+    $('.ui.sidebar').sidebar('toggle');
   }
 }

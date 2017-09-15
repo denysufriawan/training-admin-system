@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { adminRoutes } from '../../class/sidebarRoute';
+import { adminRoutes } from '../../_model/sidebarRoute';
 
 declare var $:any;
 @Component({
@@ -10,26 +10,25 @@ declare var $:any;
 })
 export class SidebarComponent implements OnInit {
 
-  route:any;
+  userRoute:any;
   constructor(private router: Router) {
-    this.route=adminRoutes;
+    this.userRoute=adminRoutes;
   }
   
   ngOnInit() {
-      this.router.events.subscribe((event)=>{
-          this.route.forEach(element => { 
-          
-          if(this.router.url.replace("/spiderman","").match(element.path.replace("/spiderman",""))) {
-            element.class='active';
-          } else {
-            element.class='';
-          }
-        });
-      })
+    $('.ui.sidebar').sidebar('setting', 'transition', 'overlay')
+    this.router.events.subscribe((event)=>{
+        this.userRoute.forEach(element => {
+        if(this.router.url.match(element.path)) {
+          element.class='active';
+        } else {
+          element.class='';
+        }
+      });
+    })
   }
 
   toggle(){
     $('.ui.sidebar').sidebar('toggle');
   }
-
 }

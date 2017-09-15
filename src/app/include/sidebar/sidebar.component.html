@@ -5,7 +5,7 @@
       SPIDERMAN
     </h2>
   </div>
-  <a *ngFor="let menu of route" class="item {{menu.class}}" (click)="toggle()" [routerLink]="[menu.path]">
+  <a *ngFor="let menu of userRoute" class="item {{menu.class}}" (click)="toggle()" [routerLink]="[menu.path]">
     <i class="{{menu.icon}} icon"></i>
     {{menu.title}}</a>
 </div>

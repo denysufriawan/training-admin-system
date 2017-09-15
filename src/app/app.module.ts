@@ -13,26 +13,24 @@ import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './include/sidebar/sidebar.component';
 import { MenuComponent } from './include/menu/menu.component';
 import { PeriodListComponent } from './period/period-list/period-list.component';
-import { TemplateComponent } from './template/template.component';
 import { PeriodAddComponent } from './period/period-create/period-create.component';
 import { PeriodEditComponent } from './period/period-edit/period-edit.component';
+import { HeaderComponent } from './include/header/header.component';
+import { BreadcrumbComponent } from './include/breadcrumb/breadcrumb.component';
 
 const routes: Routes = [
-
-  { path: 'spiderman',  component: TemplateComponent , children : [
-    { path: 'dashboard',  component: DashboardComponent},
-    { path: 'period', component: PeriodComponent , children : [
-      { path: 'list', component: PeriodListComponent },
-      { path: 'add', component: PeriodAddComponent },
-      { path: 'edit', component: PeriodEditComponent },
-      { path: '', redirectTo: 'list', pathMatch: 'full' },
-      { path: '**', redirectTo: 'list', pathMatch: 'full' },
-    ]},
-    { path: 'user', component: UserComponent },
-    { path: 'enrollment', component: EnrollmentComponent },
-    { path: 'achievement', component: AchievementComponent },
-    { path: 'training', component: TrainingComponent }
+  { path: 'dashboard',  component: DashboardComponent},
+  { path: 'period', component: PeriodComponent , children : [
+    { path: 'list', component: PeriodListComponent },
+    { path: 'add', component: PeriodAddComponent },
+    { path: 'edit', component: PeriodEditComponent },
+    { path: '', redirectTo: 'list', pathMatch: 'full' },
+    { path: '**', redirectTo: 'list', pathMatch: 'full' },
   ]},
+  { path: 'user', component: UserComponent },
+  { path: 'enrollment', component: EnrollmentComponent },
+  { path: 'achievement', component: AchievementComponent },
+  { path: 'training', component: TrainingComponent },
   { path: 'login', component: LoginComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
@@ -51,9 +49,10 @@ const routes: Routes = [
     SidebarComponent,
     MenuComponent,
     PeriodListComponent,
-    TemplateComponent,
     PeriodAddComponent,
-    PeriodEditComponent
+    PeriodEditComponent,
+    HeaderComponent,
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,

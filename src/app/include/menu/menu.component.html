@@ -1,8 +1,8 @@
 <div class="ui violet top attached menu inverted">
-    <a class="item toggle-menu">
+    <a class="item" (mouseover)="toggle()">
         <i class="sidebar icon white"></i>
     </a>
-    <a class="item" [routerLink]="['/']">
+    <a class="item" [routerLink]="['/dashboard']">
         <h2 class="ui header">
             <div class="white content">
                 Training Admin System
@@ -10,7 +10,7 @@
         </h2>
     </a>
     <div class="right menu">
-        <div class="ui dropdown link item" [routerLink]="['/spiderman/dashboard']">
+        <div class="ui dropdown link item" [routerLink]="['/dashboard']">
             <i class="home icon" ></i>
         </div>
         <div class="ui dropdown link item">
