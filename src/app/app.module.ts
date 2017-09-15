@@ -14,7 +14,8 @@ import { SidebarComponent } from './include/sidebar/sidebar.component';
 import { MenuComponent } from './include/menu/menu.component';
 import { PeriodListComponent } from './period/period-list/period-list.component';
 import { TemplateComponent } from './template/template.component';
-import { PeriodAddComponent } from './period/period-add/period-add.component';
+import { PeriodAddComponent } from './period/period-create/period-create.component';
+import { PeriodEditComponent } from './period/period-edit/period-edit.component';
 
 const routes: Routes = [
 
@@ -23,6 +24,7 @@ const routes: Routes = [
     { path: 'period', component: PeriodComponent , children : [
       { path: 'list', component: PeriodListComponent },
       { path: 'add', component: PeriodAddComponent },
+      { path: 'edit', component: PeriodEditComponent },
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: '**', redirectTo: 'list', pathMatch: 'full' },
     ]},
@@ -50,7 +52,8 @@ const routes: Routes = [
     MenuComponent,
     PeriodListComponent,
     TemplateComponent,
-    PeriodAddComponent
+    PeriodAddComponent,
+    PeriodEditComponent
   ],
   imports: [
     BrowserModule,

@@ -11,7 +11,6 @@ export class PeriodListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $.noConflict();
     $('#training-period-table').DataTable();
   }
 

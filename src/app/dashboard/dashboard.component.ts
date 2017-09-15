@@ -12,9 +12,8 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // $.noConflict();
-    // $('#active-training-table').DataTable();
-    // $('#bcc-schedule-table').DataTable();
+    $('#active-training-table').DataTable();
+    $('#bcc-schedule-table').DataTable();
   }
 
 }

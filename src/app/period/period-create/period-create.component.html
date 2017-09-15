@@ -38,18 +38,28 @@
                         <div class="column"> 
                             <form class="ui form">
                                 <div class="field">
-                                  <label>Name</label>
-                                  <input placeholder="Period Name" />
+                                    <label>Name</label>
+                                    <input placeholder="Period Name" />
+                                </div>
+                                <div class="field ui calendar" id="start-date-add-period">
+                                    <label>Start Date</label>
+                                    <div class="ui input left icon">
+                                        <i class="calendar icon"></i>
+                                        <input type="text" name="start-date-add-period" placeholder="Start Date">
+                                    </div>
+                                </div>
+                                <div class="field ui calendar" id="end-date-add-period">
+                                    <label>End Date</label>
+                                    <div class="ui input left icon">
+                                        <i class="calendar icon"></i>
+                                        <input type="text" name="end-date-add-period" placeholder="End Date">
+                                    </div>
                                 </div>
                                 <div class="field">
-                                  <label>Start Date</label>
-                                  <input placeholder="Last Name" />
-                                </div>
-                                <div class="field">
-                                  <div class="ui checkbox">
-                                    <input type="checkbox" name="active">
-                                    <label>Is this enrollment open?</label>
-                                  </div>
+                                    <div class="ui checkbox">
+                                        <input type="checkbox" name="active">
+                                        <label>Is this enrollment open?</label>
+                                    </div>
                                 </div>
                                 <button type="submit" class="ui button" role="button">Submit</button>
                             </form>

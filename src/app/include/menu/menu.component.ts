@@ -16,7 +16,7 @@ export class MenuComponent implements OnInit {
       context: $('body')
     })
     $('.toggle-menu').on('mouseover',function(){
-      $('.ui.sidebar').sidebar('show');
+      $('.ui.sidebar').sidebar('toggle');
     });
   }
 }

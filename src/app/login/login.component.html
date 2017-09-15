@@ -10,11 +10,11 @@
       </h1>
       <div class="ui raised segment">
         <span class="ui violet ribbon label">LOGIN TO YOUR ACCOUNT</span>
-        <form class="ui large form login-form">
+        <form class="ui large form login-form" name="form" (ngSubmit)="f.form.valid && login()" novalidate>
           <div class="field">
             <div class="ui left icon input">
               <i class="user icon"></i>
-              <input type="text" name="email" placeholder="Logon name (eg. Mitrais\Someone)">
+              <input type="text" name="username" placeholder="Logon name (eg. Mitrais\Someone)">
             </div>
           </div>
           <div class="field">
@@ -29,7 +29,7 @@
               <label>Remember Me</label>
             </div>
           </div>
-          <div [routerLink]="['/spiderman/dashboard']" class="ui fluid large violet submit button">Login</div>
+          <div [routerLink]="'/spiderman/dashboard'"class="ui fluid large violet submit button">Login</div>
           <div class="ui error message"></div>
         </form>
       </div>
