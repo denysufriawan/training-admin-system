@@ -1,0 +1,7 @@
+.c-content {
+    min-height: calc(100vh - 128.18px);
+}
+
+.c-padded {
+    padding: 0.5em 1em 0 1em;
+}

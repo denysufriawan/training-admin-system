@@ -1,0 +1,11 @@
+.ui.vertical.segment {
+    border-bottom: none;
+}
+
+.ui.footer.segment {
+    margin: 1.5em 0em 0em;
+}
+
+.hide {
+    display: none;
+}

@@ -17,6 +17,7 @@ import { PeriodAddComponent } from './period/period-create/period-create.compone
 import { PeriodEditComponent } from './period/period-edit/period-edit.component';
 import { HeaderComponent } from './include/header/header.component';
 import { BreadcrumbComponent } from './include/breadcrumb/breadcrumb.component';
+import { FooterComponent } from './include/footer/footer.component';
 
 const routes: Routes = [
   { path: 'dashboard',  component: DashboardComponent},
@@ -52,7 +53,8 @@ const routes: Routes = [
     PeriodAddComponent,
     PeriodEditComponent,
     HeaderComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

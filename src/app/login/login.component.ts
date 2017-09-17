@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $('.ui.dropdown').dropdown();
     // $('.ui.large.form.login-form')
     // .form({
     //   fields: {
