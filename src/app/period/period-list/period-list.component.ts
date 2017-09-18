@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 declare var $:any;
 @Component({
@@ -8,10 +9,18 @@ declare var $:any;
 })
 export class PeriodListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
     $('#training-period-table').DataTable();
+
+    $('#delete-period-button').click(function(){
+      $('.ui.basic.modal.delete.period').modal('show');
+    })
   }
+
+  editPeriodBtn = function () {
+    this.router.navigateByUrl('/period/edit');
+  };
 
 }

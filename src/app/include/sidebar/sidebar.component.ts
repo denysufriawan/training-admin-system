@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { adminRoutes } from '../../_model/sidebarRoute';
+import { adminRoutes, trainerRoutes, managerRoutes, participantsRoutes } from '../../_classes/sidebarRoute';
 
 declare var $:any;
 @Component({
@@ -9,10 +9,22 @@ declare var $:any;
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
+  role: String;
   userRoute:any;
+
   constructor(private router: Router) {
-    this.userRoute=adminRoutes;
+    this.role = localStorage.getItem('role');
+    if(this.role=="Admin"){
+      this.userRoute=adminRoutes;
+    } else if (this.role=="Trainer") {
+      this.userRoute=trainerRoutes;
+    } else if (this.role=="Manager") {
+      this.userRoute=managerRoutes;
+    } else if (this.role=="Participants") {
+      this.userRoute=participantsRoutes;
+    } else {
+      this.userRoute=adminRoutes;
+    }
   }
   
   ngOnInit() {

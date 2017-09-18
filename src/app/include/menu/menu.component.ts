@@ -24,4 +24,28 @@ export class MenuComponent implements OnInit {
   toggle(){
     $('.ui.sidebar').sidebar('toggle');
   }
+
+  setAdminRole(){
+    localStorage.setItem('role', 'Admin');
+    window.location.reload();
+  }
+
+  setTrainerRole(){
+    localStorage.setItem('role', 'Trainer');
+    window.location.reload();
+  }
+
+  setManagerRole(){
+    localStorage.setItem('role', 'Manager');
+    window.location.reload();
+  }
+
+  setParticipantsRole(){
+    localStorage.setItem('role', 'Participants');
+    window.location.reload();
+  }
+
+  doLogout(){
+    localStorage.clear();
+  }
 }

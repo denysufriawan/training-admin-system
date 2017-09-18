@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,10 @@ import { PeriodEditComponent } from './period/period-edit/period-edit.component'
 import { HeaderComponent } from './include/header/header.component';
 import { BreadcrumbComponent } from './include/breadcrumb/breadcrumb.component';
 import { FooterComponent } from './include/footer/footer.component';
+import { HttpModule } from '@angular/http';
+
+import { AuthGuard } from './_guards/auth.guard';
+import { AuthService } from './_services/auth.service';
 
 const routes: Routes = [
   { path: 'dashboard',  component: DashboardComponent},
@@ -58,9 +63,11 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

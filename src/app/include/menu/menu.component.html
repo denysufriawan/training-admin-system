@@ -10,6 +10,19 @@
         </h2>
     </a>
     <div class="right menu">
+        <div class="ui dropdown link item">
+            Select Role
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                <div class="item" (click)="setAdminRole()">Admin</div>
+                <div class="divider"></div>
+                <div class="item" (click)="setTrainerRole()">Trainer</div>
+                <div class="divider"></div>
+                <div class="item" (click)="setManagerRole()">Manager</div>
+                <div class="divider"></div>
+                <div class="item" (click)="setParticipantsRole()">Participants</div>
+            </div>
+        </div>
         <div class="ui dropdown link item" [routerLink]="['/dashboard']">
             <i class="home icon" ></i>
         </div>
@@ -19,7 +32,7 @@
             <div class="menu">
                 <div class="header">Spiderman</div>
                 <div class="divider"></div>
-                <div class="item" [routerLink]="['/']"><i class="sign out icon"></i>Logout</div>
+                <div class="item" [routerLink]="['/']" (click)="doLogout()"><i class="sign out icon"></i>Logout</div>
             </div>
         </div>
     </div>

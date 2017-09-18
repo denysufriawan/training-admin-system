@@ -20,6 +20,7 @@ export class PeriodEditComponent implements OnInit {
     $('#eligible-participant-list-table').DataTable();
     $('#add-eligible-participant-table').DataTable();
     $('#schedule-list-table').DataTable();
+    $('#enroll-participants-table').DataTable();
 
     $('#start-date-edit-period').calendar({
       type: 'date'
