@@ -43,9 +43,277 @@
                                 <a class="item" data-tab="third"><b>Schedule</b></a>
                             </div>
                             
-                            <div class="ui active tab segment" data-tab="first"></div>
-                            <div class="ui tab segment" data-tab="second">Second</div>
-                            <div class="ui tab segment" data-tab="third">Second</div>
+                            <div class="ui active tab segment" data-tab="first">
+                                <div class="one column row">
+                                    <div class="column"> 
+                                        <form class="ui form">
+                                            <div class="field">
+                                                <label>Name</label>
+                                                <input type="text" name="name-edit-period" placeholder="Period Name" />
+                                            </div>
+                                            <div class="field ui calendar" id="start-date-edit-period">
+                                                <label>Start Date</label>
+                                                <div class="ui input left icon">
+                                                    <i class="calendar icon"></i>
+                                                    <input type="text" name="start-date-edit-period" placeholder="Start Date">
+                                                </div>
+                                            </div>
+                                            <div class="field ui calendar" id="end-date-edit-period">
+                                                <label>End Date</label>
+                                                <div class="ui input left icon">
+                                                    <i class="calendar icon"></i>
+                                                    <input type="text" name="end-date-edit-period" placeholder="End Date">
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="ui checkbox">
+                                                    <input type="checkbox" name="active">
+                                                    <label>Is this enrollment open?</label>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="ui blue button" role="button">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui tab segment" data-tab="second">
+                                <div class="ui grid">
+                                    <div class="one column row">
+                                        <div class="column">
+                                            <button class="ui right floated primary button" id="add-eligible-participant-button"><i class="plus icon"></i> Add Eligible Participants</button>
+                                        </div>
+                                    </div>
+                
+                                    <div class="one column row">
+                                        <div class="column"> 
+                                            <table id="eligible-participant-list-table" class="ui table" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Employee Name</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Ruben Juliarto</td>
+                                                        <td><i class="red trash icon" id="delete-ep-user"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ardi Ardianto</td>
+                                                        <td><i class="red trash icon" id="delete-ep-user"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ramdony Ariesta Rindiawan</td>
+                                                        <td><i class="red trash icon" id="delete-ep-user"></i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <!-- Delete EP User Modal -->
+                                        <div class="ui basic modal delete ep user">
+                                            <div class="ui icon header">
+                                                <i class="trash icon"></i>
+                                                Delete Eligible Participant User
+                                            </div>
+                                            <div class="content">
+                                                <p>Are you sure want to delete [name]?</p>
+                                            </div>
+                                            <div class="actions">
+                                                <div class="ui red basic cancel inverted button">
+                                                <i class="remove icon"></i>
+                                                No
+                                                </div>
+                                                <div class="ui green ok inverted button">
+                                                <i class="checkmark icon"></i>
+                                                Yes
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Add Eligible Participants Modal -->
+                                        <div class="ui large modal add eligible participant">
+                                            <div class="header">Select Employee(s)</div>
+                                            <div class="content">
+                                                <table id="add-eligible-participant-table" class="ui table" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Full Name</th>
+                                                            <th>Job Family & Stream</th>
+                                                            <th>Grade</th>
+                                                            <th>Email</th>
+                                                            <th>Account Name</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><div class="ui checkbox"><input type="checkbox"><label></label></div></td>
+                                                            <td>A.A Gde Agung Kusuma Astika</td>
+                                                            <td>IT.IT-NM</td>
+                                                            <td>IT2</td>
+                                                            <td>A.A.GdeAgungKusuma.Astika@mitrais.com</td>
+                                                            <td>mitrais\agung_a</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><div class="ui checkbox"><input type="checkbox"><label></label></div></td>
+                                                            <td>A.A Gde Agung Kusuma Astika</td>
+                                                            <td>IT.IT-NM</td>
+                                                            <td>IT2</td>
+                                                            <td>A.A.GdeAgungKusuma.Astika@mitrais.com</td>
+                                                            <td>mitrais\agung_a</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><div class="ui checkbox"><input type="checkbox"><label></label></div></td>
+                                                            <td>A.A Gde Agung Kusuma Astika</td>
+                                                            <td>IT.IT-NM</td>
+                                                            <td>IT2</td>
+                                                            <td>A.A.GdeAgungKusuma.Astika@mitrais.com</td>
+                                                            <td>mitrais\agung_a</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><div class="ui checkbox"><input type="checkbox"><label></label></div></td>
+                                                            <td>A.A Gde Agung Kusuma Astika</td>
+                                                            <td>IT.IT-NM</td>
+                                                            <td>IT2</td>
+                                                            <td>A.A.GdeAgungKusuma.Astika@mitrais.com</td>
+                                                            <td>mitrais\agung_a</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="actions">
+                                                <div class="ui positive button">Save</div>
+                                                <div class="ui cancel button">Cancel</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui tab segment" data-tab="third">
+                                <div class="one column row">
+                                    <div class="column"> 
+                                        <table id="schedule-list-table" class="ui table" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Name</th>
+                                                    <th>Trainer</th>
+                                                    <th>Backup Trainer</th>
+                                                    <th>Classroom</th>
+                                                    <th>Day</th>
+                                                    <th>Start Time</th>
+                                                    <th>End Time</th>
+                                                    <th>Capacity</th>
+                                                    <th>All Participant List</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><div class="ui checkbox"><input type="checkbox"><label></label></div></td>
+                                                    <td>Software Requirements #1</td>
+                                                    <td>Made Aditya</td>
+                                                    <td>-</td>
+                                                    <td>Srikandi Meeting Room - Sanur B Office 2nd Floor</td>
+                                                    <td></td>
+                                                    <td>07 Aug 2017 14:52</td>
+                                                    <td>09 Aug 2017 19:11</td>
+                                                    <td>10</td>
+                                                    <td>3</td>
+                                                    <td><i class="info blue icon" id="schedule-list-detail-button"></i><i class="users blue icon" id="enroll-participants-button"></i></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <!-- Training Class Detail Modal -->
+                                        <div class="ui small modal training class detail">
+                                            <div class="header">Training Class Detail</div>
+                                            <div class="content">
+                                                <table class="ui very basic table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                            <td>Software Requirements #1</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Trainer</td>
+                                                            <td>Made Aditya</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Backup Trainer</td>
+                                                            <td>-</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Classroom</td>
+                                                            <td>Srikandi Meeting Room - Sanur B Office 2nd Floor</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Day</td>
+                                                            <td>-</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Start Date</td>
+                                                            <td>07 Aug 2017 14:52</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>End Date</td>
+                                                            <td>09 Aug 2017 19:11</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Created By</td>
+                                                            <td>Ni Wayan Luh Sukertiasih</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Created At</td>
+                                                            <td>07 Aug 2017 14:52</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Updated By</td>
+                                                            <td>Ni Wayan Luh Sukertiasih</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Updated At</td>
+                                                            <td>07 Aug 2017 14:52</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="actions">
+                                                <div class="ui positive button">OK</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Enroll Participants Modal -->
+                                        <div class="ui small modal enroll participants">
+                                            <div class="header">Eligible Participant</div>
+                                            <div class="content">
+                                                <table id="enroll-participants-table" class="ui table" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Employee Name</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Sylvia Novrianti</td>
+                                                            <td><i class="sign out red icon" id="schedule-list-detail-button"></i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Kadek Ayu Kartiniasih</td>
+                                                            <td><i class="sign out red icon" id="schedule-list-detail-button"></i></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="actions">
+                                                <div class="ui positive button">OK</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -12,12 +12,12 @@ export class PeriodAddComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-      $('#start-date-add-period').calendar({
-        type: 'date'
-      });
+    $('#start-date-add-period').calendar({
+      type: 'date'
+    });
 
-      $('#end-date-add-period').calendar({
-        type: 'date'
-      });
+    $('#end-date-add-period').calendar({
+      type: 'date'
+    });
   }
 }
