@@ -28,7 +28,10 @@ export class SidebarComponent implements OnInit {
   }
   
   ngOnInit() {
-    $('.ui.sidebar').sidebar('setting', 'transition', 'overlay')
+    $('.ui.sidebar').sidebar({
+      transition:'overlay',
+      silent:true
+    })
     this.router.events.subscribe((event)=>{
         this.userRoute.forEach(element => {
         if(this.router.url.match(element.path)) {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AuthService } from '../../_services/auth.service';
+
 declare var $:any;
 @Component({
   selector: 'app-menu',
@@ -9,12 +11,12 @@ declare var $:any;
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private authService:AuthService) { }
 
   ngOnInit() {
     $('.ui.dropdown').dropdown();
     this.router.events.subscribe((event)=>{
-      if(this.router.url=='/login')
+      if(this.router.url.match('/login'))
           $('.top.menu').addClass('hide')
         else
           $('.top.menu').removeClass('hide')
@@ -45,7 +47,7 @@ export class MenuComponent implements OnInit {
     window.location.reload();
   }
 
-  doLogout(){
-    localStorage.clear();
+  logOut(){
+    this.authService.logout();
   }
 }

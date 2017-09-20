@@ -2,22 +2,33 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
 
   constructor(private http:Http,  private router: Router) { }
 
-  login(username: string, password: string): Observable<boolean> {
-    return this.http.post('http://localhost:4200/api/login', { username: username, password: password })
+  login(data): Observable<any> {
+    return this.http.post('http://localhost:8080/api/login', data)
       .map((response: Response) => {
-        var responseData = response.json();
-        if (responseData.status == 'success') {
-          localStorage.setItem('currentUser', JSON.stringify(responseData.data.user));
-          return true;
-        } else {
-          return false;
-        }
+        return response.json();
       });
+  }
+
+  isLogin(): boolean {
+    if (localStorage.getItem('user'))
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
+  logout(): void {
+    localStorage.removeItem('user')
+    this.router.navigate(['/login'])
   }
 }
