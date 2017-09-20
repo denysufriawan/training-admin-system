@@ -8,17 +8,20 @@ declare var $:any;
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
+  current_active_role: String;
   constructor(private router: Router) { }
 
   ngOnInit() {
-    $('.ui.dropdown').dropdown();
+    $('#account-dropdown').dropdown();
+    $('#role-dropdown').dropdown();
     this.router.events.subscribe((event)=>{
-      if(this.router.url=='/login')
-          $('.top.menu').addClass('hide')
-        else
-          $('.top.menu').removeClass('hide')
+      if(this.router.url.includes("login"))
+        $('.top.menu').addClass('hide')
+      else
+        $('.top.menu').removeClass('hide')
     })
+
+    this.current_active_role = localStorage.getItem('role');
   }
 
   toggle(){

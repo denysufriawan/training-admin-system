@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarComponent } from '../include/sidebar/sidebar.component';
 import { BreadcrumbService } from '../_services/breadcrumb.service';
 import { HeaderService } from '../_services/header.service';
 
 @Component({
-  selector: 'app-achievement',
-  templateUrl: './achievement.component.html',
-  styleUrls: ['./achievement.component.css']
+  selector: 'app-training-maintenance',
+  templateUrl: './training-maintenance.component.html',
+  styleUrls: ['./training-maintenance.component.css']
 })
-export class AchievementComponent implements OnInit {
+export class TrainingMaintenanceComponent implements OnInit {
   breadcrumbData: any = [
     {link:'/dashboard',title:'Dashboard',icon:'dashboard'},
-    {link:'',title:'Achievement',icon:'trophy'},
+    {link:'',title:'Training Maintenance',icon:'desktop'},
   ];
 
   headerData: any = [ 
-    {title:'Achievement',subtitle:'Page to mantain and display the participant achievement of english placement test result',icon:'trophy'}
+    {title:'Training Maintenance',subtitle:'Page to manage the attendance and the assessment of the training',icon:'desktop'}
   ];
+
   constructor(private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService) { }
 
   ngOnInit() {

@@ -1,3 +1,13 @@
-<p>
-  header works!
-</p>
+<div class="ui grid padded">
+    <div class="one column row">
+        <div *ngFor="let data of headerData" class="column">
+            <h2 class="ui header">
+                <i class="disabled {{data.icon}} icon"></i>
+                <div class="content">
+                    {{data.title}}
+                    <div class="sub header">{{data.subtitle}}</div>
+                </div>
+            </h2>
+        </div>
+    </div>
+</div>

@@ -38,9 +38,10 @@ export class LoginComponent implements OnInit {
     //         }
     //       ]
     //     }
-    //   }
+    //   },
+    //   inline : true,
+    //   on     : 'blur'
     // });
-    
   }
 
   login() {

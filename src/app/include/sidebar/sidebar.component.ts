@@ -13,6 +13,7 @@ export class SidebarComponent implements OnInit {
   userRoute:any;
 
   constructor(private router: Router) {
+    //localStorage.setItem('role', 'Admin');
     this.role = localStorage.getItem('role');
     if(this.role=="Admin"){
       this.userRoute=adminRoutes;
@@ -28,7 +29,11 @@ export class SidebarComponent implements OnInit {
   }
   
   ngOnInit() {
-    $('.ui.sidebar').sidebar('setting', 'transition', 'overlay')
+    $('.ui.sidebar').sidebar({
+      transition:'overlay',
+      silent:true
+    }) 
+
     this.router.events.subscribe((event)=>{
         this.userRoute.forEach(element => {
         if(this.router.url.match(element.path)) {

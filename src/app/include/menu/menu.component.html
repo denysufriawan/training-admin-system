@@ -10,27 +10,35 @@
         </h2>
     </a>
     <div class="right menu">
-        <div class="ui dropdown link item">
-            Select Role
-            <i class="dropdown icon"></i>
-            <div class="menu">
-                <div class="item" (click)="setAdminRole()">Admin</div>
-                <div class="divider"></div>
-                <div class="item" (click)="setTrainerRole()">Trainer</div>
-                <div class="divider"></div>
-                <div class="item" (click)="setManagerRole()">Manager</div>
-                <div class="divider"></div>
-                <div class="item" (click)="setParticipantsRole()">Participants</div>
-            </div>
-        </div>
         <div class="ui dropdown link item" [routerLink]="['/dashboard']">
             <i class="home icon" ></i>
         </div>
-        <div class="ui dropdown link item">
+        <div class="ui dropdown link item" id="account-dropdown">
             <i class="user icon"></i>
             <i class="dropdown icon"></i>
-            <div class="menu">
-                <div class="header">Spiderman</div>
+            <div class="menu" style="min-width:250px">
+                <div class="header">
+                    <h2 class="ui header">
+                        <img src="https://semantic-ui.com/images/avatar2/large/patrick.png" class="ui circular image">
+                        <div class="content">
+                            Patrick
+                            <div class="sub header">{{current_active_role}}</div>
+                        </div>
+                    </h2>
+                </div>
+                <div class="divider"></div>
+                <div class="ui item">
+                    <div class="ui fluid selection dropdown" id="role-dropdown">
+                        <div class="text" id="current-active-role">{{current_active_role}}</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div class="item" (click)="setAdminRole()">Admin</div>
+                            <div class="item" (click)="setTrainerRole()">Trainer</div>
+                            <div class="item" (click)="setManagerRole()">Manager</div>
+                            <div class="item" (click)="setParticipantsRole()">Participants</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="divider"></div>
                 <div class="item" [routerLink]="['/']" (click)="doLogout()"><i class="sign out icon"></i>Logout</div>
             </div>

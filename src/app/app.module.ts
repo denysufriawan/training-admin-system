@@ -9,7 +9,7 @@ import { PeriodComponent } from './period/period.component';
 import { UserComponent } from './user/user.component';
 import { EnrollmentComponent } from './enrollment/enrollment.component';
 import { AchievementComponent } from './achievement/achievement.component';
-import { TrainingComponent } from './training/training.component';
+import { TrainingMaintenanceComponent } from './training-maintenance/training-maintenance.component';
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './include/sidebar/sidebar.component';
 import { MenuComponent } from './include/menu/menu.component';
@@ -23,6 +23,8 @@ import { HttpModule } from '@angular/http';
 
 import { AuthGuard } from './_guards/auth.guard';
 import { AuthService } from './_services/auth.service';
+import { BreadcrumbService } from './_services/breadcrumb.service';
+import { HeaderService } from './_services/header.service';
 
 const routes: Routes = [
   { path: 'dashboard',  component: DashboardComponent},
@@ -36,7 +38,7 @@ const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'enrollment', component: EnrollmentComponent },
   { path: 'achievement', component: AchievementComponent },
-  { path: 'training', component: TrainingComponent },
+  { path: 'training', component: TrainingMaintenanceComponent },
   { path: 'login', component: LoginComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
@@ -50,7 +52,7 @@ const routes: Routes = [
     UserComponent,
     EnrollmentComponent,
     AchievementComponent,
-    TrainingComponent,
+    TrainingMaintenanceComponent,
     LoginComponent,
     SidebarComponent,
     MenuComponent,
@@ -67,7 +69,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService],
+  providers: [AuthService, BreadcrumbService, HeaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

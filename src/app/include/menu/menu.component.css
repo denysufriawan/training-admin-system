@@ -1,3 +1,15 @@
 .hide {
     display: none;
 }
+
+.ui.violet.top.attached.menu {
+    box-shadow: 3px 3px 6px rgba(0,0,0,.24);
+}
+
+#role-dropdown .menu.left.transition.visible {
+    margin-top: 29px !important;
+}
+
+.ui.dropdown .menu .menu {
+    margin: 0 -0.1em 0 0!important;
+}

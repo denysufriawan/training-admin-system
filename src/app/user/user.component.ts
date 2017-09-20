@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BreadcrumbService } from '../_services/breadcrumb.service';
+import { HeaderService } from '../_services/header.service';
 
 @Component({
   selector: 'app-user',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+  breadcrumbData: any = [
+    {link:'/dashboard',title:'Dashboard',icon:'dashboard'},
+    {link:'',title:'User',icon:'user'},
+  ];
 
-  constructor() { }
+  headerData: any = [ 
+    {title:'User',subtitle:'Page to add new user and update user role',icon:'user'}
+  ];
+
+  constructor(private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService) { }
 
   ngOnInit() {
+    this.BreadcrumbService.setCurrentBreadcumb(this.breadcrumbData);
+    this.HeaderService.setCurrentHeader(this.headerData);
   }
 
 }

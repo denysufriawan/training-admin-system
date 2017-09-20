@@ -1,37 +1,39 @@
-<div class="ui container" style="width:400px">
-  <div class="ui middle aligned grid" style="height: 100vh">
-    <div class="column">
-      <h1 class="ui center aligned icon header">
-        <img class="ui medium circular image header-logo" src="../../assets/img/favicon.ico" style="width: 110px">
-        <div class="content">
-            MITRAIS
-            <div class="sub header">TRAINING ADMIN SYSTEM</div>
+<div class="tas-content">
+  <div class="ui container" style="width:400px">
+    <div class="ui middle aligned grid" style="height: 100vh">
+      <div class="column">
+        <h1 class="ui center aligned icon header">
+          <img class="ui medium circular image header-logo" src="../../assets/img/favicon.ico" style="width: 110px">
+          <div class="content">
+              MITRAIS
+              <div class="sub header">TRAINING ADMIN SYSTEM</div>
+          </div>
+        </h1>
+        <div class="ui raised segment" [ngClass]="{'loading':loading}">
+          <span class="ui violet ribbon label">LOGIN TO YOUR ACCOUNT</span>
+          <form class="ui large form login-form" name="form" (ngSubmit)="login()" #formLogin="ngForm" novalidate>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" class="form-control" name="username" placeholder="Logon name (eg. Mitrais\Someone)" [(ngModel)]="model.username" #username="ngModel" required />
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="model.password" #password="ngModel" required />
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui checkbox">
+                <input type="checkbox" name="remember-me-login">
+                <label>Remember Me</label>
+              </div>
+            </div>
+            <button class="ui fluid large violet submit button">Login</button>
+            <div class="ui error message"></div>
+          </form>
         </div>
-      </h1>
-      <div class="ui raised segment">
-        <span class="ui violet ribbon label">LOGIN TO YOUR ACCOUNT</span>
-        <form class="ui large form login-form" name="form" (ngSubmit)="login()" #formLogin="ngForm" novalidate>
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="user icon"></i>
-              <input type="text" class="form-control" name="username" placeholder="Logon name (eg. Mitrais\Someone)" [(ngModel)]="model.username" #username="ngModel" required />
-            </div>
-          </div>
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="lock icon"></i>
-              <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="model.password" #password="ngModel" required />
-            </div>
-          </div>
-          <div class="field">
-            <div class="ui checkbox">
-              <input type="checkbox" name="remember-me-login">
-              <label>Remember Me</label>
-            </div>
-          </div>
-          <button class="ui fluid large violet submit button">Login</button>
-          <div class="ui error message"></div>
-        </form>
       </div>
     </div>
   </div>
