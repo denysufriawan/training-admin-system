@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { adminRoutes, trainerRoutes, managerRoutes, participantsRoutes } from '../../_classes/sidebarRoute';
 import { AuthService } from '../../_services/auth.service';
+import { SidebarService } from '../../_services/sidebar.service';
 
 declare var $:any;
 @Component({
@@ -10,26 +10,18 @@ declare var $:any;
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  role: String;
   userRoute:any=[];
 
-  constructor(private router: Router, private AuthService: AuthService) {
+  constructor(private router: Router, private AuthService: AuthService, private sidebarService: SidebarService) {
 
     this.AuthService.roleSubs.subscribe(data => {
-      this.role = data;
-      if(this.role=="1"){
-        this.userRoute=adminRoutes;
-      } else if (this.role=="2") {
-        this.userRoute=trainerRoutes;
-      } else if (this.role=="3") {
-        this.userRoute=managerRoutes;
-      } else if (this.role=="4") {
-        this.userRoute=participantsRoutes;
-      }
+      this.userRoute=this.sidebarService.getSidebarRoute(data)
     });
   }
   
   ngOnInit() {
+    this.userRoute=this.sidebarService.getSidebarRoute(this.AuthService.getActiveRole())
+    
     $('.ui.sidebar').sidebar({
       transition:'overlay',
       silent:true

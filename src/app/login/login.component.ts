@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
           swal({
                 type: 'error',
                 title: 'Error!',
-                text: "Oops, something goes wrong!",
+                text: "Oops, the server can not be reached!",
                 showCancelButton: false,
                 confirmButtonText: "OK"
             }).then(

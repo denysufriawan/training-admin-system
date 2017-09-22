@@ -26,6 +26,7 @@ import { AuthService } from './_services/auth.service';
 import { BreadcrumbService } from './_services/breadcrumb.service';
 import { HeaderService } from './_services/header.service';
 import { MenuService } from './_services/menu.service';
+import { SidebarService } from './_services/sidebar.service';
 
 const routes: Routes = [
   { path: 'dashboard',  component: DashboardComponent, canActivate:[AuthGuard]},
@@ -70,7 +71,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, AuthGuard, BreadcrumbService, HeaderService, MenuService],
+  providers: [AuthService, AuthGuard, BreadcrumbService, HeaderService, MenuService, SidebarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

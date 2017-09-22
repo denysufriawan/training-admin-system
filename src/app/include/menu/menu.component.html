@@ -1,4 +1,4 @@
-<div class="ui violet top attached menu inverted">
+<div class="ui top attached menu inverted">
     <a class="item" (mouseover)="toggle()">
         <i class="sidebar icon white"></i>
     </a>
@@ -17,7 +17,7 @@
             <i class="user icon"></i>
             <i class="dropdown icon"></i>
             <div class="menu" style="min-width:250px">
-                <div class="header">
+                <div class="ui header">
                     <h3 class="ui header">
                         <img src="https://semantic-ui.com/images/avatar2/large/patrick.png" class="ui circular image">
                         <div *ngIf="current_user"class="content" style="margin-right: 40px;">
@@ -26,20 +26,20 @@
                         </div>
                     </h3>
                 </div>
-                <div class="divider"></div>                
-                <div class="item" (click)="logOut()"><i class="sign out icon"></i>Logout</div>
                 <div class="divider"></div>
-                <div class="ui header">
-                    <div class="ui form">
-                        <div class="field">
-                            <label>Active Role</label>
-                        </div>
-                        <div class="field">
-                            <select class="ui fluid dropdown" id="role-dropdown" name="role-selected">
-                            </select>
+                <div class="ui form" style="margin: 1rem 0 .75rem;padding: 0 1.14285714rem;">
+                    <div class="field">
+                        <label>Active Role</label>
+                    </div>
+                    <div class="field">
+                        <div class="ui fluid selection dropdown" id="role-dropdown">
+                            <div class="text" style="text-transform:none !important"></div>
+                            <i class="dropdown icon"></i>
                         </div>
                     </div>
                 </div>
+                <div class="divider"></div>                
+                <div class="ui item" (click)="logOut()"><i class="sign out icon"></i>Logout</div>
             </div>
         </div>
     </div>
