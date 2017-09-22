@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(form) {
-    this.loading = true;
+    $('#loading').fadeIn('fast')
     this.authService.login(form)
       .subscribe(
         data => {
@@ -73,9 +73,8 @@ export class LoginComponent implements OnInit {
                 confirmButtonText: "OK"
               }).then(
                   function(){
-                      
+                    $('#loading').fadeOut('fast')
               });
-              this.loading = false;
             }
         },
         error => {
@@ -87,9 +86,8 @@ export class LoginComponent implements OnInit {
                 confirmButtonText: "OK"
             }).then(
                 function(){
-                    
+                  $('#loading').fadeOut('fast')
             });
-        this.loading = false;
     });
   }
 }

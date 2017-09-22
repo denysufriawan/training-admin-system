@@ -9,7 +9,10 @@
               <div class="sub header">TRAINING ADMIN SYSTEM</div>
           </div>
         </h1>
-        <div class="ui raised segment" [ngClass]="{'loading':loading}">
+        <div class="ui raised segment">
+          <div class="ui active inverted dimmer" id="loading" style="display:none">
+            <div class="ui text loader">Logging in...</div>
+          </div>
           <span class="ui violet ribbon label">LOGIN TO YOUR ACCOUNT</span>
           <form class="ui large form login-form" name="form">
             <div class="field">

@@ -14,7 +14,7 @@ export class AchievementComponent implements OnInit {
   ];
 
   headerData: any = [ 
-    {title:'Achievement',subtitle:'Page to mantain and display the participant achievement of english placement test result',icon:'trophy'}
+    {title:'Achievement',subtitle:'Mantain and display the participant achievement of english placement test result',icon:'trophy'}
   ];
   constructor(private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService) { }
 

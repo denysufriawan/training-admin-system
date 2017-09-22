@@ -22,11 +22,10 @@ export class AuthService {
   }
 
   isLogin(): boolean {
-    if (localStorage.getItem('user') && localStorage.getItem('activeRole')) {
+    if (localStorage.getItem('user') && localStorage.getItem('activeRole'))
       return true;
-    } else {
+    else
       return false;
-    }
   }
 
   logout(): void {
