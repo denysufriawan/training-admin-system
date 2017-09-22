@@ -27,11 +27,11 @@ import { BreadcrumbService } from './_services/breadcrumb.service';
 import { HeaderService } from './_services/header.service';
 
 const routes: Routes = [
-  { path: 'dashboard',  component: DashboardComponent},
-  { path: 'period', component: PeriodComponent , children : [
-    { path: 'list', component: PeriodListComponent },
-    { path: 'add', component: PeriodAddComponent },
-    { path: 'edit', component: PeriodEditComponent },
+  { path: 'dashboard',  component: DashboardComponent, canActivate:[AuthGuard]},
+  { path: 'period', component: PeriodComponent, canActivate:[AuthGuard] , children : [
+    { path: 'list', component: PeriodListComponent, canActivate:[AuthGuard] },
+    { path: 'add', component: PeriodAddComponent, canActivate:[AuthGuard] },
+    { path: 'edit', component: PeriodEditComponent, canActivate:[AuthGuard] },
     { path: '', redirectTo: 'list', pathMatch: 'full' },
     { path: '**', redirectTo: 'list', pathMatch: 'full' },
   ]},
@@ -69,7 +69,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, BreadcrumbService, HeaderService],
+  providers: [AuthService, AuthGuard, BreadcrumbService, HeaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

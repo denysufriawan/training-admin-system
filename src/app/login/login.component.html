@@ -11,17 +11,17 @@
         </h1>
         <div class="ui raised segment" [ngClass]="{'loading':loading}">
           <span class="ui violet ribbon label">LOGIN TO YOUR ACCOUNT</span>
-          <form class="ui large form login-form" name="form" (ngSubmit)="login()" #formLogin="ngForm" novalidate>
+          <form class="ui large form login-form" name="form">
             <div class="field">
               <div class="ui left icon input">
                 <i class="user icon"></i>
-                <input type="text" class="form-control" name="username" placeholder="Logon name (eg. Mitrais\Someone)" [(ngModel)]="model.username" #username="ngModel" required />
+                <input type="text" class="form-control" name="username" placeholder="Logon name (eg. Mitrais\Someone)"/>
               </div>
             </div>
             <div class="field">
               <div class="ui left icon input">
                 <i class="lock icon"></i>
-                <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="model.password" #password="ngModel" required />
+                <input type="password" class="form-control" name="password" placeholder="Password"/>
               </div>
             </div>
             <div class="field">
@@ -31,7 +31,6 @@
               </div>
             </div>
             <button class="ui fluid large violet submit button">Login</button>
-            <div class="ui error message"></div>
           </form>
         </div>
       </div>
