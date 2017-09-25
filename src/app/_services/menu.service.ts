@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 declare var $:any;
 declare var swal:any;
@@ -8,7 +9,7 @@ export class MenuService {
 
   current_active_role_id: String;
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService, private route:Router) { }
 
   setRoleDropdown(current_user:any):void
   {
@@ -29,10 +30,12 @@ export class MenuService {
       .dropdown({
         values: dropdown_data,
         onChange: (value,text,selectedItem)=> {
+          
+          this.authService.setActiveRoleState(value);
+          this.authService.setActiveRole(value);
+          
           if(value && value!=this.current_active_role_id)
           {
-            this.authService.setActiveRoleState(value);
-            this.authService.setActiveRole(value);
             swal({
               type: 'success',
               title: 'Success!',
@@ -41,8 +44,21 @@ export class MenuService {
               confirmButtonText: "OK"
             }).then(
               function(){
-                  
+                
             });
+
+            //redirect to dashboard if have not permission
+            if (this.route.url.match('/user')) {
+              if(this.authService.getActiveRole()!='1') {
+                this.route.navigate(['/dashboard']);
+              }
+            } else if (this.route.url.match('/training')) {
+              if(this.authService.getActiveRole()!='1' && this.authService.getActiveRole()!='2') {
+                this.route.navigate(['/dashboard']);
+              }
+            }
+
+            this.current_active_role_id = this.authService.getActiveRole();
           }
         }
       });

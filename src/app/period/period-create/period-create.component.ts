@@ -9,7 +9,7 @@ declare var $:any;
   templateUrl: './period-create.component.html',
   styleUrls: ['./period-create.component.css']
 })
-export class PeriodAddComponent implements OnInit {
+export class PeriodCreateComponent implements OnInit {
   breadcrumbData: any = [
     {link:'/dashboard',title:'Dashboard',icon:'dashboard'},
     {link:'/period',title:'Period',icon:'calendar'},

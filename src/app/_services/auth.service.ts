@@ -15,7 +15,7 @@ export class AuthService {
   constructor(private http:Http, private router: Router) { }
 
   login(data): Observable<any> {
-    return this.http.post('http://172.19.14.124:8080/api/login', data)
+    return this.http.post('http://localhost:8080/api/login', data)
       .map((response: Response) => {
         return response.json();
       });

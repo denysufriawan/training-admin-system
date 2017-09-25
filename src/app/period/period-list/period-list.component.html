@@ -2,64 +2,34 @@
     <div class="one column row">
         <div class="column">
             <div class="ui raised segment violet">
+                <div class="ui active inverted dimmer" id="loading" style="display:none">
+                    <div class="ui text loader">Processing...</div>
+                </div>
                 <div class="ui grid">
                     <div class="two column row">
                         <div class="column"> 
-                            <a class="ui purple ribbon label"><i class="disabled browser icon"></i>Period - Index</a>
+                            <a class="ui purple ribbon label"><i class="disabled calendar icon"></i>Period</a>
                         </div>
                         <div class="column">
                             <button class="ui right floated primary button" [routerLink]="['/period/add']"><i class="plus icon"></i> Create Period</button>
                         </div>
                     </div>
-
                     <div class="one column row">
-                        <div class="column"> 
-                            <table id="training-period-table" class="ui table" cellspacing="0" width="100%">
+                        <div class="column">
+                            <table id="training-period-table" class="ui celled striped table" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Active</th>
-                                        <th>Courses</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                        <th>Created By</th>
-                                        <th>Updated By</th>
-                                        <th>Action</th>
+                                        <th class="center aligned">Name</th>
+                                        <th class="center aligned">Active</th>
+                                        <th class="center aligned">Courses</th>
+                                        <th class="center aligned">Start Date</th>
+                                        <th class="center aligned">End Date</th>
+                                        <th class="center aligned">Created By</th>
+                                        <th class="center aligned">Updated By</th>
+                                        <th class="center aligned">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>PGCP - Software Requirements</td>
-                                        <td>No</td>
-                                        <td>1 course</td>
-                                        <td>09 December 2017</td>
-                                        <td>31 December 2017</td>
-                                        <td>Ni Wayan Luh Sukertiasih</td>
-                                        <td>Ni Wayan Luh Sukertiasih</td>
-                                        <td><i class="blue edit icon" (click)="editPeriodBtn()"></i><i class="red trash icon" id="delete-period-button"></i></td>
-                                    </tr>
-                                </tbody>
                             </table>
-                            <!-- Delete EP User Modal -->
-                            <div class="ui basic modal delete period">
-                                <div class="ui icon header">
-                                    <i class="trash icon"></i>
-                                    Delete Period
-                                </div>
-                                <div class="content">
-                                    <p>Are you sure want to delete [period_name]?</p>
-                                </div>
-                                <div class="actions">
-                                    <div class="ui red basic cancel inverted button">
-                                    <i class="remove icon"></i>
-                                    No
-                                    </div>
-                                    <div class="ui green ok inverted button">
-                                    <i class="checkmark icon"></i>
-                                    Yes
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -67,3 +37,4 @@
         </div>
     </div>
 </div>
+    

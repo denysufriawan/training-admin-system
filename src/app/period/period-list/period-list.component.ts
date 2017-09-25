@@ -25,15 +25,34 @@ export class PeriodListComponent implements OnInit {
     this.BreadcrumbService.setCurrentBreadcumb(this.breadcrumbData);
     this.HeaderService.setCurrentHeader(this.headerData);
 
-    $('#training-period-table').DataTable();
+    $('#training-period-table').DataTable({
+      // 'ajax' : '/data/users',
+      // 'serverSide' : true,
+      // "searching": false,
+      columns : [ {
+        data : 'name'
+      }, {
+        data : 'active'
+      }, {
+        data : 'courses'
+      }, {
+        data : 'startDate'
+      }, {
+        data : 'endDate'
+      }, {
+        data : 'createdBy'
+      }, {
+        data : 'updatedBy'
+      }, {
+        data : 'action',
+        orderable : false,
+        searchable : false,
+        render : function(data, type, row) {
+          return row.id ? 'Your id is ' + row.id : '';
+        }
+      } ]
+    });
 
-    $('#delete-period-button').click(function(){
-      $('.ui.basic.modal.delete.period').modal('show');
-    })
   }
-
-  editPeriodBtn = function () {
-    this.router.navigateByUrl('/period/edit');
-  };
 
 }
