@@ -1,3 +1,21 @@
-<p>
-  breadcrumb works!
-</p>
+<div class="ui grid padded">
+  <div class="one column row">
+      <div class="column">
+          <div class="ui segment">
+              <div class="ui breadcrumb" *ngFor="let data of breadcrumbData">
+                <div *ngIf="data.link!=''">
+                  <i class="disabled {{data.icon}} icon"></i>
+                  <a class="section" [routerLink]="[data.link]">{{data.title}}</a>
+                  <i class="right angle icon divider"></i>
+                </div>
+                <div *ngIf="data.link==''">
+                    <div class="active section">
+                      <i class="disabled {{data.icon}} icon"></i>
+                      {{data.title}}
+                    </div>
+                </div>
+              </div>
+          </div>      
+      </div>
+  </div>
+</div>

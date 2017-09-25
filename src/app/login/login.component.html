@@ -1,36 +1,41 @@
-<div class="ui container" style="width:400px">
-  <div class="ui middle aligned grid" style="height: 100vh">
-    <div class="column">
-      <h1 class="ui center aligned icon header">
-        <img class="ui medium circular image header-logo" src="../../assets/img/favicon.ico" style="width: 110px">
-        <div class="content">
-            MITRAIS
-            <div class="sub header">TRAINING ADMIN SYSTEM</div>
+<div class="tas-content">
+  <div class="ui container" style="width:400px">
+    <div class="ui middle aligned grid" style="height: 100vh">
+      <div class="column">
+        <h1 class="ui center aligned icon header">
+          <img class="ui medium circular image header-logo" src="../../assets/img/favicon.ico" style="width: 110px">
+          <div class="content">
+              MITRAIS
+              <div class="sub header">TRAINING ADMIN SYSTEM</div>
+          </div>
+        </h1>
+        <div class="ui raised segment">
+          <div class="ui active inverted dimmer" id="loading" style="display:none">
+            <div class="ui text loader">Logging in...</div>
+          </div>
+          <span class="ui violet ribbon label">LOGIN TO YOUR ACCOUNT</span>
+          <form class="ui large form login-form" name="form">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" class="form-control" name="username" placeholder="Logon name (eg. Mitrais\Someone)"/>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" class="form-control" name="password" placeholder="Password"/>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui checkbox">
+                <input type="checkbox" name="remember-me-login">
+                <label>Remember Me</label>
+              </div>
+            </div>
+            <button class="ui fluid large violet submit button">Login</button>
+          </form>
         </div>
-      </h1>
-      <div class="ui raised segment" [ngClass]="{'loading':loading}">
-        <span class="ui violet ribbon label">LOGIN TO YOUR ACCOUNT</span>
-        <form class="ui large form login-form" name="form">
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="user icon"></i>
-              <input type="text" class="form-control" name="username" placeholder="Logon name (eg. Mitrais\Someone)" />
-            </div>
-          </div>
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="lock icon"></i>
-              <input type="password" class="form-control" name="password" placeholder="Password" />
-            </div>
-          </div>
-          <div class="field">
-            <div class="ui checkbox">
-              <input type="checkbox" name="remember-me-login">
-              <label>Remember Me</label>
-            </div>
-          </div>
-          <button type="submit" class="ui fluid large violet button">Login</button>
-        </form>
       </div>
     </div>
   </div>

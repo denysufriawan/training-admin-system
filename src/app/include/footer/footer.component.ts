@@ -14,9 +14,9 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe((event)=>{
       if(this.router.url.match('/login'))
-          $('.footer.segment').addClass('hide')
-        else
-          $('.footer.segment').removeClass('hide')
+        $('.footer.segment').addClass('hide')
+      else
+        $('.footer.segment').removeClass('hide')
     })
   }
 

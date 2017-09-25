@@ -1,45 +1,24 @@
-<div class="ui grid padded c-content c-padded">
-    <div class="one column row">
-        <div class="column">
-            <h2 class="ui header">
-                <i class="disabled user icon"></i>
-                <div class="content">
-                    User
-                    <div class="sub header">Display ...</div>
-                </div>
-            </h2>
-        </div>
-    </div>
-
-    <div class="one column row">
-        <div class="column">
-            <div class="ui segment">
-                <div class="ui breadcrumb">
-                    <a class="section" [routerLink]="['/dashboard']">Home</a>
-                    <i class="right angle icon divider"></i>
-                    <div class="active section">User</div>
-                </div>
-            </div>      
-        </div>
-    </div>
-
-    <div class="one column row">
-        <div class="column">
-            <div class="ui raised segment violet">
-                <div class="ui grid">
-                    <div class="one column row">
-                        <div class="column"> 
-                            <a class="ui purple ribbon label"><i class="disabled browser icon"></i>***</a>
+<div class="tas-content">
+    <app-header></app-header>
+    <app-breadcrumb></app-breadcrumb>
+    <div class="ui grid padded">
+        <div class="one column row">
+            <div class="column">
+                <div class="ui raised segment violet">
+                    <div class="ui grid">
+                        <div class="one column row">
+                            <div class="column"> 
+                                <a class="ui purple ribbon label"><i class="disabled browser icon"></i>***</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="one column row">
-                        <div class="column">
-                            content
+                        <div class="one column row">
+                            <div class="column">
+                                User content
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-        
+</div>       

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { adminRoutes, trainerRoutes, managerRoutes, participantsRoutes } from '../../_classes/sidebarRoute';
+import { AuthService } from '../../_services/auth.service';
+import { SidebarService } from '../../_services/sidebar.service';
 
 declare var $:any;
 @Component({
@@ -9,37 +10,34 @@ declare var $:any;
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  role: String;
-  userRoute:any;
+  userRoute:any=[];
 
-  constructor(private router: Router) {
-    this.role = localStorage.getItem('role');
-    if(this.role=="Admin"){
-      this.userRoute=adminRoutes;
-    } else if (this.role=="Trainer") {
-      this.userRoute=trainerRoutes;
-    } else if (this.role=="Manager") {
-      this.userRoute=managerRoutes;
-    } else if (this.role=="Participants") {
-      this.userRoute=participantsRoutes;
-    } else {
-      this.userRoute=adminRoutes;
-    }
+  constructor(private router: Router, private AuthService: AuthService, private sidebarService: SidebarService) {
+
+    this.AuthService.roleSubs.subscribe(data => {
+      this.userRoute=this.sidebarService.getSidebarRoute(data)
+    });
   }
   
   ngOnInit() {
+    this.userRoute=this.sidebarService.getSidebarRoute(this.AuthService.getActiveRole())
+    
     $('.ui.sidebar').sidebar({
       transition:'overlay',
       silent:true
-    })
+    }) 
+
     this.router.events.subscribe((event)=>{
+      if(!this.router.url.match('/login'))
+      {
         this.userRoute.forEach(element => {
-        if(this.router.url.match(element.path)) {
-          element.class='active';
-        } else {
-          element.class='';
-        }
-      });
+          if(this.router.url.match(element.path)) {
+            element.class='active';
+          } else {
+            element.class='';
+          }
+        });
+      }
     })
   }
 

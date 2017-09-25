@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
 
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
+
 
 declare var $:any;
 declare var swal:any;
@@ -49,43 +50,44 @@ export class LoginComponent implements OnInit {
   }
 
   login(form) {
-    this.loading = true;
+    $('#loading').fadeIn('fast')
     this.authService.login(form)
       .subscribe(
-          data => {
-              if(data.status=='1')
-              {
-                localStorage.setItem('user', JSON.stringify(data.message));
-                this.router.navigate(['/dashboard']); 
-              }
-              else
-              {
-                swal({
-                  type: 'error',
-                  title: 'Error!',
-                  text: data.message,
-                  showCancelButton: false,
-                  confirmButtonText: "OK"
-                }).then(
-                    function(){
-                        
-                });
-                this.loading = false;
-              }
-          },
-          error => {
-            swal({
-                  type: 'error',
-                  title: 'Error!',
-                  text: "Oops, something goes wrong!",
-                  showCancelButton: false,
-                  confirmButtonText: "OK"
+        data => {
+            if(data.status=='1')
+            {
+              this.authService.setUser(JSON.stringify(data.message.user));
+              this.authService.setUserState(JSON.stringify(data.message.user));
+
+              this.authService.setActiveRole(data.message.activeRole);
+              this.authService.setActiveRoleState(data.message.activeRole);
+              this.router.navigate(['/dashboard']); 
+            }
+            else
+            {
+              swal({
+                type: 'error',
+                title: 'Error!',
+                text: data.message,
+                showCancelButton: false,
+                confirmButtonText: "OK"
               }).then(
                   function(){
-                      
+                    $('#loading').fadeOut('fast')
               });
-          this.loading = false;
+            }
+        },
+        error => {
+          swal({
+                type: 'error',
+                title: 'Error!',
+                text: "Oops, the server can not be reached!",
+                showCancelButton: false,
+                confirmButtonText: "OK"
+            }).then(
+                function(){
+                  $('#loading').fadeOut('fast')
+            });
     });
   }
-
 }

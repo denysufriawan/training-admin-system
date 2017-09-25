@@ -1,0 +1,10 @@
+[
+    {
+        "course_name": "name 1",
+        "main_trainer": "xyz",
+        "backup_trainer": "kao",
+        "start_date": "01 March 2019",
+        "end_date": "10 December 2020",
+        "office": "Jakarta"
+    }
+]

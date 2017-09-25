@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarComponent } from '../include/sidebar/sidebar.component';
 import { BreadcrumbService } from '../_services/breadcrumb.service';
 import { HeaderService } from '../_services/header.service';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: 'app-training-maintenance',
+  templateUrl: './training-maintenance.component.html',
+  styleUrls: ['./training-maintenance.component.css']
 })
-export class UserComponent implements OnInit {
+export class TrainingMaintenanceComponent implements OnInit {
   breadcrumbData: any = [
     {link:'/dashboard',title:'Dashboard',icon:'dashboard'},
-    {link:'',title:'User',icon:'user'},
+    {link:'',title:'Training Maintenance',icon:'desktop'},
   ];
 
   headerData: any = [ 
-    {title:'User',subtitle:'Page to add new user and update user role',icon:'user'}
+    {title:'Training Maintenance',subtitle:'Page to manage the attendance and the assessment of the training',icon:'desktop'}
   ];
 
   constructor(private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService) { }
