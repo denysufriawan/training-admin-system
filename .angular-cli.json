@@ -22,7 +22,7 @@
         "./assets/css/sweetalert2.min.css",
         "./assets/css/dataTables.semanticui.min.css",
         "./assets/css/calendar.min.css",
-        "./assets/css/style.css"
+        "styles.css"
       ],
       "scripts": [
         "./assets/js/jquery-3.2.1.min.js",

@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.tas-content {
+    padding: 0.5em 1em 0 1em;
+    margin-bottom: 60px;
+}
+
+.no-margin {
+    margin-right: 0 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}

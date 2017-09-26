@@ -27,6 +27,7 @@ import { AuthService } from './_services/auth.service';
 import { BreadcrumbService } from './_services/breadcrumb.service';
 import { HeaderService } from './_services/header.service';
 import { MenuService } from './_services/menu.service';
+import { PeriodService } from './_services/period.service';
 import { SidebarService } from './_services/sidebar.service';
 
 @NgModule({
@@ -54,7 +55,7 @@ import { SidebarService } from './_services/sidebar.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGuard, BreadcrumbService, HeaderService, MenuService, SidebarService],
+  providers: [AuthService, AuthGuard, BreadcrumbService, HeaderService, MenuService, PeriodService, SidebarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

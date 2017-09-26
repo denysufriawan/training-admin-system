@@ -23,7 +23,7 @@ const routes: Routes = [
     { path: 'period', component: PeriodComponent, canActivate:[AuthGuard] , children : [
         { path: 'list', component: PeriodListComponent, canActivate:[AuthGuard] },
         { path: 'add', component: PeriodCreateComponent, canActivate:[AuthGuard] },
-        { path: 'edit', component: PeriodEditComponent, canActivate:[AuthGuard] },
+        { path: 'edit/:id', component: PeriodEditComponent, canActivate:[AuthGuard] },
         { path: '', redirectTo: 'list', pathMatch: 'full' },
         { path: '**', redirectTo: 'list', pathMatch: 'full' },
     ]},
