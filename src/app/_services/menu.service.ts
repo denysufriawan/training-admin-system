@@ -17,7 +17,6 @@ export class MenuService {
     {
       var dropdown_data = [];
       this.current_active_role_id = this.authService.getActiveRole();
-  
       current_user.role.forEach(element => {
         if(element.idRole==this.current_active_role_id)
           dropdown_data.push({name:element.roleName,value:element.idRole,selected:true});

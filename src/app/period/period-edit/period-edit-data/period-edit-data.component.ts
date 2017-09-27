@@ -1,38 +1,54 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { BreadcrumbService } from '../../_services/breadcrumb.service';
-import { HeaderService } from '../../_services/header.service';
-import { PeriodService } from '../../_services/period.service';
-import { AuthService } from '../../_services/auth.service';
+import { Router,ActivatedRoute } from '@angular/router';
+import { PeriodService } from '../../../_services/period.service';
+import { AuthService } from '../../../_services/auth.service';
 
 declare var $:any;
 declare var swal:any;
 
 @Component({
-  selector: 'app-period-create',
-  templateUrl: './period-create.component.html',
-  styleUrls: ['./period-create.component.css']
+  selector: 'app-period-edit-data',
+  templateUrl: './period-edit-data.component.html',
+  styleUrls: ['./period-edit-data.component.css']
 })
-export class PeriodCreateComponent implements OnInit {
-  breadcrumbData: any = [
-    {link:'/dashboard',title:'Dashboard',icon:'dashboard'},
-    {link:'/period',title:'Period',icon:'calendar'},
-    {link:'',title:'Create',icon:'plus'}
-  ];
+export class PeriodEditDataComponent implements OnInit {
+  period:any={};
+  constructor(private PeriodService:PeriodService, private AuthService:AuthService, private router:Router,private ActivatedRoute: ActivatedRoute) { }
 
-  headerData: any = [ 
-    {title:'Training Period - Create',subtitle:'Create new training period',icon:'plus'}
-  ];
+  ngOnInit() {
+    this.ActivatedRoute.params.subscribe(params => {
+      var id={id:params['id']}
+      this.PeriodService.edit(id)
+      .subscribe(
+        data => {
+          if(data.status=='1'){
+            this.period=data.message;
+            if(this.period.active=="1")
+            {
+              $("#active").attr( 'checked', true )
+            }
+            $('#loading').fadeOut('fast')
+          } else {
+            this.router.navigate(['/period/list']);
+          }
+        },
+        error => {
+          swal({
+                type: 'error',
+                title: 'Error!',
+                text: "Oops, the server can not be reached!",
+                showCancelButton: false,
+                confirmButtonText: "OK"
+            }).then(
+                function(){
+                  $('#loading').fadeOut('fast')
+            });
+      });
+    });
 
-  constructor(private router: Router, private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService, private PeriodService:PeriodService, private AuthService: AuthService) { }
-
-  ngOnInit() {   
-    this.BreadcrumbService.setCurrentBreadcumb(this.breadcrumbData);
-    this.HeaderService.setCurrentHeader(this.headerData);
-
-    $('#start-date-add-period').calendar({
+    $('#start-date-edit-period').calendar({
       type: 'date',
-      endCalendar: $('#end-date-add-period'),
+      endCalendar: $('#end-date-edit-period'),
       formatter: {
         date: function (date, settings) {
           if (!date) return '';
@@ -44,9 +60,9 @@ export class PeriodCreateComponent implements OnInit {
       }
     });
 
-    $('#end-date-add-period').calendar({
+    $('#end-date-edit-period').calendar({
       type: 'date',
-      startCalendar: $('#start-date-add-period'),
+      startCalendar: $('#start-date-edit-period'),
       formatter: {
         date: function (date, settings) {
           if (!date) return '';
@@ -58,7 +74,7 @@ export class PeriodCreateComponent implements OnInit {
       }
     });
 
-    $('.ui.form.createPeriod')
+    $('.ui.form.editPeriod')
     .form({
       inline:true,
       on:'blur',
@@ -92,17 +108,17 @@ export class PeriodCreateComponent implements OnInit {
         }
       },onSuccess:(event,fields) => {
         event.preventDefault();
-        fields.createdBy = this.AuthService.getUserId();
+        // fields.createdBy = this.AuthService.getUserId();
         fields.updatedBy = this.AuthService.getUserId();
-        this.createPeriod(fields);
+        this.editPeriod(fields);
       }
     });
   }
 
-  createPeriod(form) {
+  editPeriod(form) {
     var that=this;
     $('#loading').fadeIn('fast')
-    this.PeriodService.create(form)
+    this.PeriodService.edit_process(form)
       .subscribe(
         data => {
             if(data.status=='1')
@@ -146,4 +162,5 @@ export class PeriodCreateComponent implements OnInit {
             });
     });
   }
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BreadcrumbService } from '../../_services/breadcrumb.service';
 import { HeaderService } from '../../_services/header.service';
+import { PeriodService } from '../../_services/period.service';
 
 declare var $:any;
 declare var swal:any;
@@ -20,13 +21,13 @@ export class PeriodListComponent implements OnInit {
     {title:'Training Period',subtitle:'Display training period information',icon:'calendar'}
   ];
   
-  constructor(private router:Router, private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService) { }
+  constructor(private router:Router, private PeriodService:PeriodService, private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService) { }
 
   ngOnInit() {
     this.BreadcrumbService.setCurrentBreadcumb(this.breadcrumbData);
     this.HeaderService.setCurrentHeader(this.headerData);
 
-    $('#training-period-table').on( 'processing.dt', function ( e, settings, processing ) {
+    var table = $('#training-period-table').on( 'processing.dt', function ( e, settings, processing ) {
       if(processing)
         $('#loading').fadeIn('fast');
       else
@@ -51,13 +52,17 @@ export class PeriodListComponent implements OnInit {
               >',
       'serverSide' : true,
       'processing' : false,
+      "order": [[ 3, "desc" ]],
       'columnDefs' : [
         {"className":"center aligned","targets":[-1]}
       ],
       columns : [ {
         data : 'periodName'
       }, {
-        data : 'active'
+        data : 'active',
+        render : function(data, type, row) {
+          return (data=="1") ? "Yes" : "No";
+        }
       }, {
         data : 'course',
         render : function(data, type, row) {
@@ -85,10 +90,11 @@ export class PeriodListComponent implements OnInit {
 
     var that=this;
     $(document).on('click', '#editButton', function(event) {
-      that.router.navigate(['/period/edit',$(this).data('id')])
+      that.router.navigate(['/period/edit/edit-data',$(this).data('id')])
     });
 
     $(document).on('click', '#deleteButton', function(event) {
+      var id={id:$(this).data('id')}
       swal({
         title: "Delete Data",
         text: "Delete this period? ("+$(this).data('name')+")",
@@ -97,17 +103,28 @@ export class PeriodListComponent implements OnInit {
         showCancelButton: true,
         confirmButtonText: "OK",
         preConfirm: function () {
-            return new Promise(function (resolve, reject) {
-                $.ajax({
-                    url:"deleteData",
-                    type:"post",
-                    data:{'id':$(this).data('id')},
-                    success:function(data){
-                        if(data.status)
-                            resolve(data.message);
-                        else
-                            reject(data.message);
-                    }                      
+            return new Promise(function(resolve, reject) {
+              $('#loading').fadeIn('fast')
+              that.PeriodService.delete(id)
+                .subscribe(
+                  data => {
+                    if(data.status=='1'){
+                      resolve(data.message);
+                    } else {
+                      reject(data.message)
+                    }
+                  },
+                  error => {
+                    swal({
+                          type: 'error',
+                          title: 'Error!',
+                          text: "Oops, the server can not be reached!",
+                          showCancelButton: false,
+                          confirmButtonText: "OK"
+                      }).then(
+                          function(){
+                            $('#loading').fadeOut('fast')
+                      });
                 });
             })
         }
@@ -120,14 +137,13 @@ export class PeriodListComponent implements OnInit {
                   confirmButtonText: "OK"
               }).then(
                   function(){
-                      
+                    table.ajax.reload(null,false);
+                    $('#loading').fadeOut('fast')
               });
-          },
-          function () {
-
           }
-      );
+      ).catch(function () {
 
+      });
     });
 
   }

@@ -6,6 +6,13 @@ import { AuthGuard } from './_guards/auth.guard';
 
 import { AppRoutingModule } from './app.routing';
 
+import { AuthService } from './_services/auth.service';
+import { BreadcrumbService } from './_services/breadcrumb.service';
+import { HeaderService } from './_services/header.service';
+import { MenuService } from './_services/menu.service';
+import { PeriodService } from './_services/period.service';
+import { SidebarService } from './_services/sidebar.service';
+
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PeriodComponent } from './period/period.component';
@@ -22,13 +29,11 @@ import { PeriodEditComponent } from './period/period-edit/period-edit.component'
 import { HeaderComponent } from './include/header/header.component';
 import { BreadcrumbComponent } from './include/breadcrumb/breadcrumb.component';
 import { FooterComponent } from './include/footer/footer.component';
+import { PeriodEditDataComponent } from './period/period-edit/period-edit-data/period-edit-data.component';
+import { PeriodEligibleParticipantComponent } from './period/period-edit/period-eligible-participant/period-eligible-participant.component';
+import { PeriodScheduleListComponent } from './period/period-edit/period-schedule-list/period-schedule-list.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
-import { AuthService } from './_services/auth.service';
-import { BreadcrumbService } from './_services/breadcrumb.service';
-import { HeaderService } from './_services/header.service';
-import { MenuService } from './_services/menu.service';
-import { PeriodService } from './_services/period.service';
-import { SidebarService } from './_services/sidebar.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +52,10 @@ import { SidebarService } from './_services/sidebar.service';
     PeriodEditComponent,
     HeaderComponent,
     BreadcrumbComponent,
+    PeriodEditDataComponent,
+    PeriodEligibleParticipantComponent,
+    PeriodScheduleListComponent,
+    NotFoundComponent,
     FooterComponent
   ],
   imports: [

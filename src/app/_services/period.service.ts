@@ -24,6 +24,13 @@ export class PeriodService {
       });
   }
 
+  edit_process(data): Observable<any> {
+    return this.http.post('http://localhost:8080/api/period/edit_process', data)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
   delete(data): Observable<any> {
     return this.http.post('http://localhost:8080/api/period/delete', data)
       .map((response: Response) => {
