@@ -12,8 +12,8 @@ import com.example.tas.repository.UserRepo;
 import net.minidev.json.JSONObject;
 
 @RestController
-public class AuthController extends ApiController {
-
+public class AuthController extends ApiController{
+	
 	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	@Autowired
