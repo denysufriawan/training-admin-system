@@ -109,7 +109,7 @@ export class PeriodEditDataComponent implements OnInit {
       },onSuccess:(event,fields) => {
         event.preventDefault();
         // fields.createdBy = this.AuthService.getUserId();
-        fields.updatedBy = this.AuthService.getUserId();
+        fields.updatedBy = this.AuthService.getUser().name;
         this.editPeriod(fields);
       }
     });

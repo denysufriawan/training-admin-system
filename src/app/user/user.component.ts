@@ -14,7 +14,7 @@ export class UserComponent implements OnInit {
   ];
 
   headerData: any = [ 
-    {title:'User',subtitle:'Page to add new user and update user role',icon:'user'}
+    {title:'User',subtitle:'Display user information',icon:'user'}
   ];
 
   constructor(private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService) { }

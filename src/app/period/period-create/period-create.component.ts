@@ -92,8 +92,8 @@ export class PeriodCreateComponent implements OnInit {
         }
       },onSuccess:(event,fields) => {
         event.preventDefault();
-        fields.createdBy = this.AuthService.getUserId();
-        fields.updatedBy = this.AuthService.getUserId();
+        fields.createdBy = this.AuthService.getUser().name;
+        fields.updatedBy = this.AuthService.getUser().name;
         this.createPeriod(fields);
       }
     });

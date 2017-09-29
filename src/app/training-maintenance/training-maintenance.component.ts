@@ -15,7 +15,7 @@ export class TrainingMaintenanceComponent implements OnInit {
   ];
 
   headerData: any = [ 
-    {title:'Training Maintenance',subtitle:'Page to manage the attendance and the assessment of the training',icon:'desktop'}
+    {title:'Training Maintenance',subtitle:'Manage the attendance and the assessment of the training',icon:'desktop'}
   ];
 
   constructor(private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService) { }

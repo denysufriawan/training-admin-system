@@ -22,6 +22,8 @@
         "./assets/css/sweetalert2.min.css",
         "./assets/css/dataTables.semanticui.min.css",
         "./assets/css/calendar.min.css",
+        "./assets/css/iconhover.default.css",
+        "./assets/css/iconhover.component.css",
         "styles.css"
       ],
       "scripts": [

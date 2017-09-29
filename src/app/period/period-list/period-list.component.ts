@@ -146,5 +146,90 @@ export class PeriodListComponent implements OnInit {
       });
     });
 
+    //search
+    $('#searchForm')
+    .form({
+      inline:true,
+      on:'blur',
+      fields: {
+        name: {
+          identifier: 'name'
+        },
+        active: {
+          identifier: 'active'
+        },
+        startDate: {
+          identifier: 'startDate'
+        },
+        endDate: {
+          identifier: 'endDate'
+        },
+        createdBy: {
+          identifier: 'createdBy'
+        },
+        updatedBy: {
+          identifier: 'updatedBy'
+        }
+        
+      },onSuccess:(event,fields) => {
+        event.preventDefault();
+        $('html,body').animate({scrollTop: $('#period-content').offset().top},500);
+        table.columns(0).search(fields.name);
+        table.columns(1).search(fields.active);
+        table.columns(3).search(fields.startDate);
+        table.columns(4).search(fields.endDate);
+        table.columns(5).search(fields.createdBy);
+        table.columns(6).search(fields.updatedBy);
+        table.draw();
+      }
+    });
+
+    $('#filter-data').click(function(){
+      $("#search-period-segment").slideToggle('fast');
+    })
+
+    $('#reset-search').click(function(){
+      $('#searchForm').find("input[type=text]").val("");
+      $('#active').dropdown("restore defaults");
+      $('html,body').animate({scrollTop: $('#period-content').offset().top},500); 
+    })
+
+    $('#close-search').click(function(){
+      $("#search-period-segment").slideToggle('fast');
+    })
+
+    $("#refresh").click(function(){
+      table.ajax.reload();
+    })
+
+    $('#active').dropdown();
+
+    $('#start-date-search').calendar({
+      type: 'date',
+      endCalendar: $('#end-date-search'),
+      formatter: {
+        date: function (date, settings) {
+          if (!date) return '';
+          var day = date.getDate();
+          var month = date.getMonth() + 1;
+          var year = date.getFullYear();
+          return year + '-' + month + '-' + day;
+        }
+      }
+    });
+
+    $('#end-date-search').calendar({
+      type: 'date',
+      startCalendar: $('#start-date-search'),
+      formatter: {
+        date: function (date, settings) {
+          if (!date) return '';
+          var day = date.getDate();
+          var month = date.getMonth() + 1;
+          var year = date.getFullYear();
+          return year + '-' + month + '-' + day;
+        }
+      }
+    });
   }
 }

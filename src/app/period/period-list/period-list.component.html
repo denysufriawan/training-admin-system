@@ -1,5 +1,77 @@
 <div class="ui grid padded">
-    <div class="one column row">
+    <div class="one column row" id="search-period-segment">
+        <div class="column">
+            <div class="ui raised segment yellow">
+                <div class="ui grid">
+                    <div class="two column row">
+                        <div class="one column row">
+                            <div class="column"> 
+                                <a class="ui yellow ribbon label"><i class="disabled filter icon"></i>Filter Data</a>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <i class="red close icon large" id="close-search" style="cursor:pointer; float:right"></i>
+                        </div>
+                    </div>
+                    <div class="one column row">
+                        <div class="column">
+                            <form class="ui form" role="form" id="searchForm">
+                                <div class="field">
+                                    <div class="two fields">
+                                        <div class="field">
+                                            <label>Name</label>
+                                            <input type="text" name="name" placeholder="Period Name">
+                                        </div>
+                                        <div class="field">
+                                            <label>Active</label>
+                                            <select class="ui dropdown" multiple="" name="active" id="active">
+                                                <option value="">-- Select Active --</option>
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="two fields">
+                                        <div class="field">
+                                            <div class="field ui calendar" id="start-date-search">
+                                                <label>Start Date</label>
+                                                <div class="ui input left icon">
+                                                    <i class="calendar icon"></i>
+                                                    <input type="text" name="startDate" placeholder="Start Date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="field ui calendar" id="end-date-search">
+                                                <label>End Date</label>
+                                                <div class="ui input left icon">
+                                                    <i class="calendar icon"></i>
+                                                    <input type="text" name="endDate" placeholder="End Date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="two fields">
+                                        <div class="field">
+                                            <label>Created By</label>
+                                            <input type="text" name="createdBy" placeholder="Created By">
+                                        </div>
+                                        <div class="field">
+                                            <label>Updated By</label>
+                                            <input type="text" name="updatedBy" placeholder="updated By">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="ui right floated green tiny button"><i class="search icon"></i> Search</button>
+                                <button class="ui right floated yellow tiny button" id="reset-search"><i class="refresh icon"></i> Reset</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="one column row" id="period-content">
         <div class="column">
             <div class="ui raised segment violet">
                 <div class="ui active inverted dimmer" id="loading" style="display:none">
@@ -11,9 +83,14 @@
                             <a class="ui purple ribbon label"><i class="disabled calendar icon"></i>Period</a>
                         </div>
                         <div class="column">
-                            <button class="ui right floated primary button" [routerLink]="['/period/add']"><i class="plus icon"></i> Create Period</button>
+                            <button class="ui right floated primary tiny button" [routerLink]="['/period/add']"><i class="plus icon"></i> Create Period</button>
+                            <button class="ui right floated red tiny button" id="filter-data"><i class="filter icon"></i> Filter Data</button>
+                            <button class="ui right floated olive icon tiny button" id="refresh">
+                                <i class="refresh icon"></i> Refresh
+                            </button>
                         </div>
                     </div>
+
                     <div class="one column row">
                         <div class="column">
                             <table id="training-period-table" class="ui celled striped table" width="100%">
@@ -37,4 +114,3 @@
         </div>
     </div>
 </div>
-    

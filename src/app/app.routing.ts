@@ -30,8 +30,8 @@ const routes: Routes = [
             { path: 'edit-data/:id', component: PeriodEditDataComponent, canActivate:[AuthGuard] },
             { path: 'eligible-participant/:id', component: PeriodEligibleParticipantComponent, canActivate:[AuthGuard] },
             { path: 'schedule-list/:id', component: PeriodScheduleListComponent, canActivate:[AuthGuard] },
-            { path: '', redirectTo: 'edit-data', pathMatch: 'full' },
-            { path: '**', redirectTo: 'edit-data', pathMatch: 'full' }
+            { path: '', redirectTo: 'list', pathMatch: 'full' },
+            { path: '**', redirectTo: 'list', pathMatch: 'full' }
         ]},
         { path: '', redirectTo: 'list', pathMatch: 'full' },
         { path: '**', redirectTo: 'list', pathMatch: 'full' }
