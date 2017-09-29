@@ -1,10 +1,18 @@
 package com.example.tas.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.jpa.datatables.mapping.Column;
 import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
-import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
+import org.springframework.data.jpa.datatables.mapping.Search;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,8 +29,34 @@ public class PeriodController extends ApiController<Period>  {
 	private PeriodRepo periodRepo;
 	
 	@PostMapping(value="/period/list")
-	public DataTablesOutput<Period> getPeriodList(@Valid @RequestBody DataTablesInput input) {
-		return periodRepo.findAll(input,notDeleted());
+	public ResponseEntity<JSONObject> getPeriodList(@Valid @RequestBody DataTablesInput input) {
+		JSONObject response = new JSONObject();
+		
+		List<Sort.Order> orders = new ArrayList<>();
+		List<Column> columns = input.getColumns();
+		List<Column> columnsCount = new ArrayList<>();
+		Column c = new Column();
+		Search s = new Search();
+		for (org.springframework.data.jpa.datatables.mapping.Order item : input.getOrder()) {
+			String columnName = columns.get(item.getColumn()).getData();
+			if(item.getDir().equals("asc"))
+				orders.add(new Sort.Order(Direction.ASC, columnName));
+			else
+				orders.add(new Sort.Order(Direction.DESC, columnName));
+		}
+		s.setValue("0");
+		c.setData("deleted");
+		c.setSearch(s);
+		columns.add(c);
+		columnsCount.add(c);
+		Sort sorts = new Sort(orders);
+		PageRequest page = new PageRequest((int)Math.ceil(input.getStart()/input.getLength()),input.getLength(),sorts);
+		Page<Period> data = periodRepo.findAll(DataTable(columns), page);
+		response.put("draw", input.getDraw());
+		response.put("recordsTotal", periodRepo.findAll(CountDataTable(columnsCount)).size());
+		response.put("recordsFiltered", data.getTotalElements());
+		response.put("data", data.getContent());
+		return ResponseEntity.ok(response);
 	}
 	
 	@PostMapping(value="/period/add")

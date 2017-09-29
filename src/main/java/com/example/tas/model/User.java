@@ -2,6 +2,7 @@ package com.example.tas.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -62,7 +63,16 @@ public class User extends Auditable<String> implements Serializable{
 	@ManyToOne(optional=false)
     @JoinColumn(name="id_job_stream",referencedColumnName="id_job_stream")
     private JobStream jobStream;
-
+	
+	@ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name="tr_user_period",
+            joinColumns=
+            @JoinColumn(name="id_user", referencedColumnName="id_user"),
+      inverseJoinColumns=
+            @JoinColumn(name="id_period", referencedColumnName="id_period")
+    )
+    private Set<Period> period;
+	
 	public long getIdUser() {
 		return idUser;
 	}
