@@ -6,9 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -19,18 +17,16 @@ public abstract class Auditable<U> {
 	@CreatedDate
     @Column(name = "created_date")
     private Date createdDate;
-    
-	@CreatedBy
+
 	@Column(name = "created_by")
-	private U createdBy;
+	private String createdBy;
 
     @LastModifiedDate
     @Column(name = "updated_date")
     private Date updatedDate;
     
-    @LastModifiedBy
     @Column(name = "updated_by")
-    private U updatedBy;
+    private String updatedBy;
     
     @Column(name = "deleted", columnDefinition="int(1) default 0")
     private int deleted;
@@ -43,11 +39,11 @@ public abstract class Auditable<U> {
 		this.createdDate = createdDate;
 	}
 
-	public U getCreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(U createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -59,11 +55,11 @@ public abstract class Auditable<U> {
 		this.updatedDate = updatedDate;
 	}
 
-	public U getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(U updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 

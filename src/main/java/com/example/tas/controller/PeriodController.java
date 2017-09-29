@@ -114,6 +114,7 @@ public class PeriodController extends ApiController<Period>  {
         period.setPeriodName(post.getAsString("periodName"));
         period.setStartDate(post.getAsString("startDate"));
         period.setEndDate(post.getAsString("endDate"));
+        period.setUpdatedBy(post.getAsString("updatedBy"));
 		
 		if(post.getAsString("active").equals("on"))
 		{

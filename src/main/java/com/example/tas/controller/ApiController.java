@@ -48,15 +48,34 @@ public abstract class ApiController<U> {
 	    	  for (Column item : columns) {
 	    		  String search = item.getSearch().getValue();
 	    		  if(!search.equals("")) {
+	    			  System.out.println("b");
+	    			  //join
 	    			  if(item.getData().contains("."))
 	    			  {
 	    				  String [] array = item.getData().split("\\.");
 	    				  where.add(builder.equal(root.join(array[0]).get(array[1]), search));
 	    			  }
+	    			  //equal
 	    			  else if(item.getData().equals("deleted"))
 	    				  where.add(builder.equal(root.get(item.getData()), search));
+	    			  //multiselect
+	    			  else if(item.getData().equals("active") || item.getData().equals("startDate") || item.getData().equals("endDate")) {
+	    				  if(search.contains(",")) {
+	    					  String [] wherein = search.split(",");
+		    				  List<String> myList = new ArrayList<String> ();
+		    				  for (String u : wherein) {
+		    				      myList.add(u);
+		    				  }
+		    				  where.add(builder.and(root.get(item.getData()).in(myList)));
+	    				  }
+	    				  else
+	    					  where.add(builder.equal(root.get(item.getData()), search));
+	    			  }
+	    			  //other
 	    			  else
+	    			  {
 	    				  where.add(builder.like(root.get(item.getData()), "%"+search+"%"));
+	    			  }	    			
 	    		  }
 	    	  }
 	    	  //where.add(builder.equal(root.join("eligibleUser").get("name"), "Daniel Muliawan"));

@@ -47,6 +47,15 @@ public class EligibleController extends ApiController<User> {
 				orders.add(new Sort.Order(Direction.DESC, columnName));
 		}
 		
+		if(!input.getSearch().getValue().equals(""))
+		{
+			Column tbc = new Column();
+			Search tbs = new Search();
+			tbs.setValue(input.getSearch().getValue());
+			tbc.setData("name");
+			tbc.setSearch(tbs);
+			columns.add(tbc);
+		}
 		s.setValue(id);
 		c.setData("period.idPeriod");
 		c.setSearch(s);
