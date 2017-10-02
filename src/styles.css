@@ -11,3 +11,7 @@
 .no-padding {
     padding: 0 !important;
 }
+
+.dataTables_filter.ui.input {
+    display: none;
+}

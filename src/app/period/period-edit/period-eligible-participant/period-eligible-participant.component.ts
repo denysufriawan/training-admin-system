@@ -14,6 +14,7 @@ export class PeriodEligibleParticipantComponent implements OnInit {
 
   ngOnInit() {
     var that = this;
+    var userDTSelected=[]
 
     this.ActivatedRoute.params.subscribe(params => {
       this.id=params['id']
@@ -51,67 +52,122 @@ export class PeriodEligibleParticipantComponent implements OnInit {
       } ]
     });
 
-    var aeplTable = $('#add-eligible-participant-list-table').on( 'processing.dt', function ( e, settings, processing ) {
-      if(processing)
-        $('#loading').fadeIn('fast');
-      else
-        $('#loading').fadeOut('fast');
-    }).DataTable({
-      'ajax' : {
-        'url': 'http://localhost:8080/api/eligible/list',
-        'contentType': 'application/json',
-        'type': 'POST',
-        'data': function(d) {
-          //d.idPeriod=that.id
-          return JSON.stringify(d);
-        }
+    var aeplTable
+    //add
+    $('.add.eligible.participant')
+    .modal({
+      onApprove: function() {
+        console.log(userDTSelected)
       },
-      'dom': '<""\
-              <"ui left floated segment basic no-margin no-padding"l>\
-              <"ui right floated segment basic no-margin no-padding">\
-              >\
-              <tr>\
-              <""\
-              <"ui left floated segment basic no-margin no-padding"i>\
-              <"ui right floated segment basic no-margin no-padding"p>\
-              >',
-      'serverSide' : true,
-      'processing' : false,
-      'columnDefs' : [
-        {"className":"center aligned","targets":[-1]}
-      ],
-      columns : [ {
-        data : 'anothercolumn',
-        orderable : false,
-        searchable : false,
-        render : function(data, type, row) {
-          return `
-          <div class="ui checkbox"><input type="checkbox" data-id="" data-name=""><label></label></div>;`;
-        }
-      }, {
-        data : 'name'
-      }, {
-        data : 'jobStream'
-      }, {
-        data : 'grade'
-      }, {
-        data : 'email'
-      }, {
-        data : 'username'
-      } ]
-    });
+      onShow: function() {
+        aeplTable = $('#add-eligible-participant-table').on( 'processing.dt', function ( e, settings, processing ) {
+          if(processing)
+            $('#loading-modal').fadeIn('fast');
+          else
+            $('#loading-modal').fadeOut('fast');
+        }).DataTable({
+          'ajax' : {
+            'url': 'http://localhost:8080/api/eligible/list/add/'+that.id,
+            'contentType': 'application/json',
+            'type': 'POST',
+            'data': function(d) {
+              //d.idPeriod=that.id
+              return JSON.stringify(d);
+            }
+          },
+          "destroy": true,
+          "fnInitComplete": function(oSettings, json) {
+            $('#eligible-participant-list-table_filter').fadeIn();
+          },
+          'serverSide' : true,
+          'processing' : false,
+          "lengthMenu": [[4, 25, 50, -1], [4, 25, 50, "All"]],
+          'columnDefs' : [
+            {"className":"center aligned","targets":[-1]},
+            { "visible": false, "targets": [0] }
+          ],
+          'createdRow': function( row, data, dataIndex ) {
+            $(row).attr('id', data.idUser);
+          },
+          'drawCallback': function (settings, json) {
+            this.api().rows( function( idx, data, node ) {
+            if ( $.inArray(data.idUser,userDTSelected) !== -1 ) {
+              return true;
+            }
+            }).select();
+          },
+          select: {
+            style: 'multi', selector: 'td:first-child .checkbox'
+          },
+          columns : [ 
+            {
+              data : 'idUser'
+            },
+            {
+              data : 'anothercolumn',
+              orderable : false,
+              searchable : false,
+              render : function(data, type, row) {
+                return `
+                    <div class="ui fitted checkbox">\
+                    <input type="checkbox">\
+                    <label></label>\
+                    </div>`;
+              }
+            },
+          {
+            data : 'name'
+          }, {
+            data : 'jobStream.jobStreamName'
+          }, {
+            data : 'grade.gradeName'
+          }, {
+            data : 'email'
+          }, {
+            data : 'username'
+          }
+           ]
+        });
 
-    $('#add-eligible-participant-button').click(function(){
-      $('.large.modal.add.eligible.participant').modal('show');
+        aeplTable.on( 'select', function( e, dt, type, indexes ) {
+          if ( type === 'row' ) {
+            var id = aeplTable.row( indexes ).data().idUser;
+            var index = $.inArray(id, userDTSelected);
+            if ( index === -1 ) {
+                userDTSelected.push( id );
+            }
+            for(let i = 0 ; i < userDTSelected.length ; i++) {
+              $('tr[id='+userDTSelected[i]+']').find('.checkbox').checkbox('check');
+            }
+          }
+        }).on('deselect', function(e, dt, type, indexes) {
+          $('tr[id='+indexes[0]+']').find('.checkbox').checkbox('uncheck');
+          userDTSelected = $.grep(userDTSelected, function(value) {
+            return value != indexes[0];
+          });
+          console.log(userDTSelected)
+          // var data = aeplTable.rows( indexes ).data().pluck( 'id' );
+          // console.log(data)
+          // for(let i = 0 ; i < data.length ; i++) {
+          //   var id = data[i];
+          //   $('tr[id='+id+']').find('.checkbox').checkbox('uncheck');
+          //   var index = $.inArray(id, userDTSelected);
+          //   if ( index === -1 ) {
+          //     userDTSelected.push( id );
+          //   } else {
+          //     userDTSelected.splice( index, 1 );
+          //   }
+          // }
+        });
+      },
+      onHide: function(){
+        userDTSelected = [];
+      },
+      closable: false,
+      autofocus: false
     })
-    $('#save-modal').click(function(){
-      //do save
-    })
-
-    $('#close-modal').click(function(){
-      $('.large.modal.add.eligible.participant').modal('hide');
-    })
-
+    .modal('attach events', '#add-eligible-participant-button');    
+  
     $(document).on('click', '#deleteButton', function(event) {
       var id={id:$(this).data('id')}
       swal({

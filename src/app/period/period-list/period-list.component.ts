@@ -41,15 +41,7 @@ export class PeriodListComponent implements OnInit {
           return JSON.stringify(d);
         }
       },
-      'dom': '<""\
-              <"ui left floated segment basic no-margin no-padding"l>\
-              <"ui right floated segment basic no-margin no-padding">\
-              >\
-              <tr>\
-              <""\
-              <"ui left floated segment basic no-margin no-padding"i>\
-              <"ui right floated segment basic no-margin no-padding"p>\
-              >',
+    
       'serverSide' : true,
       'processing' : false,
       "order": [[ 3, "desc" ]],

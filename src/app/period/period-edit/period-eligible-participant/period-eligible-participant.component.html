@@ -1,4 +1,4 @@
-<div class="ui active tab segment" id="aaaaaaaaa">
+<div class="ui active tab segment">
     <div class="ui active inverted dimmer" id="loading">
         <div class="ui text loader">Processing...</div>
     </div>
@@ -8,7 +8,6 @@
                 <button class="ui right floated primary button" id="add-eligible-participant-button"><i class="plus icon"></i> Add Eligible Participants</button>
             </div>
         </div>
-
         <div class="one column row">
             <div class="column"> 
                 <table id="eligible-participant-list-table" class="ui celled striped table" width="100%">
@@ -20,50 +19,32 @@
                     </thead>
                 </table>
             </div>
-
-            <!-- Delete EP User Modal -->
-            <div class="ui basic modal delete ep user">
-                <div class="ui icon header">
-                    <i class="trash icon"></i>
-                    Delete Eligible Participant User
-                </div>
-                <div class="content">
-                    <p>Are you sure want to delete [name]?</p>
-                </div>
-                <div class="actions">
-                    <div class="ui red basic cancel inverted button">
-                    <i class="remove icon"></i>
-                    No
-                    </div>
-                    <div class="ui green ok inverted button">
-                    <i class="checkmark icon"></i>
-                    Yes
-                    </div>
-                </div>
-            </div>
-
-            <!-- Add Eligible Participants Modal -->
-            <div class="ui large modal add eligible participant">
-                <div class="header">Select Employee(s)</div>
-                <div class="content">
-                    <table id="add-eligible-participant-table" class="ui table" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Full Name</th>
-                                <th>Job Family & Stream</th>
-                                <th>Grade</th>
-                                <th>Email</th>
-                                <th>Account Name</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="actions">
-                    <div class="ui positive button" id="save-modal">Save</div>
-                    <div class="ui cancel button" id="close-modal">Cancel</div>
-                </div>
-            </div>
         </div>
+    </div>
+</div>
+<!-- Add Eligible Participants Modal -->
+<div class="ui large modal add eligible participant">
+    <div class="ui active inverted dimmer" id="loading-modal" style="display:none">
+        <div class="ui text loader">Processing...</div>
+    </div>
+    <i class="red close icon" style="top: 0.5rem;right: 0.5rem;"></i>
+    <div class="header">Select Employee(s)</div>
+    <div class="content">
+        <table id="add-eligible-participant-table" class="ui celled table" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th class="center aligned"></th>
+                    <th class="center aligned"></th>
+                    <th class="center aligned">Full Name</th>
+                    <th class="center aligned">Job Family & Stream</th>
+                    <th class="center aligned">Grade</th>
+                    <th class="center aligned">Email</th>
+                    <th class="center aligned">Account Name</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="actions">
+        <div class="ui approve green button"><i class="check icon"></i> Save</div>
     </div>
 </div>
