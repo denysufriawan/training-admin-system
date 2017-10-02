@@ -31,6 +31,21 @@ public abstract class ApiController<U> {
 	    			  }
 	    			  else if(item.getData().equals("deleted"))
 	    				  where.add(builder.equal(root.get(item.getData()), search));
+	    			  else if(item.getData().equals("active") || item.getData().equals("startDate") || item.getData().equals("endDate") || item.getData().equals("idUser")) {
+	    				  if(search.contains(",")) {
+	    					  String [] wherein = search.split(",");
+		    				  List<String> myList = new ArrayList<String> ();
+		    				  for (String u : wherein) {
+		    				      myList.add(u);
+		    				  }
+		    				  if(item.getData().equals("idUser"))
+		    					  where.add(builder.not(root.get(item.getData()).in(myList)));
+		    				  else
+		    					  where.add(builder.and(root.get(item.getData()).in(myList)));
+	    				  }
+	    				  else
+	    					  where.add(builder.equal(root.get(item.getData()), search));
+	    			  }
 	    			  else
 	    				  where.add(builder.like(root.get(item.getData()), "%"+search+"%"));
     			  }
@@ -48,7 +63,6 @@ public abstract class ApiController<U> {
 	    	  for (Column item : columns) {
 	    		  String search = item.getSearch().getValue();
 	    		  if(!search.equals("")) {
-	    			  System.out.println("b");
 	    			  //join
 	    			  if(item.getData().contains("."))
 	    			  {
@@ -59,14 +73,17 @@ public abstract class ApiController<U> {
 	    			  else if(item.getData().equals("deleted"))
 	    				  where.add(builder.equal(root.get(item.getData()), search));
 	    			  //multiselect
-	    			  else if(item.getData().equals("active") || item.getData().equals("startDate") || item.getData().equals("endDate")) {
+	    			  else if(item.getData().equals("active") || item.getData().equals("startDate") || item.getData().equals("endDate") || item.getData().equals("idUser")) {
 	    				  if(search.contains(",")) {
 	    					  String [] wherein = search.split(",");
 		    				  List<String> myList = new ArrayList<String> ();
 		    				  for (String u : wherein) {
 		    				      myList.add(u);
 		    				  }
-		    				  where.add(builder.and(root.get(item.getData()).in(myList)));
+		    				  if(item.getData().equals("idUser"))
+		    					  where.add(builder.not(root.get(item.getData()).in(myList)));
+		    				  else
+		    					  where.add(builder.and(root.get(item.getData()).in(myList)));
 	    				  }
 	    				  else
 	    					  where.add(builder.equal(root.get(item.getData()), search));
