@@ -9,4 +9,6 @@ import com.example.tas.model.Eligible;
 
 public interface EligibleRepo extends JpaRepository<Eligible, Long>,JpaSpecificationExecutor<Eligible>{
 	List<Eligible> findByidPeriod(Long id);
+	
+	Eligible findByIdPeriodAndIdUser(Long idPeriod, Long idUser);
 }

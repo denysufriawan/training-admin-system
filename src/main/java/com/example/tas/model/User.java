@@ -16,8 +16,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name="tb_user")
@@ -30,6 +31,18 @@ public class User extends Auditable<String> implements Serializable{
 	@Column(name = "id_user")
 	private long idUser;
 	
+	@Transient
+	public List<String> rolelist;
+	
+	@Transient
+	public String idGrade;
+	
+	@Transient
+	public String idJobStream;
+	
+	@Transient
+	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	
 	@Column(name = "name")
 	private String name;
 	
@@ -39,13 +52,23 @@ public class User extends Auditable<String> implements Serializable{
 	@Column(name = "username")
 	private String username;
 	
-	@JsonIgnore
 	@Column(name = "password")
 	private String password;
 	
 	@Column(name = "active")
 	private String active;
 	
+	@Column(name = "placement_test")
+	private String placementTest;
+	
+	public String getPlacementTest() {
+		return placementTest;
+	}
+
+	public void setPlacementTest(String placementTest) {
+		this.placementTest = placementTest;
+	}
+
 	@ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="tr_user_role",
             joinColumns=
@@ -110,7 +133,7 @@ public class User extends Auditable<String> implements Serializable{
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = passwordEncoder.encode(password);
 	}
 
 	public String getActive() {

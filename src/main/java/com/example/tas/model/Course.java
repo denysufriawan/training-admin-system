@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,12 +19,30 @@ public class Course implements Serializable {
 	@Column(name = "id_course")
 	private long idCourse;
 	
-	@ManyToOne(optional=false)
-    @JoinColumn(name="id_course_type",referencedColumnName="id_course_type")
-	private CourseType courseType;
-	
 	@Column(name = "course_name")
 	private String courseName;
+	
+	@Column(name = "course_level")
+	private String courseLevel;
+	
+	@Column(name = "course_group")
+	private String courseGroup;
+
+	public String getCourseLevel() {
+		return courseLevel;
+	}
+
+	public void setCourseLevel(String courseLevel) {
+		this.courseLevel = courseLevel;
+	}
+
+	public String getCourseGroup() {
+		return courseGroup;
+	}
+
+	public void setCourseGroup(String courseGroup) {
+		this.courseGroup = courseGroup;
+	}
 
 	public long getIdCourse() {
 		return idCourse;
@@ -34,14 +50,6 @@ public class Course implements Serializable {
 
 	public void setIdCourse(long idCourse) {
 		this.idCourse = idCourse;
-	}
-
-	public CourseType getCourseType() {
-		return courseType;
-	}
-
-	public void setCourseType(CourseType courseType) {
-		this.courseType = courseType;
 	}
 
 	public String getCourseName() {

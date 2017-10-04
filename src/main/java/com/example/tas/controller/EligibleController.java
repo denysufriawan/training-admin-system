@@ -79,23 +79,23 @@ public class EligibleController extends ApiController<User> {
 	}
 	
 	@PostMapping(value="/eligible/list/add/{id}")
-	public ResponseEntity<JSONObject> getAddEligibleList(@Valid @RequestBody DataTablesInput input, @PathVariable Long id) {
+	public ResponseEntity<JSONObject> getAddEligibleList(@PathVariable Long id) {
 		JSONObject response = new JSONObject();
-		List<Sort.Order> orders = new ArrayList<>();
-		List<Column> columns = input.getColumns();
+//		List<Sort.Order> orders = new ArrayList<>();
+		List<Column> columns = new ArrayList<>();
 		List<Column> columnsCount = new ArrayList<>();
 		Column c = new Column();
 		Search s = new Search();
-		
-		for (org.springframework.data.jpa.datatables.mapping.Order item : input.getOrder()) {
-			String columnName = columns.get(item.getColumn()).getData();
-			if(item.getDir().equals("asc"))
-				orders.add(new Sort.Order(Direction.ASC, columnName));
-			else
-				orders.add(new Sort.Order(Direction.DESC, columnName));
-		}
-		Sort sorts = new Sort(orders);
-		PageRequest page = new PageRequest((int)Math.ceil(input.getStart()/input.getLength()),input.getLength(),sorts);
+//		
+//		for (org.springframework.data.jpa.datatables.mapping.Order item : input.getOrder()) {
+//			String columnName = columns.get(item.getColumn()).getData();
+//			if(item.getDir().equals("asc"))
+//				orders.add(new Sort.Order(Direction.ASC, columnName));
+//			else
+//				orders.add(new Sort.Order(Direction.DESC, columnName));
+//		}
+//		Sort sorts = new Sort(orders);
+//		PageRequest page = new PageRequest((int)Math.ceil(input.getStart()/input.getLength()),input.getLength(),sorts);
 		
 		List<Eligible> dataIn = eligibleRepo.findByidPeriod(id);
 		List<Long> notIn= new ArrayList<>();
@@ -103,17 +103,70 @@ public class EligibleController extends ApiController<User> {
 			notIn.add(m.getIdUser());
 		});
 		String where = StringUtils.join(notIn, ',');
+		System.out.println(where);
 		s.setValue(where);
 		c.setData("idUser");
 		c.setSearch(s);
 		columns.add(c);
 		columnsCount.add(c);
-		Page<User> data = userRepo.findAll(DataTable(columns),page);
-		
-		response.put("draw", input.getDraw());
-		response.put("recordsTotal", userRepo.findAll(CountDataTable(columnsCount)).size());
-		response.put("recordsFiltered", data.getTotalElements());
-		response.put("data", data.getContent());
+		List<User> data = userRepo.findAll(DataTable(columns));
+//		
+//		response.put("draw", input.getDraw());
+//		response.put("recordsTotal", userRepo.findAll(CountDataTable(columnsCount)).size());
+//		response.put("recordsFiltered", data.getTotalElements());
+		response.put("data", data);
 		return ResponseEntity.ok(response);
+	}
+	
+	@PostMapping(value="/eligible/list/add_process")
+	public ResponseEntity<JSONObject> editPeriod(@RequestBody final JSONObject post) {
+		JSONObject response = new JSONObject();
+		
+		List<Eligible> dataSave = new ArrayList<>();
+		String userId = post.getAsString("data");
+		String idPeriod = post.getAsString("id");
+		
+		if(userId != "") {
+			for (String data : userId.split(",")) {
+		    	Eligible e = new Eligible();
+				e.setIdPeriod(Long.parseLong(idPeriod));
+				e.setIdUser(Long.parseLong(data));
+		    	dataSave.add(e);
+			}
+			
+			if(eligibleRepo.save(dataSave)!=null) 
+			{
+				response.put("status", "1");
+				response.put("message", "Data added successfully!");
+			} 
+			else 
+			{
+				response.put("status", "2");
+				response.put("message", "Failed to save data!");
+			}
+		} else {
+			response.put("status", "2");
+			response.put("message", "Please select a user!");
+		}
+	    
+		return ResponseEntity.ok(response);
+	}
+	
+	@PostMapping(value="/eligible/list/delete_process")
+	public ResponseEntity<JSONObject> deleteEligible(@RequestBody final JSONObject post) {
+		JSONObject response = new JSONObject();
+		
+		if(post.getAsString("id_user")!="" && post.getAsString("id_period")!="") {
+			Eligible eligible = eligibleRepo.findByIdPeriodAndIdUser(Long.valueOf(post.getAsString("id_period")).longValue(),Long.valueOf(post.getAsString("id_user")).longValue());
+			eligibleRepo.delete(eligible);
+			
+			response.put("status", "1");
+			response.put("message", "Data deleted successfully");
+		} else {
+			response.put("status", "2");
+			response.put("message", "Failed to delete data!");
+		}
+		
+		return ResponseEntity.ok(response);	
 	}
 }
