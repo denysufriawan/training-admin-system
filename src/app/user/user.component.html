@@ -1,40 +1,5 @@
 <div class="tas-content">
     <app-header></app-header>
     <app-breadcrumb></app-breadcrumb>
-    <div class="ui grid padded">
-        <div class="one column row">
-            <div class="column">
-                <div class="ui raised segment violet">
-                    <div class="ui grid">
-                        <div class="two column row">
-                            <div class="column"> 
-                                <a class="ui purple ribbon label"><i class="disabled browser icon"></i>Users</a>
-                            </div>
-                            <div class="column">
-                                <button class="ui right floated primary button"><i class="plus icon"></i> Add User</button>
-                            </div>
-                        </div>
-                        <div class="one column row">
-                            <div class="column"> 
-                                <table id="users-table" class="ui table" cellspacing="0" width="100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Employee ID</th>
-                                            <th>Full Name</th>
-                                            <th>Email</th>
-                                            <th>Job Family & Stream</th>
-                                            <th>Grade</th>
-                                            <th>Account Name</th>
-                                            <th>Active</th>
-                                            <th>Role</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>       
+    <router-outlet></router-outlet>
+</div>

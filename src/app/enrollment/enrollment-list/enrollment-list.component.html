@@ -1,0 +1,39 @@
+<div class="ui grid padded">
+  <div class="one column row" id="enroll-content">
+    <div class="column">
+        <div class="ui raised segment violet">
+            <div class="ui active inverted dimmer" id="loading" style="display:none">
+                <div class="ui text loader">Processing...</div>
+            </div>
+            <div class="ui grid">
+                <div class="two column row">
+                    <div class="column"> 
+                        <a class="ui purple ribbon label"><i class="disabled file text outline icon"></i>Enrollment List</a>
+                    </div>
+                    <div class="column">
+                        <button class="ui right floated olive icon tiny button" id="refresh">
+                            <i class="refresh icon"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="one column row">
+                    <div class="column"> 
+                        <table id="enroll-table" class="ui celled striped table" width="100%">
+                            <thead>
+                                <tr>
+                                    <th class="center aligned">Period Name</th>
+                                    <th class="center aligned">Course Name</th>
+                                    <th class="center aligned">Trainer</th>
+                                    <th class="center aligned">Start At</th>
+                                    <th class="center aligned">End At</th>
+                                    <th class="center aligned">Status</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

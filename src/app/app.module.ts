@@ -11,7 +11,9 @@ import { BreadcrumbService } from './_services/breadcrumb.service';
 import { HeaderService } from './_services/header.service';
 import { MenuService } from './_services/menu.service';
 import { PeriodService } from './_services/period.service';
+import { UserService } from './_services/user.service';
 import { SidebarService } from './_services/sidebar.service';
+import { DropdownService } from './_services/dropdown.service';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -33,6 +35,10 @@ import { PeriodEditDataComponent } from './period/period-edit/period-edit-data/p
 import { PeriodEligibleParticipantComponent } from './period/period-edit/period-eligible-participant/period-eligible-participant.component';
 import { PeriodScheduleListComponent } from './period/period-edit/period-schedule-list/period-schedule-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { UserCreateComponent } from './user/user-create/user-create.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { EnrollmentListComponent } from './enrollment/enrollment-list/enrollment-list.component';
 
 import * as moment from 'moment';
 
@@ -57,6 +63,10 @@ import * as moment from 'moment';
     PeriodEligibleParticipantComponent,
     PeriodScheduleListComponent,
     NotFoundComponent,
+    UserCreateComponent,
+    UserEditComponent,
+    UserListComponent,
+    EnrollmentListComponent,
     FooterComponent
   ],
   imports: [
@@ -65,7 +75,15 @@ import * as moment from 'moment';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGuard, BreadcrumbService, HeaderService, MenuService, PeriodService, SidebarService],
+  providers: [AuthService,
+              AuthGuard,
+              BreadcrumbService,
+              HeaderService,
+              MenuService,
+              PeriodService,
+              UserService,
+              SidebarService,
+              DropdownService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

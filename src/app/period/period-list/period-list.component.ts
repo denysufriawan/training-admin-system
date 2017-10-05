@@ -183,6 +183,7 @@ export class PeriodListComponent implements OnInit {
     $('#reset-search').click(function(){
       $('#searchForm').find("input[type=text]").val("");
       $('#active').dropdown("restore defaults");
+      table.ajax.reload();
       $('html,body').animate({scrollTop: $('#period-content').offset().top},500); 
     })
 
