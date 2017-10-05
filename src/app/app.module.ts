@@ -34,6 +34,7 @@ import { PeriodEligibleParticipantComponent } from './period/period-edit/period-
 import { PeriodScheduleListComponent } from './period/period-edit/period-schedule-list/period-schedule-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
+import * as moment from 'moment';
 
 @NgModule({
   declarations: [

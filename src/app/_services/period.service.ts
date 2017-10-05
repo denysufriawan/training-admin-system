@@ -37,4 +37,18 @@ export class PeriodService {
         return response.json();
       });
   }
+
+  save_eligible(data): Observable<any> {
+    return this.http.post('http://localhost:8080/api/eligible/list/add_process', data)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  delete_eligible(data): Observable<any> {
+    return this.http.post('http://localhost:8080/api/eligible/list/delete_process', data)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
 }

@@ -23,17 +23,16 @@
     </div>
 </div>
 <!-- Add Eligible Participants Modal -->
-<div class="ui large modal add eligible participant">
+<div class="ui fullscreen modal add eligible participant">
     <div class="ui active inverted dimmer" id="loading-modal" style="display:none">
         <div class="ui text loader">Processing...</div>
     </div>
     <i class="red close icon" style="top: 0.5rem;right: 0.5rem;"></i>
     <div class="header">Select Employee(s)</div>
-    <div class="content">
-        <table id="add-eligible-participant-table" class="ui celled table" cellspacing="0" width="100%">
+    <div class="scrolling content">
+        <table id="add-eligible-participant-table" class="ui celled table" width="100%" style="table-layout:fixed; word-wrap: break-word;">
             <thead>
                 <tr>
-                    <th class="center aligned"></th>
                     <th class="center aligned"></th>
                     <th class="center aligned">Full Name</th>
                     <th class="center aligned">Job Family & Stream</th>
@@ -41,10 +40,18 @@
                     <th class="center aligned">Email</th>
                     <th class="center aligned">Account Name</th>
                 </tr>
+                <tr id="filterrow">
+                    <th class="select-checkbox sorting_disabled"><div class="ui checkbox"><input type="checkbox" id="checkAll"><label></label></div></th>
+                    <th>Full Name</th>
+                    <th>Job Family & Stream</th>
+                    <th>Grade</th>
+                    <th>Email</th>
+                    <th>Account Name</th>
+                </tr>
             </thead>
         </table>
     </div>
     <div class="actions">
-        <div class="ui approve green button"><i class="check icon"></i> Save</div>
+        <div class="ui green button" id="save-eligible"><i class="check icon"></i> Save</div>
     </div>
 </div>

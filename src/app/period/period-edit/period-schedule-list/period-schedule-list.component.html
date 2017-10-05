@@ -1,4 +1,7 @@
 <div class="ui tab active segment">
+    <div class="ui active inverted dimmer" id="loading">
+        <div class="ui text loader">Processing...</div>
+    </div>
     <div class="ui grid">
         <div class="one column row">
             <div class="column">
@@ -8,37 +11,20 @@
 
         <div class="one column row">
             <div class="column"> 
-                <table id="schedule-list-table" class="ui table" cellspacing="0" width="100%">
+                <table id="schedule-list-table" class="ui celled table" width="100%" style="table-layout:fixed; word-wrap: break-word;">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Trainer</th>
-                            <th>Backup Trainer</th>
-                            <th>Classroom</th>
-                            <th>Day</th>
-                            <th>Start Time</th>
-                            <th>End Time</th>
-                            <th>Capacity</th>
-                            <th>All Participant List</th>
-                            <th>Action</th>
+                            <th class="center aligned">Name</th>
+                            <th class="center aligned">Trainer</th>
+                            <th class="center aligned">Backup Trainer</th>
+                            <th class="center aligned">Classroom</th>
+                            <th class="center aligned">Start Time</th>
+                            <th class="center aligned">End Time</th>
+                            <th class="center aligned">Capacity</th>
+                            <th class="center aligned">All Participant List</th>
+                            <th class="center aligned">Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><div class="ui checkbox"><input type="checkbox"><label></label></div></td>
-                            <td>Software Requirements #1</td>
-                            <td>Made Aditya</td>
-                            <td>-</td>
-                            <td>Srikandi Meeting Room - Sanur B Office 2nd Floor</td>
-                            <td></td>
-                            <td>07 Aug 2017 14:52</td>
-                            <td>09 Aug 2017 19:11</td>
-                            <td>10</td>
-                            <td>3</td>
-                            <td><i class="info blue icon" id="schedule-list-detail-button"></i><i class="users blue icon" id="enroll-participants-button"></i></td>
-                        </tr>
-                    </tbody>
                 </table>
 
                 <!-- Add Schedule Modal -->
@@ -115,59 +101,63 @@
 
                 <!-- Training Class Detail Modal -->
                 <div class="ui small modal training class detail">
+                    <div class="ui active inverted dimmer" id="loading-modal" style="display:none">
+                        <div class="ui text loader">Processing...</div>
+                    </div>
+                    <i class="red close icon" style="top: 0.5rem;right: 0.5rem;"></i>
                     <div class="header">Training Class Detail</div>
-                    <div class="content">
+                    <div class="scrolling content">
                         <table class="ui very basic table">
                             <tbody>
                                 <tr>
                                     <td>Name</td>
-                                    <td>Software Requirements #1</td>
+                                    <td>{{nameDetail}}</td>
                                 </tr>
                                 <tr>
                                     <td>Trainer</td>
-                                    <td>Made Aditya</td>
+                                    <td>{{trainerDetail}}</td>
                                 </tr>
                                 <tr>
                                     <td>Backup Trainer</td>
-                                    <td>-</td>
+                                    <td>{{backupTrainerDetail}}</td>
                                 </tr>
                                 <tr>
                                     <td>Classroom</td>
-                                    <td>Srikandi Meeting Room - Sanur B Office 2nd Floor</td>
+                                    <td>{{classroomDetail}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Day</td>
-                                    <td>-</td>
+                                    <td>Location</td>
+                                    <td>{{locationDetail}}</td>
                                 </tr>
                                 <tr>
                                     <td>Start Date</td>
-                                    <td>07 Aug 2017 14:52</td>
+                                    <td>{{startTimeDetail}}</td>
                                 </tr>
                                 <tr>
                                     <td>End Date</td>
-                                    <td>09 Aug 2017 19:11</td>
+                                    <td>{{endTimeDetail}}</td>
                                 </tr>
                                 <tr>
                                     <td>Created By</td>
-                                    <td>Ni Wayan Luh Sukertiasih</td>
+                                    <td>{{createdByDetail}}</td>
                                 </tr>
                                 <tr>
                                     <td>Created At</td>
-                                    <td>07 Aug 2017 14:52</td>
+                                    <td>{{createdAtDetail}}</td>
                                 </tr>
                                 <tr>
                                     <td>Updated By</td>
-                                    <td>Ni Wayan Luh Sukertiasih</td>
+                                    <td>{{updatedByDetail}}</td>
                                 </tr>
                                 <tr>
                                     <td>Updated At</td>
-                                    <td>07 Aug 2017 14:52</td>
+                                    <td>{{updatedAtDetail}}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="actions">
-                        <div class="ui positive button">OK</div>
+                        <div class="ui green button" id="close-training-class-detail"><i class="check icon"></i> OK</div>
                     </div>
                 </div>
 

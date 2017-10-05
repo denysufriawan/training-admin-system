@@ -74,8 +74,8 @@ export class PeriodListComponent implements OnInit {
         searchable : false,
         render : function(data, type, row) {
           return `
-          <i class="blue edit icon" id="editButton" data-id="${row.idPeriod}" style="cursor:pointer"></i>
-          <i class="red trash icon" id="deleteButton" data-id="${row.idPeriod}" data-name="${row.periodName}" style="cursor:pointer"></i>`;
+          <div data-tooltip="Edit Period" data-position="top center"><i class="blue edit icon" id="editButton" data-id="${row.idPeriod}" style="cursor:pointer"></i></div>
+          <div data-tooltip="Delete Period" data-position="top center"><i class="red trash icon" id="deleteButton" data-id="${row.idPeriod}" data-name="${row.periodName}" style="cursor:pointer"></i></div>`;
         }
       } ]
     });

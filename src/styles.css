@@ -15,3 +15,10 @@
 .dataTables_filter.ui.input {
     display: none;
 }
+
+.text-wrap{
+    white-space:normal;
+}
+.width-200{
+    width:50px !important;
+}
