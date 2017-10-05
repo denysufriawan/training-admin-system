@@ -1,6 +1,7 @@
 package com.example.tas.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -293,6 +294,34 @@ public abstract class ApiController<U> {
 	      public javax.persistence.criteria.Predicate toPredicate(Root<U> root, CriteriaQuery<?> query,
 	            CriteriaBuilder builder) {
 	    	  return builder.and(root.get("idAttendance").in(where));
+	      }
+	    };
+	}
+	
+	protected Specification<U> ActiveTraining() {
+	    return new Specification<U>() {
+	      public javax.persistence.criteria.Predicate toPredicate(Root<U> root, CriteriaQuery<?> query,
+	            CriteriaBuilder builder) {
+	    	  List<Predicate> where = new ArrayList<>();
+	    	  where.add(builder.equal(root.get("deleted"), "0"));
+	    	  Date date = new Date();
+	    	  
+	    	  where.add(builder.greaterThanOrEqualTo(root.<Date>get("startTime"), date));
+	    	  return builder.and(where.toArray(new Predicate[0]));
+	      }
+	    };
+	}
+	
+	protected Specification<U> ActiveBcc() {
+	    return new Specification<U>() {
+	      public javax.persistence.criteria.Predicate toPredicate(Root<U> root, CriteriaQuery<?> query,
+	            CriteriaBuilder builder) {
+	    	  List<Predicate> where = new ArrayList<>();
+	    	  where.add(builder.equal(root.get("deleted"), "0"));
+	    	  Date date = new Date();
+	    	  
+	    	  where.add(builder.greaterThanOrEqualTo(root.<Date>get("startTime"), date));
+	    	  return builder.and(where.toArray(new Predicate[0]));
 	      }
 	    };
 	}
