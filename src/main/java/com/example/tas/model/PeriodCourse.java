@@ -26,6 +26,9 @@ public class PeriodCourse extends Auditable<String> implements Serializable{
 	@Column(name = "id_period_course")
 	private long idPeriodCourse;
 	
+	@Column(name = "schedule_type")
+	private String scheduleType;
+
 	@Column(name = "capacity")
 	private String capacity;
 
@@ -113,6 +116,14 @@ public class PeriodCourse extends Auditable<String> implements Serializable{
 
 	public void setIdPeriodCourse(long idPeriodCourse) {
 		this.idPeriodCourse = idPeriodCourse;
+	}
+	
+	public String getScheduleType() {
+		return scheduleType;
+	}
+
+	public void setScheduleType(String scheduleType) {
+		this.scheduleType = scheduleType;
 	}
 
 	public String getCapacity() {

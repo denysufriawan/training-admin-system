@@ -104,7 +104,6 @@ public class UserController extends ApiController<User>{
 	@PostMapping(value="/user/edit")
 	public ResponseEntity<JSONObject> editUser(@RequestBody final JSONObject post) {
 		JSONObject response = new JSONObject();
-		System.out.println();
 		User user = userRepo.findOne(Long.valueOf(post.getAsString("id")).longValue());
 		
 		if(user!=null) 
