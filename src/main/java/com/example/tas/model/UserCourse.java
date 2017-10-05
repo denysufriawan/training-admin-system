@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +21,9 @@ public class UserCourse implements Serializable {
 	@Column(name = "id_user_course")
 	private long idUserCourse;
 	
+	@Column(name = "id_user")
+	private long idUser;
+	
 	@Column(name = "user_status")
 	private String userStatus;
 	
@@ -28,29 +33,13 @@ public class UserCourse implements Serializable {
 	@Column(name = "pass")
 	private String pass;
 	
-//	@ManyToOne(optional=false)
-//    @JoinColumn(name="id_period_course",referencedColumnName="id_period_course")
-//    private PeriodCourse periodCourse;
+	@ManyToOne(optional=false)
+    @JoinColumn(name="id_period_course",referencedColumnName="id_period_course")
+    private PeriodCourseBack periodCourse;
 //	
 //	@ManyToOne(optional=false)
 //    @JoinColumn(name="id_user",referencedColumnName="id_user")
 //    private User user;
-
-//	public PeriodCourse getPeriodCourse() {
-//		return periodCourse;
-//	}
-//
-//	public void setPeriodCourse(PeriodCourse periodCourse) {
-//		this.periodCourse = periodCourse;
-//	}
-//
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
 
 	public long getIdUserCourse() {
 		return idUserCourse;
@@ -82,6 +71,22 @@ public class UserCourse implements Serializable {
 
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+
+	public long getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(long idUser) {
+		this.idUser = idUser;
+	}
+
+	public PeriodCourseBack getPeriodCourse() {
+		return periodCourse;
+	}
+
+	public void setPeriodCourse(PeriodCourseBack periodCourse) {
+		this.periodCourse = periodCourse;
 	}
 	
 }

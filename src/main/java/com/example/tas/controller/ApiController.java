@@ -32,20 +32,25 @@ public abstract class ApiController<U> {
 	    			  }
 	    			  else if(item.getData().equals("deleted") || item.getData().equals("startDate") || item.getData().equals("endDate") )
 	    				  where.add(builder.equal(root.get(item.getData()), search));
-	    			  else if(item.getData().equals("active") || item.getData().equals("idUser")) {
+	    			  else if(item.getData().equals("active")) {
 	    				  if(search.contains(",")) {
 	    					  String [] wherein = search.split(",");
 		    				  List<String> myList = new ArrayList<String> ();
 		    				  for (String u : wherein) {
 		    				      myList.add(u);
 		    				  }
-		    				  if(item.getData().equals("idUser"))
-		    					  where.add(builder.not(root.get(item.getData()).in(myList)));
-		    				  else
-		    					  where.add(builder.and(root.get(item.getData()).in(myList)));
+		    				  where.add(builder.and(root.get(item.getData()).in(myList)));
 	    				  }
 	    				  else
 	    					  where.add(builder.equal(root.get(item.getData()), search));
+	    			  }
+	    			  else if(item.getData().equals("idUser")) {
+    					  String [] wherein = search.split(",");
+	    				  List<String> myList = new ArrayList<String> ();
+	    				  for (String u : wherein) {
+	    				      myList.add(u);
+	    				  }
+	    				  where.add(builder.not(root.get(item.getData()).in(myList)));
 	    			  }
 	    			  else
 	    				  where.add(builder.like(root.get(item.getData()), "%"+search+"%"));
@@ -75,20 +80,25 @@ public abstract class ApiController<U> {
 	    			  else if(item.getData().equals("deleted") || item.getData().equals("startDate") || item.getData().equals("endDate"))
 	    				  where.add(builder.equal(root.get(item.getData()), search));
 	    			  //multiselect
-	    			  else if(item.getData().equals("active") || item.getData().equals("idUser")) {
+	    			  else if(item.getData().equals("active")) {
 	    				  if(search.contains(",")) {
 	    					  String [] wherein = search.split(",");
 		    				  List<String> myList = new ArrayList<String> ();
 		    				  for (String u : wherein) {
 		    				      myList.add(u);
 		    				  }
-		    				  if(item.getData().equals("idUser"))
-		    					  where.add(builder.not(root.get(item.getData()).in(myList)));
-		    				  else
-		    					  where.add(builder.and(root.get(item.getData()).in(myList)));
+		    				  where.add(builder.and(root.get(item.getData()).in(myList)));
 	    				  }
 	    				  else
 	    					  where.add(builder.equal(root.get(item.getData()), search));
+	    			  }
+	    			  else if(item.getData().equals("idUser")) {
+    					  String [] wherein = search.split(",");
+	    				  List<String> myList = new ArrayList<String> ();
+	    				  for (String u : wherein) {
+	    				      myList.add(u);
+	    				  }
+	    				  where.add(builder.not(root.get(item.getData()).in(myList)));
 	    			  }
 	    			  //other
 	    			  else
@@ -160,6 +170,85 @@ public abstract class ApiController<U> {
 		    				  else
 		    					  where.add(builder.equal(root.join(array[0]).get(array[1]), search));
 	    				  }
+	    			  }
+	    			  //equal
+	    			  else if(item.getData().equals("deleted") || item.getData().equals("idUser"))
+	    				  where.add(builder.equal(root.get(item.getData()), search));
+	    			  //multiselect
+	    			  else if(item.getData().equals("active")) {
+	    				  if(search.contains(",")) {
+	    					  String [] wherein = search.split(",");
+		    				  List<String> myList = new ArrayList<String> ();
+		    				  for (String u : wherein) {
+		    				      myList.add(u);
+		    				  }
+		    				  where.add(builder.and(root.get(item.getData()).in(myList)));
+		    					  
+	    				  }
+	    				  else
+	    					  where.add(builder.equal(root.get(item.getData()), search));
+	    			  }
+	    			  //other
+	    			  else
+	    			  {
+	    				  where.add(builder.like(root.get(item.getData()), "%"+search+"%"));
+	    			  }	    			
+	    		  }
+	    	  }
+	    	  return builder.and(where.toArray(new Predicate[0]));
+	      }
+	    };
+	}
+	
+	protected Specification<U> CountDataTableEnroll(List<Column> columns) {
+	    return new Specification<U>() {
+	      public javax.persistence.criteria.Predicate toPredicate(Root<U> root, CriteriaQuery<?> query,
+	            CriteriaBuilder builder) {
+	    	  List<Predicate> where = new ArrayList<>();
+	    	  for (Column item : columns) {
+	    		  String search = item.getSearch().getValue();
+	    		  if(!search.equals(""))
+    			  {
+	    			  if(item.getData().contains("."))
+	    			  {
+	    				  String [] array = item.getData().split("\\.");
+	    				  where.add(builder.equal(root.join(array[0]).get(array[1]), search));
+	    			  }
+	    			  else if(item.getData().equals("deleted") || item.getData().equals("idUser"))
+	    				  where.add(builder.equal(root.get(item.getData()), search));
+	    			  else
+	    				  where.add(builder.like(root.get(item.getData()), "%"+search+"%"));
+    			  }
+	    	  }
+	    	  return builder.and(where.toArray(new Predicate[0]));
+	      }
+	    };
+	}
+	
+	protected Specification<U> DataTableEnroll(List<Column> columns) {
+	    return new Specification<U>() {
+	      public javax.persistence.criteria.Predicate toPredicate(Root<U> root, CriteriaQuery<?> query,
+	            CriteriaBuilder builder) {
+	    	  List<Predicate> where = new ArrayList<>();
+	    	  for (Column item : columns) {
+	    		  String search = item.getSearch().getValue();
+	    		  if(!search.equals("")) {
+	    			  //join
+	    			  if(item.getData().contains("."))
+	    			  {
+	    				  String [] array = item.getData().split("\\.");
+    					  if(search.contains(",")) {
+    						  
+	    					  String [] wherein = search.split(",");
+		    				  List<String> myList = new ArrayList<String> ();
+		    				  for (String u : wherein) {
+		    				      myList.add(u);
+		    				  }
+		    				  where.add(builder.and(root.join(array[0]).get(array[1]).in(myList)));
+		    					  
+	    				  }
+	    				  else
+	    					  where.add(builder.equal(root.join(array[0]).get(array[1]), search));
 	    			  }
 	    			  //equal
 	    			  else if(item.getData().equals("deleted") || item.getData().equals("idUser"))
