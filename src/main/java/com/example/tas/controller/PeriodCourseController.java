@@ -58,7 +58,7 @@ public class PeriodCourseController extends ApiController<PeriodCourse>  {
 		
 		//if id_period == id
 		s1.setValue(Long.toString(id));
-		c1.setData("idPeriod");
+		c1.setData("period.idPeriod");
 		c1.setSearch(s1);
 		
 		columns.add(c);

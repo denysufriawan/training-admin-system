@@ -28,9 +28,6 @@ public class UserCourse implements Serializable {
 	@Column(name = "pass")
 	private String pass;
 	
-	@Column(name = "id_course_type")
-	private String idCourseType;
-	
 //	@ManyToOne(optional=false)
 //    @JoinColumn(name="id_period_course",referencedColumnName="id_period_course")
 //    private PeriodCourse periodCourse;
@@ -85,14 +82,6 @@ public class UserCourse implements Serializable {
 
 	public void setPass(String pass) {
 		this.pass = pass;
-	}
-
-	public String getIdCourseType() {
-		return idCourseType;
-	}
-
-	public void setIdCourseType(String idCourseType) {
-		this.idCourseType = idCourseType;
 	}
 	
 }

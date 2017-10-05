@@ -19,7 +19,7 @@ public abstract class ApiController<U> {
 	    return new Specification<U>() {
 	      public javax.persistence.criteria.Predicate toPredicate(Root<U> root, CriteriaQuery<?> query,
 	            CriteriaBuilder builder) {
-	    	  query.distinct(true);
+//	    	  query.distinct(true);
 	    	  List<Predicate> where = new ArrayList<>();
 	    	  for (Column item : columns) {
 	    		  String search = item.getSearch().getValue();
@@ -60,7 +60,7 @@ public abstract class ApiController<U> {
 	    return new Specification<U>() {
 	      public javax.persistence.criteria.Predicate toPredicate(Root<U> root, CriteriaQuery<?> query,
 	            CriteriaBuilder builder) {
-	    	  query.distinct(true);
+//	    	  query.distinct(true);
 	    	  List<Predicate> where = new ArrayList<>();
 	    	  for (Column item : columns) {
 	    		  String search = item.getSearch().getValue();

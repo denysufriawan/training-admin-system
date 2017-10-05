@@ -24,6 +24,17 @@ private static final long serialVersionUID = 1L;
 	
 	@Column(name = "capacity")
 	private String capacity;
+	
+	@Column(name = "location")
+	private String location;
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
 	public long getIdClass() {
 		return idClass;
