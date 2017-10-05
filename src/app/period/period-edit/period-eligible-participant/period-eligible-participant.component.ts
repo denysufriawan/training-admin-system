@@ -27,6 +27,9 @@ export class PeriodEligibleParticipantComponent implements OnInit {
       else
         $('#loading').fadeOut('fast');
     }).DataTable({
+      'fnInitComplete':function(){
+        $('.dataTables_filter').fadeIn('fast')
+      },
       'ajax' : {
         'url': 'http://localhost:8080/api/eligible/list/'+that.id,
         'contentType': 'application/json',

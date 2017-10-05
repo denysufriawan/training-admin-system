@@ -24,6 +24,11 @@ import { HeaderComponent } from './include/header/header.component';
 import { BreadcrumbComponent } from './include/breadcrumb/breadcrumb.component';
 import { FooterComponent } from './include/footer/footer.component';
 import { EnrollmentListComponent } from './enrollment/enrollment-list/enrollment-list.component';
+import { TrainingListComponent } from './training-maintenance/training-list/training-list.component';
+import { TrainingEditComponent } from './training-maintenance/training-edit/training-edit.component';
+import { AttendanceComponent } from './training-maintenance/training-edit/attendance/attendance.component';
+import { AssessmentComponent } from './training-maintenance/training-edit/assessment/assessment.component';
+import { AttendanceEditComponent } from './training-maintenance/training-edit/attendance-edit/attendance-edit.component';
 
 const routes: Routes = [
     { path: 'dashboard',  component: DashboardComponent, canActivate:[AuthGuard]},
@@ -53,7 +58,18 @@ const routes: Routes = [
         { path: '**', redirectTo: 'list', pathMatch: 'full' }
     ] },
     { path: 'achievement', component: AchievementComponent, canActivate:[AuthGuard] },
-    { path: 'training', component: TrainingMaintenanceComponent, canActivate:[AuthGuard] },
+    { path: 'training', component: TrainingMaintenanceComponent, canActivate:[AuthGuard], children :[
+        { path: 'list', component: TrainingListComponent, canActivate:[AuthGuard] },
+        { path: 'edit', component: TrainingEditComponent, canActivate:[AuthGuard] , children : [
+            { path: 'attendance/:id', component: AttendanceComponent, canActivate:[AuthGuard] },
+            { path: 'assessment/:id', component: AssessmentComponent, canActivate:[AuthGuard] },
+            { path: 'assessment-edit/:id', component: AttendanceEditComponent, canActivate:[AuthGuard] },
+            { path: '', redirectTo: 'list', pathMatch: 'full' },
+            { path: '**', redirectTo: 'list', pathMatch: 'full' }
+        ]},
+        { path: '', redirectTo: 'list', pathMatch: 'full' },
+        { path: '**', redirectTo: 'list', pathMatch: 'full' }
+    ]},
     { path: 'login', component: LoginComponent, canActivate:[AuthGuard]},
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: '**', redirectTo: '/login', pathMatch: 'full' }

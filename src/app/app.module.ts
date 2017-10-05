@@ -14,6 +14,7 @@ import { PeriodService } from './_services/period.service';
 import { UserService } from './_services/user.service';
 import { SidebarService } from './_services/sidebar.service';
 import { DropdownService } from './_services/dropdown.service';
+import { TrainingService } from './_services/training.service';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -39,8 +40,11 @@ import { UserCreateComponent } from './user/user-create/user-create.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { EnrollmentListComponent } from './enrollment/enrollment-list/enrollment-list.component';
-
-import * as moment from 'moment';
+import { TrainingListComponent } from './training-maintenance/training-list/training-list.component';
+import { TrainingEditComponent } from './training-maintenance/training-edit/training-edit.component';
+import { AttendanceComponent } from './training-maintenance/training-edit/attendance/attendance.component';
+import { AssessmentComponent } from './training-maintenance/training-edit/assessment/assessment.component';
+import { AttendanceEditComponent } from './training-maintenance/training-edit/attendance-edit/attendance-edit.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +71,11 @@ import * as moment from 'moment';
     UserEditComponent,
     UserListComponent,
     EnrollmentListComponent,
+    TrainingListComponent,
+    TrainingEditComponent,
+    AttendanceComponent,
+    AssessmentComponent,
+    AttendanceEditComponent,
     FooterComponent
   ],
   imports: [
@@ -83,7 +92,8 @@ import * as moment from 'moment';
               PeriodService,
               UserService,
               SidebarService,
-              DropdownService],
+              DropdownService,
+              TrainingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
