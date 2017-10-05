@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.tas.model.Grade;
 import com.example.tas.model.JobStream;
 import com.example.tas.model.Role;
+import com.example.tas.repository.AbsenceRepo;
 import com.example.tas.repository.CourseRepo;
 import com.example.tas.repository.GradeRepo;
 import com.example.tas.repository.JobFamilyRepo;
@@ -33,29 +34,38 @@ public class DropdownController extends ApiController<Role> {
 	private GradeRepo gradeRepo;
 	@Autowired
 	private CourseRepo courseRepo;
+	@Autowired
+	private AbsenceRepo absenceRepo;
 	
-	@GetMapping(value="/role/list")
+	@GetMapping(value="/dropdown/role/list")
 	public ResponseEntity<JSONObject> getRoleList() {
 		JSONObject response = new JSONObject();
 		response.put("message", roleRepo.findAll());
 		return ResponseEntity.ok(response);
 	}
 	
-	@GetMapping(value="/jobFamily/list")
+	@GetMapping(value="/dropdown/absence/list")
+	public ResponseEntity<JSONObject> getAbsenceList() {
+		JSONObject response = new JSONObject();
+		response.put("message", absenceRepo.findAll());
+		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping(value="/dropdown/jobFamily/list")
 	public ResponseEntity<JSONObject> getJobFamily() {
 		JSONObject response = new JSONObject();
 		response.put("message", joFamilyRepo.findAll());
 		return ResponseEntity.ok(response);
 	}
 	
-	@GetMapping(value="/placement/list")
+	@GetMapping(value="/dropdown/placement/list")
 	public ResponseEntity<JSONObject> getPlacement() {
 		JSONObject response = new JSONObject();
 		response.put("message", courseRepo.findByCourseGroup("BCC"));
 		return ResponseEntity.ok(response);
 	}
 	
-	@PostMapping(value="/jobStream/list")
+	@PostMapping(value="/dropdown/jobStream/list")
 	public ResponseEntity<JSONObject> getJobStream(@RequestBody final JSONObject id) {
 		JSONObject response = new JSONObject();
 		List<JobStream> jobStream = new ArrayList<>();
@@ -65,7 +75,7 @@ public class DropdownController extends ApiController<Role> {
 		return ResponseEntity.ok(response);
 	}
 	
-	@PostMapping(value="/grade/list")
+	@PostMapping(value="/dropdown/grade/list")
 	public ResponseEntity<JSONObject> getGrade(@RequestBody final JSONObject id) {
 		JSONObject response = new JSONObject();
 		List<Grade> grade = new ArrayList<>();

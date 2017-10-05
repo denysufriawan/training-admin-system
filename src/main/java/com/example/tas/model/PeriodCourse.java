@@ -35,6 +35,9 @@ public class PeriodCourse extends Auditable<String> implements Serializable{
 	@Column(name = "end_time")
 	private String endTime;
 	
+	@Column(name = "schedule_type")
+	private String scheduleType;
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="id_period_course",referencedColumnName="id_period_course")
     private Set<UserCourse> enrolledUser;
@@ -59,6 +62,14 @@ public class PeriodCourse extends Auditable<String> implements Serializable{
 	@JoinColumn(name="id_period",referencedColumnName="id_period")
 	private Period period;
 
+	public String getScheduleType() {
+		return scheduleType;
+	}
+
+	public void setScheduleType(String scheduleType) {
+		this.scheduleType = scheduleType;
+	}
+	
 	public Course getCourse() {
 		return course;
 	}
