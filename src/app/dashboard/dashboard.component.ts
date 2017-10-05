@@ -30,7 +30,6 @@ export class DashboardComponent implements OnInit {
     this.HeaderService.setCurrentHeader(this.headerData);
 
     this.data = this.http.get('./app/data/ac.json').map(res => res.json());
-    console.log(this.data);
 
     // $('#active-training-table').DataTable({
     //   ajax: this.data,

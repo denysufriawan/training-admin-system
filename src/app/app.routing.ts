@@ -17,9 +17,13 @@ import { PeriodEditComponent } from './period/period-edit/period-edit.component'
 import { PeriodEditDataComponent } from './period/period-edit/period-edit-data/period-edit-data.component';
 import { PeriodEligibleParticipantComponent } from './period/period-edit/period-eligible-participant/period-eligible-participant.component';
 import { PeriodScheduleListComponent } from './period/period-edit/period-schedule-list/period-schedule-list.component';
+import { UserCreateComponent } from './user/user-create/user-create.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { UserListComponent } from './user/user-list/user-list.component';
 import { HeaderComponent } from './include/header/header.component';
 import { BreadcrumbComponent } from './include/breadcrumb/breadcrumb.component';
 import { FooterComponent } from './include/footer/footer.component';
+import { EnrollmentListComponent } from './enrollment/enrollment-list/enrollment-list.component';
 
 const routes: Routes = [
     { path: 'dashboard',  component: DashboardComponent, canActivate:[AuthGuard]},
@@ -36,8 +40,18 @@ const routes: Routes = [
         { path: '', redirectTo: 'list', pathMatch: 'full' },
         { path: '**', redirectTo: 'list', pathMatch: 'full' }
     ]},
-    { path: 'user', component: UserComponent, canActivate:[AuthGuard] },
-    { path: 'enrollment', component: EnrollmentComponent, canActivate:[AuthGuard] },
+    { path: 'user', component: UserComponent, canActivate:[AuthGuard] , children :[
+        { path: 'list', component: UserListComponent, canActivate:[AuthGuard] },
+        { path: 'add', component: UserCreateComponent, canActivate:[AuthGuard] },
+        { path: 'edit/:id', component: UserEditComponent, canActivate:[AuthGuard] },
+        { path: '', redirectTo: 'list', pathMatch: 'full' },
+        { path: '**', redirectTo: 'list', pathMatch: 'full' }
+    ]},
+    { path: 'enrollment', component: EnrollmentComponent, canActivate:[AuthGuard] ,children:[
+        { path: 'list', component: EnrollmentListComponent, canActivate:[AuthGuard] },
+        { path: '', redirectTo: 'list', pathMatch: 'full' },
+        { path: '**', redirectTo: 'list', pathMatch: 'full' }
+    ] },
     { path: 'achievement', component: AchievementComponent, canActivate:[AuthGuard] },
     { path: 'training', component: TrainingMaintenanceComponent, canActivate:[AuthGuard] },
     { path: 'login', component: LoginComponent, canActivate:[AuthGuard]},

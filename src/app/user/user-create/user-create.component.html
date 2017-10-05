@@ -1,0 +1,102 @@
+<div class="ui grid padded">
+    <div class="one column row">
+        <div class="column">
+            <div class="ui raised segment violet">
+                <div class="ui active inverted dimmer" id="loading" style="display:none">
+                    <div class="ui text loader">Processing...</div>
+                </div>
+                <div class="ui grid">
+                    <div class="one column row">
+                        <div class="column"> 
+                            <a class="ui purple ribbon label"><i class="disabled plus icon"></i>User - Create</a>
+                        </div>
+                    </div>
+                    <div class="one column row">
+                        <div class="column"> 
+                            <form class="ui form createUser" name="form">
+                                <h4 class="ui dividing header">User Information</h4>
+                                <div class="field">
+                                    <div class="two fields">
+                                        <div class="required field">
+                                            <label>Full Name</label>
+                                            <input type="text" name="name" placeholder="Full Name">
+                                        </div>
+                                        <div class="required field">
+                                            <label>Account Name</label>
+                                            <input type="text" name="username" placeholder="Account Name">
+                                        </div>
+                                    </div>
+                                    <div class="two fields">
+                                        <div class="required field">
+                                            <label>Email</label>
+                                            <input type="email" name="email" placeholder="Email">
+                                        </div>
+                                        <div class="required field">
+                                            <label>Password</label>
+                                            <input type="password" name="password" placeholder="Password">
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4 class="ui dividing header">Other Information</h4>
+                                <div class="field">
+                                    <div class="three fields">
+                                        <div class="required field">
+                                            <label>Role</label>
+                                            <select class="ui dropdown" multiple="" name="rolelist" id="rolelist">
+                                                <option value="">-- Select Role --</option>
+                                                <option *ngFor="let data of roleDrop" value="{{data.idRole}}">{{data.roleName}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="required field">
+                                            <label>Active</label>
+                                            <select class="ui dropdown" name="active" id="active">
+                                                <option value="">-- Select Active --</option>
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                        </div>
+                                        <div class="required field">
+                                            <label>Placement Test</label>
+                                            <select class="ui dropdown" name="placementTest" id="placementTest">
+                                                <option value="">-- Select Placement Test --</option>
+                                                <option *ngFor="let data of placementDrop" value="{{data.idCourse}}">{{data.courseName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4 class="ui dividing header">Position</h4>
+                                <div class="field">
+                                    <div class="three fields">
+                                        <div class="required field">
+                                            <label>Job Family</label>
+                                            <select class="ui dropdown" name="jobFamily" id="jobFamily">
+                                                <option value="">-- Select Job Family --</option>
+                                                <option *ngFor="let data of familyDrop" value="{{data.idJobFamily}}">{{data.jobFamilyName}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="required field">
+                                            <label>Job Stream</label>
+                                            <select class="ui dropdown" name="idJobStream" id="idJobStream">
+                                                <option value="">-- Select Job Stream --</option>
+                                                <option *ngFor="let data of streamDrop" value="{{data.idJobStream}}">{{data.jobStreamName}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="required field">
+                                            <label>Grade</label>
+                                            <select class="ui dropdown" name="idGrade" id="idGrade">
+                                                <option value="">-- Select Grade --</option>
+                                                <option *ngFor="let data of gradeDrop" value="{{data.idGrade}}">{{data.gradeName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="ui blue button">Submit</button>
+                                <button class="ui grey button" [routerLink]="['/user/list']">Back</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    

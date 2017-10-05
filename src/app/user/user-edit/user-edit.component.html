@@ -1,0 +1,85 @@
+<div class="ui grid padded">
+  <div class="one column row">
+      <div class="column">
+          <div class="ui raised segment violet">
+              <div class="ui active inverted dimmer" id="loading">
+                  <div class="ui text loader">Processing...</div>
+              </div>
+              <div class="ui grid">
+                  <div class="one column row">
+                      <div class="column"> 
+                          <a class="ui purple ribbon label"><i class="disabled edit icon"></i>User - Edit</a>
+                      </div>
+                  </div>
+                  <div class="one column row">
+                      <div class="column"> 
+                          <form class="ui form editUser" name="form">
+                              <h4 class="ui dividing header">User Information</h4>
+                              <div class="field">
+                                  <div class="three fields">
+                                      <div class="required field">
+                                          <label>Full Name</label>
+                                          <input type="text" value="{{user.name}}" readonly>
+                                      </div>
+                                      <div class="required field">
+                                          <label>Account Name</label>
+                                          <input type="text" value="{{user.username}}" readonly>
+                                      </div>
+                                      <div class="required field">
+                                          <label>Email</label>
+                                          <input type="text" value="{{user.email}}" readonly>
+                                      </div>
+                                  </div>
+                              </div>
+                              <h4 class="ui dividing header">Other Information</h4>
+                              <div class="field">
+                                  <div class="three fields">
+                                      <div class="required field">
+                                          <label>Role</label>
+                                          <select class="ui dropdown" multiple="" name="rolelist" id="rolelist">
+                                              <option value="">-- Select Role --</option>
+                                              <option *ngFor="let data of roleDrop" value="{{data.idRole}}">{{data.roleName}}</option>
+                                          </select>
+                                      </div>
+                                      <div class="required field">
+                                          <label>Active</label>
+                                          <select class="ui dropdown" name="active" id="active">
+                                              <option value="">-- Select Active --</option>
+                                              <option value="1">Yes</option>
+                                              <option value="0">No</option>
+                                          </select>
+                                      </div>
+                                      <div class="required field">
+                                          <label>Placement Test</label>
+                                          <input type="text" value="{{user.placement}}" readonly>
+                                      </div>
+                                  </div>
+                              </div>
+                              <h4 class="ui dividing header">Position</h4>
+                              <div class="field">
+                                  <div class="three fields">
+                                      <div class="required field">
+                                          <label>Job Family</label>
+                                          <input type="text" value="{{user.jobStream?.jobFamily.jobFamilyName}}" readonly>
+                                      </div>
+                                      <div class="required field">
+                                          <label>Job Stream</label>
+                                          <input type="text" value="{{user.jobStream?.jobStreamName}}" readonly>
+                                      </div>
+                                      <div class="required field">
+                                          <label>Grade</label>
+                                          <input type="text" value="{{user.grade?.gradeName}}" readonly>
+                                      </div>
+                                  </div>
+                              </div>
+                              <input type="hidden" name="idUser" value="{{user.idUser}}">
+                              <button class="ui blue button">Submit</button>
+                              <button class="ui grey button" [routerLink]="['/user/list']">Back</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>    
