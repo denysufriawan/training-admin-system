@@ -17,6 +17,13 @@ export class TrainingService {
       });
   }
 
+  editAttendance(data): Observable<any> {
+    return this.http.post('http://localhost:8080/api/attendance-user/edit', data)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
   getDetail(data): Observable<any> {
     return this.http.post('http://localhost:8080/api/training/getDetail', data)
       .map((response: Response) => {

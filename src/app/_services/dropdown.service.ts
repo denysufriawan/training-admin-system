@@ -44,4 +44,11 @@ export class DropdownService {
         return response.json();
       });
   }
+
+  getAbsence(): Observable<any> {
+    return this.http.get('http://localhost:8080/api/dropdown/absence/list')
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
 }

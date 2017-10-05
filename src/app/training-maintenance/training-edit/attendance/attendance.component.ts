@@ -73,7 +73,7 @@ export class AttendanceComponent implements OnInit {
     });
 
     $(document).on('click', '#editButton', function(event) {
-      that.router.navigate(['/training/edit/attendance-edit',$(this).data('id')])
+      that.router.navigate(['/training/edit/attendance-edit',that.id,$(this).data('id')])
     });
   }
 

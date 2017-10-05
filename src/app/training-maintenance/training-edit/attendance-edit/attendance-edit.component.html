@@ -1,3 +1,32 @@
-<p>
-  attendance-edit works!
-</p>
+<div class="ui active tab segment">
+    <div class="ui active inverted dimmer" id="loading">
+        <div class="ui text loader">Processing...</div>
+    </div>
+    <form class="editAttendance" name="form">
+      <div class="ui grid">
+          <div class="one column row">
+              <div class="column">
+                  <h2 class="ui header">
+                      <i class="calendar icon"></i>
+                      <div class="content">
+                        Attendance List
+                      </div>
+                    </h2>
+                  <button class="ui right floated blue button"><i class="check icon"></i> Save</button>
+              </div>
+          </div>
+          <div class="one column row">
+              <div class="column">
+                  <table id="attendance-table" class="ui celled striped table" width="100%">
+                      <thead>
+                          <tr>
+                              <th class="center aligned">Employee Name</th>
+                              <th class="center aligned">Attendance</th>
+                          </tr>
+                      </thead>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </form>
+</div>

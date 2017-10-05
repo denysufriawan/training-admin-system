@@ -63,7 +63,7 @@ const routes: Routes = [
         { path: 'edit', component: TrainingEditComponent, canActivate:[AuthGuard] , children : [
             { path: 'attendance/:id', component: AttendanceComponent, canActivate:[AuthGuard] },
             { path: 'assessment/:id', component: AssessmentComponent, canActivate:[AuthGuard] },
-            { path: 'assessment-edit/:id', component: AttendanceEditComponent, canActivate:[AuthGuard] },
+            { path: 'attendance-edit/:id/:id2', component: AttendanceEditComponent, canActivate:[AuthGuard] },
             { path: '', redirectTo: 'list', pathMatch: 'full' },
             { path: '**', redirectTo: 'list', pathMatch: 'full' }
         ]},
