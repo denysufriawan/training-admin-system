@@ -11,35 +11,56 @@ export class DropdownService {
   constructor(private http:Http, private router: Router) { }
 
   getRole(): Observable<any> {
-    return this.http.get('http://localhost:8080/api/role/list')
+    return this.http.get('http://localhost:8080/api/dropdown/role/list')
       .map((response: Response) => {
         return response.json();
       });
   }
 
   getJobFamily(): Observable<any> {
-    return this.http.get('http://localhost:8080/api/jobFamily/list')
+    return this.http.get('http://localhost:8080/api/dropdown/jobFamily/list')
       .map((response: Response) => {
         return response.json();
       });
   }
 
   getJobStream(data): Observable<any> {
-    return this.http.post('http://localhost:8080/api/jobStream/list',data)
+    return this.http.post('http://localhost:8080/api/dropdown/jobStream/list',data)
       .map((response: Response) => {
         return response.json();
       });
   }
 
   getGrade(data): Observable<any> {
-    return this.http.post('http://localhost:8080/api/grade/list',data)
+    return this.http.post('http://localhost:8080/api/dropdown/grade/list',data)
       .map((response: Response) => {
         return response.json();
       });
   }
 
   getPlacement(): Observable<any> {
-    return this.http.get('http://localhost:8080/api/placement/list')
+    return this.http.get('http://localhost:8080/api/dropdown/placement/list')
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  getCourse(): Observable<any> {
+    return this.http.get('http://localhost:8080/api/dropdown/course/list')
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  getClass(): Observable<any> {
+    return this.http.get('http://localhost:8080/api/dropdown/class/list')
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  getTrainer(): Observable<any> {
+    return this.http.get('http://localhost:8080/api/dropdown/trainer/list')
       .map((response: Response) => {
         return response.json();
       });

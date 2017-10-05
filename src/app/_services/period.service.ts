@@ -51,4 +51,18 @@ export class PeriodService {
         return response.json();
       });
   }
+
+  add_schedule(data): Observable<any> {
+    return this.http.post('http://localhost:8080/api/period_course/add_schedule', data)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  enroll_user(data): Observable<any> {
+    return this.http.post('http://localhost:8080/api/period_course/enroll_process', data)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
 }

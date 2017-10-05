@@ -40,7 +40,6 @@ import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { EnrollmentListComponent } from './enrollment/enrollment-list/enrollment-list.component';
 
-import * as moment from 'moment';
 
 @NgModule({
   declarations: [

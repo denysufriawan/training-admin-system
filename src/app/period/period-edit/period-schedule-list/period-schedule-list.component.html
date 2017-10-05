@@ -29,74 +29,75 @@
 
                 <!-- Add Schedule Modal -->
                 <div class="ui small modal add schedule">
+                    <div class="ui active inverted dimmer" id="loading-modal" style="display:none">
+                        <div class="ui text loader">Processing...</div>
+                    </div>
+                    <i class="red close icon" style="top: 0.5rem;right: 0.5rem;"></i>
                     <div class="header">Add Schedule</div>
                     <div class="content">
-                        <form class="ui form">
+                        <form class="ui form addSchedule">
                             <div class="required field">
                                 <label>Course Name</label>
-                                <select name="gender" class="ui dropdown" id="course-name-add-schedule">
-                                    <option value="course 1">Course 1</option>
-                                    <option value="course 2">Course 2</option>
-                                    <option value="course 3">Course 3</option>
+                                <select class="ui fluid search dropdown" name="courseName" id="course-name-add-schedule">
+                                    <option *ngFor="let data of courseDrop" value="{{data.idCourse}}">{{data.courseName}}</option>
                                 </select>
                             </div>
                             <div class="required field">
                                 <label>Course Type</label>
-                                <select name="course-type-add-schedule" class="ui dropdown" id="course-type-add-schedule">
-                                    <option value="periodical">Periodical</option>
-                                    <option value="fixed">Fixed</option>
+                                <select name="scheduleType" class="ui dropdown" id="schedule-type-add-schedule">
+                                    <option value="Periodical">Periodical</option>
+                                    <option value="Fixed">Fixed</option>
                                 </select>
                             </div>
                             <div class="required field ui calendar" id="start-date-add-schedule">
                                 <label>Start Date</label>
                                 <div class="ui input left icon">
                                     <i class="calendar icon"></i>
-                                    <input type="text" name="start-date-add-schedule" placeholder="Start Date">
+                                    <input type="text" name="startTime" placeholder="Start Date">
                                 </div>
                             </div>
                             <div class="required field ui calendar" id="end-date-add-schedule">
                                 <label>End Date</label>
                                 <div class="ui input left icon">
                                     <i class="calendar icon"></i>
-                                    <input type="text" name="end-date-add-schedule" placeholder="End Date">
+                                    <input type="text" name="endTime" placeholder="End Date">
                                 </div>
                             </div>
                             <div class="required field">
                                 <label>Capacity</label>
-                                <input type="text" name="capacity-add-schedule" placeholder="Capacity" />
+                                <input type="text" name="capacity" placeholder="Capacity" />
                             </div>
                             <div class="required field">
                                 <label>Class Room</label>
-                                <select name="class-room-add-schedule" class="ui dropdown" id="class-room-add-schedule">
-                                    <option value="Srikandi Meeting Room - Sanur B Office 1st Floor">Srikandi Meeting Room - Sanur B Office 1st Floor</option>
-                                    <option value="Srikandi Meeting Room - Sanur B Office 2nd Floor">Srikandi Meeting Room - Sanur B Office 2nd Floor</option>
-                                    <option value="Srikandi Meeting Room - Sanur B Office 3rd Floor">Srikandi Meeting Room - Sanur B Office 3rd Floor</option>
+                                <select class="ui fluid search dropdown" name="classRoom" id="class-room-add-schedule">
+                                    <option *ngFor="let data of classDrop" value="{{data.idClass}}">{{data.className}}</option>
                                 </select>
                             </div>
                             <div class="required field">
                                 <label>Trainer</label>
-                                <select name="trainer-add-schedule" class="ui dropdown" id="trainer-add-schedule">
-                                    <option value="Made Aditya">Made Aditya</option>
-                                    <option value="Made Aditya">Made Aditya</option>
-                                    <option value="Made Aditya">Made Aditya</option>
+                                <select class="ui fluid search dropdown" name="mainTrainer" id="main-trainer-add-schedule">
+                                    <option *ngFor="let data of trainerDrop" value="{{data.userRole.idUser}}">{{data.userRole.name}}</option>
                                 </select>
                             </div>
                             <div class="field">
                                 <label>Backup Trainer</label>
-                                <select name="backup-trainer-add-schedule" class="ui dropdown" id="backup-trainer-add-schedule">
-                                    <option value="-">-</option>
-                                    <option value="Made Aditya">Made Aditya</option>
-                                    <option value="Made Aditya">Made Aditya</option>
-                                    <option value="Made Aditya">Made Aditya</option>
+                                <select class="ui fluid search dropdown" name="backupTrainer" id="backup-trainer-add-schedule">
+                                    <option *ngFor="let data of trainerDrop" value="{{data.userRole.idUser}}">{{data.userRole.name}}</option>
                                 </select>
                             </div>
-                            <button type="submit" class="ui blue button" role="button">Submit</button>
+                            <input type="hidden" name="idPeriod" value="{{id}}">
+                            <div class="one column row">
+                                <div class="column">    
+                                    <button class="ui floated left positive button">Submit</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
-                    <div class="actions">
+                    <!-- <div class="actions">
+                        
                         <div class="ui positive button">Save</div>
                         <div class="ui cancel button">Cancel</div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- Training Class Detail Modal -->
@@ -165,30 +166,18 @@
                 <div class="ui small modal enroll participants">
                     <div class="header">Eligible Participant</div>
                     <div class="content">
-                        <table id="enroll-participants-table" class="ui table" cellspacing="0" width="100%">
+                        <table id="eligible-participant-list-table" class="ui celled striped table" width="100%">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Employee Name</th>
-                                    <th>Action</th>
+                                    <th class="center aligned"></th>
+                                    <th class="center aligned">Employee Name</th>
+                                    <th class="center aligned">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><div class="ui checkbox"><input type="checkbox"><label></label></div></td>
-                                    <td>Sylvia Novrianti</td>
-                                    <td><i class="sign out red icon" id="schedule-list-detail-button"></i></td>
-                                </tr>
-                                <tr>
-                                    <td><div class="ui checkbox"><input type="checkbox"><label></label></div></td>
-                                    <td>Kadek Ayu Kartiniasih</td>
-                                    <td><i class="sign out red icon" id="schedule-list-detail-button"></i></td>
-                                </tr>
-                            </tbody>
                         </table>
                     </div>
                     <div class="actions">
-                        <div class="ui positive button">OK</div>
+                        <div class="ui green button" id="save-enroll"><i class="check icon"></i> Save</div>
                         <div class="ui cancel button">Cancel</div>
                     </div>
                 </div>
