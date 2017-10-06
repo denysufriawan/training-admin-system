@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { BreadcrumbService } from '../../_services/breadcrumb.service';
 import { HeaderService } from '../../_services/header.service';
 import { PeriodService } from '../../_services/period.service';
-
+import { AuthService } from '../../_services/auth.service';
 declare var $:any;
 declare var swal:any;
 @Component({
@@ -21,9 +21,10 @@ export class PeriodListComponent implements OnInit {
     {title:'Training Period',subtitle:'Display training period information',icon:'calendar'}
   ];
   
-  constructor(private router:Router, private PeriodService:PeriodService, private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService) { }
+  constructor(private router:Router, private AuthService:AuthService,private PeriodService:PeriodService, private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService) { }
 
   ngOnInit() {
+    var that=this;
     this.BreadcrumbService.setCurrentBreadcumb(this.breadcrumbData);
     this.HeaderService.setCurrentHeader(this.headerData);
 
@@ -73,14 +74,18 @@ export class PeriodListComponent implements OnInit {
         orderable : false,
         searchable : false,
         render : function(data, type, row) {
-          return `
-          <div data-tooltip="Edit Period" data-position="top center"><i class="blue edit icon" id="editButton" data-id="${row.idPeriod}" style="cursor:pointer"></i></div>
-          <div data-tooltip="Delete Period" data-position="top center"><i class="red trash icon" id="deleteButton" data-id="${row.idPeriod}" data-name="${row.periodName}" style="cursor:pointer"></i></div>`;
+          if(that.AuthService.getActiveRole()=='1'){
+            return `
+            <div data-tooltip="Edit Period" data-position="top center"><i class="blue edit icon" id="editButton" data-id="${row.idPeriod}" style="cursor:pointer"></i></div>
+            <div data-tooltip="Delete Period" data-position="top center"><i class="red trash icon" id="deleteButton" data-id="${row.idPeriod}" data-name="${row.periodName}" style="cursor:pointer"></i></div>`;
+          } else {
+            return '';
+          }
         }
       } ]
     });
 
-    var that=this;
+    
     $(document).on('click', '#editButton', function(event) {
       that.router.navigate(['/period/edit/edit-data',$(this).data('id')])
     });

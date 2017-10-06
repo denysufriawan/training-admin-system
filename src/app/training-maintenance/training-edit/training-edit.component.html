@@ -1,0 +1,27 @@
+<div class="ui grid padded">
+    <div class="one column row">
+        <div class="column">
+            <div class="ui raised segment violet">
+                <!-- grid for tab -->
+                <div class="ui grid">
+                    <div class="one column row">
+                        <div class="column"> 
+                            <a class="ui purple ribbon label"><i class="disabled edit icon"></i>Training Maintenance - Edit</a>
+                            <a class="ui red tag label information" style="display:none">Period : {{training?.period.periodName}}</a>
+                            <a class="ui green tag label information" style="display:none">Course : {{training?.course.courseName}}</a>
+                        </div>
+                    </div>
+                    <div class="one column row">
+                        <div class="column">
+                            <div class="ui two item stackable tabs menu">
+                                <a class="{{active1}} item" [routerLink]="['/training/edit/assessment', idTraining]"><b>Training Assessment</b></a>
+                                <a class="{{active2}} item" [routerLink]="['/training/edit/attendance', idTraining]"><b>Training Attendance</b></a>
+                            </div>
+                            <router-outlet></router-outlet>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

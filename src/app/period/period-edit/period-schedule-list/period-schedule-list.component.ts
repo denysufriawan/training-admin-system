@@ -162,7 +162,7 @@ export class PeriodScheduleListComponent implements OnInit {
             });
           },
           onHide: function(){
-            aeplTable.destroy();
+            $('#eligible-participant-list-table').DataTable().destroy();
           },
           closable: false,
           autofocus: false
