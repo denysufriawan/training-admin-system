@@ -102,9 +102,9 @@ export class PeriodScheduleListComponent implements OnInit {
             
             var eplTable = $('#eligible-participant-list-table').on( 'processing.dt', function ( e, settings, processing ) {
               if(processing)
-                $('#loading-modal').fadeIn('fast');
+                $('#loading-modal3').fadeIn('fast');
               else
-                $('#loading-modal').fadeOut('fast');
+                $('#loading-modal3').fadeOut('fast');
             }).DataTable({
               'ajax' : {
                 'url': 'http://localhost:8080/api/eligibleCourse/list/'+that.id,
@@ -333,7 +333,7 @@ export class PeriodScheduleListComponent implements OnInit {
       });
       
       
-      $('#loading-modal').fadeIn('fast')
+      $('#loading-modal3').fadeIn('fast')
       that.PeriodService.enroll_user({data:ids.join(),id:that.id})
         .subscribe(
           data => {
@@ -347,7 +347,7 @@ export class PeriodScheduleListComponent implements OnInit {
                   confirmButtonText: "OK"
                 }).then(
                     function(){
-                      $('#loading-modal').fadeOut('fast')
+                      $('#loading-modal3').fadeOut('fast')
                       $('.add.eligible.participant').modal('hide');
                       $('#eligible-participant-list-table').DataTable().ajax.reload(null,false);
                 });
@@ -362,7 +362,7 @@ export class PeriodScheduleListComponent implements OnInit {
                   confirmButtonText: "OK"
                 }).then(
                     function(){
-                      $('#loading-modal').fadeOut('fast')
+                      $('#loading-modal3').fadeOut('fast')
                 });
               }
           },
@@ -375,7 +375,7 @@ export class PeriodScheduleListComponent implements OnInit {
                 confirmButtonText: "OK"
             }).then(
                 function(){
-                  $('#loading-modal').fadeOut('fast')
+                  $('#loading-modal3').fadeOut('fast')
             });
           });
     })
@@ -384,7 +384,7 @@ export class PeriodScheduleListComponent implements OnInit {
 
   addSchedule(form) {
     var that=this;
-    $('#loading').fadeIn('fast')
+    $('#loading-modal1').fadeIn('fast')
     this.PeriodService.add_schedule(form)
       .subscribe(
         data => {
@@ -412,7 +412,7 @@ export class PeriodScheduleListComponent implements OnInit {
                 confirmButtonText: "OK"
               }).then(
                   function(){
-                    $('#loading').fadeOut('fast')
+                    $('#loading-modal1').fadeOut('fast')
               });
             }
         },
@@ -425,7 +425,7 @@ export class PeriodScheduleListComponent implements OnInit {
                 confirmButtonText: "OK"
             }).then(
                 function(){
-                  $('#loading').fadeOut('fast')
+                  $('#loading-modal1').fadeOut('fast')
             });
         });
   }
