@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.tas.model.Course;
 import com.example.tas.model.Grade;
 import com.example.tas.model.JobStream;
 import com.example.tas.model.Role;
 import com.example.tas.model.UserRole;
 import com.example.tas.repository.ClassRepo;
+import com.example.tas.repository.AbsenceRepo;
 import com.example.tas.repository.CourseRepo;
 import com.example.tas.repository.GradeRepo;
 import com.example.tas.repository.JobFamilyRepo;
@@ -42,6 +42,8 @@ public class DropdownController extends ApiController<Role> {
 	private ClassRepo classRepo;
 	@Autowired
 	private UserRoleRepo userRoleRepo;
+	@Autowired
+	private AbsenceRepo absenceRepo;
 	
 	@GetMapping(value="/dropdown/role/list")
 	public ResponseEntity<JSONObject> getRoleList() {
@@ -56,6 +58,13 @@ public class DropdownController extends ApiController<Role> {
 		response.put("message", joFamilyRepo.findAll());
 		return ResponseEntity.ok(response);
 	}
+
+	@GetMapping(value="/dropdown/absence/list")
+	public ResponseEntity<JSONObject> getAbsenceList() {
+		JSONObject response = new JSONObject();
+		response.put("message", absenceRepo.findAll());
+		return ResponseEntity.ok(response);
+	}
 	
 	@GetMapping(value="/dropdown/placement/list")
 	public ResponseEntity<JSONObject> getPlacement() {
@@ -64,6 +73,16 @@ public class DropdownController extends ApiController<Role> {
 		return ResponseEntity.ok(response);
 	}
 	
+	@PostMapping(value="/dropdown/jobStream/list")
+	public ResponseEntity<JSONObject> getJobStream(@RequestBody final JSONObject id) {
+		JSONObject response = new JSONObject();
+		List<JobStream> jobStream = new ArrayList<>();
+		if(id.getAsString("id")!="")
+			jobStream=jobStreamRepo.findByJobFamily(joFamilyRepo.findOne(Long.valueOf(id.getAsString("id")).longValue()));
+		response.put("message", jobStream);
+		return ResponseEntity.ok(response);
+	}
+
 	@GetMapping(value="/dropdown/course/list")
 	public ResponseEntity<JSONObject> getCourse() {
 		JSONObject response = new JSONObject();
@@ -84,16 +103,6 @@ public class DropdownController extends ApiController<Role> {
 		List<UserRole> trainer = new ArrayList<>();
 		trainer = userRoleRepo.findByIdRole((long)2);
 		response.put("message", trainer);
-		return ResponseEntity.ok(response);
-	}
-	
-	@PostMapping(value="/dropdown/jobStream/list")
-	public ResponseEntity<JSONObject> getJobStream(@RequestBody final JSONObject id) {
-		JSONObject response = new JSONObject();
-		List<JobStream> jobStream = new ArrayList<>();
-		if(id.getAsString("id")!="")
-			jobStream=jobStreamRepo.findByJobFamily(joFamilyRepo.findOne(Long.valueOf(id.getAsString("id")).longValue()));
-		response.put("message", jobStream);
 		return ResponseEntity.ok(response);
 	}
 	

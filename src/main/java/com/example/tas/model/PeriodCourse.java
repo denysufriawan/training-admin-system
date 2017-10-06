@@ -37,7 +37,7 @@ public class PeriodCourse extends Auditable<String> implements Serializable{
 	
 	@Column(name = "end_time")
 	private String endTime;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="id_period_course",referencedColumnName="id_period_course")
     private Set<UserCourse> enrolledUser;
@@ -62,62 +62,14 @@ public class PeriodCourse extends Auditable<String> implements Serializable{
 	@JoinColumn(name="id_period",referencedColumnName="id_period")
 	private Period period;
 
-	public Course getCourse() {
-		return course;
-	}
-
-	public void setCourse(Course course) {
-		this.course = course;
-	}
-
-	public Period getPeriod() {
-		return period;
-	}
-
-	public void setPeriod(Period period) {
-		this.period = period;
-	}
-
-	public User getTrainerBackup() {
-		return trainerBackup;
-	}
-
-	public void setTrainerBackup(User trainerBackup) {
-		this.trainerBackup = trainerBackup;
-	}
-
-	public Class getClassRoom() {
-		return classRoom;
-	}
-
-	public void setClassRoom(Class classRoom) {
-		this.classRoom = classRoom;
-	}
-
-	public Set<UserCourse> getEnrolledUser() {
-		return enrolledUser;
-	}
-
-	public void setEnrolledUser(Set<UserCourse> enrolledUser) {
-		this.enrolledUser = enrolledUser;
-	}
-
 	public long getIdPeriodCourse() {
 		return idPeriodCourse;
-	}
-
-	public User getTrainerMain() {
-		return trainerMain;
-	}
-
-	public void setTrainerMain(User trainerMain) {
-		this.trainerMain = trainerMain;
 	}
 
 	public void setIdPeriodCourse(long idPeriodCourse) {
 		this.idPeriodCourse = idPeriodCourse;
 	}
-	
+
 	public String getScheduleType() {
 		return scheduleType;
 	}
@@ -149,5 +101,55 @@ public class PeriodCourse extends Auditable<String> implements Serializable{
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
+
+	public Set<UserCourse> getEnrolledUser() {
+		return enrolledUser;
+	}
+
+	public void setEnrolledUser(Set<UserCourse> enrolledUser) {
+		this.enrolledUser = enrolledUser;
+	}
+
+	public Class getClassRoom() {
+		return classRoom;
+	}
+
+	public void setClassRoom(Class classRoom) {
+		this.classRoom = classRoom;
+	}
+
+	public User getTrainerMain() {
+		return trainerMain;
+	}
+
+	public void setTrainerMain(User trainerMain) {
+		this.trainerMain = trainerMain;
+	}
+
+	public User getTrainerBackup() {
+		return trainerBackup;
+	}
+
+	public void setTrainerBackup(User trainerBackup) {
+		this.trainerBackup = trainerBackup;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public Period getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(Period period) {
+		this.period = period;
+	}
+
+	
 	
 }

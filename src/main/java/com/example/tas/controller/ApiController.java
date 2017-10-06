@@ -1,6 +1,7 @@
 package com.example.tas.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -30,7 +31,7 @@ public abstract class ApiController<U> {
 	    				  String [] array = item.getData().split("\\.");
 	    				  where.add(builder.equal(root.join(array[0]).get(array[1]), search));
 	    			  }
-	    			  else if(item.getData().equals("deleted") || item.getData().equals("startDate") || item.getData().equals("endDate") )
+	    			  else if(item.getData().equals("deleted") || item.getData().equals("idUserCourse") || item.getData().equals("startDate") || item.getData().equals("endDate") )
 	    				  where.add(builder.equal(root.get(item.getData()), search));
 	    			  else if(item.getData().equals("active")) {
 	    				  if(search.contains(",")) {
@@ -77,7 +78,7 @@ public abstract class ApiController<U> {
 	    				  where.add(builder.equal(root.join(array[0]).get(array[1]), search));
 	    			  }
 	    			  //equal
-	    			  else if(item.getData().equals("deleted") || item.getData().equals("startDate") || item.getData().equals("endDate"))
+	    			  else if(item.getData().equals("deleted")  || item.getData().equals("idUserCourse") || item.getData().equals("startDate") || item.getData().equals("endDate"))
 	    				  where.add(builder.equal(root.get(item.getData()), search));
 	    			  //multiselect
 	    			  else if(item.getData().equals("active")) {
@@ -274,6 +275,52 @@ public abstract class ApiController<U> {
 	    			  }	    			
 	    		  }
 	    	  }
+	    	  return builder.and(where.toArray(new Predicate[0]));
+	      }
+	    };
+	}
+	
+	protected Specification<U> AssessmentEdit(List<String> where) {
+	    return new Specification<U>() {
+	      public javax.persistence.criteria.Predicate toPredicate(Root<U> root, CriteriaQuery<?> query,
+	            CriteriaBuilder builder) {
+	    	  return builder.and(root.get("idUserCourse").in(where));
+	      }
+	    };
+	}
+	
+	protected Specification<U> AttendanceEdit(List<String> where) {
+	    return new Specification<U>() {
+	      public javax.persistence.criteria.Predicate toPredicate(Root<U> root, CriteriaQuery<?> query,
+	            CriteriaBuilder builder) {
+	    	  return builder.and(root.get("idAttendance").in(where));
+	      }
+	    };
+	}
+	
+	protected Specification<U> ActiveTraining() {
+	    return new Specification<U>() {
+	      public javax.persistence.criteria.Predicate toPredicate(Root<U> root, CriteriaQuery<?> query,
+	            CriteriaBuilder builder) {
+	    	  List<Predicate> where = new ArrayList<>();
+	    	  where.add(builder.equal(root.get("deleted"), "0"));
+	    	  Date date = new Date();
+	    	  
+	    	  where.add(builder.greaterThanOrEqualTo(root.<Date>get("startTime"), date));
+	    	  return builder.and(where.toArray(new Predicate[0]));
+	      }
+	    };
+	}
+	
+	protected Specification<U> ActiveBcc() {
+	    return new Specification<U>() {
+	      public javax.persistence.criteria.Predicate toPredicate(Root<U> root, CriteriaQuery<?> query,
+	            CriteriaBuilder builder) {
+	    	  List<Predicate> where = new ArrayList<>();
+	    	  where.add(builder.equal(root.get("deleted"), "0"));
+	    	  Date date = new Date();
+	    	  
+	    	  where.add(builder.greaterThanOrEqualTo(root.<Date>get("startTime"), date));
 	    	  return builder.and(where.toArray(new Predicate[0]));
 	      }
 	    };
