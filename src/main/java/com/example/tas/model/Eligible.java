@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="tr_user_period")
@@ -25,6 +26,9 @@ public class Eligible implements Serializable {
 	
 	@Column(name = "id_user")
 	private long idUser;
+	
+	@Transient
+	public User user;
 
 	public long getIdUserPeriod() {
 		return idUserPeriod;

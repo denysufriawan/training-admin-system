@@ -1,17 +1,13 @@
 package com.example.tas.controller;
 
 import java.text.DateFormat;
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +25,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.tas.model.CourseSchedule;
-import com.example.tas.model.Eligible;
 import com.example.tas.model.PeriodCourse;
+import com.example.tas.model.UserCourse;
 import com.example.tas.repository.ClassRepo;
 import com.example.tas.repository.CourseRepo;
 import com.example.tas.repository.CourseScheduleRepo;
-import com.example.tas.repository.EligibleRepo;
+import com.example.tas.repository.PeriodCourseBackRepo;
 import com.example.tas.repository.PeriodCourseRepo;
 import com.example.tas.repository.PeriodRepo;
+import com.example.tas.repository.UserCourseRepo;
 import com.example.tas.repository.UserRepo;
 
 import net.minidev.json.JSONObject;
@@ -46,6 +43,9 @@ public class PeriodCourseController extends ApiController<PeriodCourse>  {
 	
 	@Autowired
 	private PeriodCourseRepo periodCourseRepo;
+	
+	@Autowired
+	private PeriodCourseBackRepo periodCourseBackRepo;
 	
 	@Autowired
 	private CourseScheduleRepo courseScheduleRepo;
@@ -63,7 +63,7 @@ public class PeriodCourseController extends ApiController<PeriodCourse>  {
 	private UserRepo userRepo;
 	
 	@Autowired
-	private EligibleRepo eligibleRepo;
+	private UserCourseRepo userCourseRepo;
 	
 	@PostMapping(value="/period_course/list/{id}")
 	public ResponseEntity<JSONObject> getScheduleList(@Valid @RequestBody DataTablesInput input, @PathVariable Long id) {
@@ -119,7 +119,6 @@ public class PeriodCourseController extends ApiController<PeriodCourse>  {
 
 		String scheduleType = post.getAsString("scheduleType");
 		String startDate = post.getAsString("startTime");
-		String endDate = post.getAsString("endTime");
 		
 		if(scheduleType.equals("Periodical")) {
 			Calendar cal = new GregorianCalendar(Integer.parseInt(startDate.substring(0,4)),Integer.parseInt(startDate.substring(5,7))-1,Integer.parseInt(startDate.substring(8,10)));
@@ -252,19 +251,23 @@ public class PeriodCourseController extends ApiController<PeriodCourse>  {
 	public ResponseEntity<JSONObject> enrollUser(@RequestBody final JSONObject post) {
 		JSONObject response = new JSONObject();
 		
-		List<Eligible> dataSave = new ArrayList<>();
+		List<UserCourse> dataSave = new ArrayList<>();
 		String userId = post.getAsString("data");
 		String idPeriod = post.getAsString("id");
-		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date today = Calendar.getInstance().getTime();
+		String reportDate = df.format(today);
 		if(userId != "") {
 			for (String data : userId.split(",")) {
-		    	Eligible e = new Eligible();
-				e.setIdPeriod(Long.parseLong(idPeriod));
+				UserCourse e = new UserCourse();
+				e.setEnrolledDate(reportDate);
 				e.setIdUser(Long.parseLong(data));
+				e.setUserStatus("enrolled");
+				e.setPeriodCourse(periodCourseBackRepo.findOne(Long.valueOf(idPeriod).longValue()));
 		    	dataSave.add(e);
 			}
 			
-			if(eligibleRepo.save(dataSave)!=null) 
+			if(userCourseRepo.save(dataSave)!=null) 
 			{
 				response.put("status", "1");
 				response.put("message", "Data added successfully!");
