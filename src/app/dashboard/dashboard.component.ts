@@ -77,9 +77,9 @@ export class DashboardComponent implements OnInit {
 
     var tableBCC = $('#bcc-schedule-table').on( 'processing.dt', function ( e, settings, processing ) {
       if(processing)
-        $('#loading').fadeIn('fast');
+        $('#loading2').fadeIn('fast');
       else
-        $('#loading').fadeOut('fast');
+        $('#loading2').fadeOut('fast');
     }).DataTable({
       'ajax' : {
         'url': 'http://localhost:8080/api/dashboard/bcc',
@@ -112,55 +112,6 @@ export class DashboardComponent implements OnInit {
       },
       {
         data : 'startTime'
-      },
-      {
-        data : 'endTime'
-      },
-      {
-        data : 'classRoom.location'
-      } ]
-    });
-
-    var table = $('#active-training-table').on( 'processing.dt', function ( e, settings, processing ) {
-      if(processing)
-        $('#loading').fadeIn('fast');
-      else
-        $('#loading').fadeOut('fast');
-    }).DataTable({
-      'ajax' : {
-        'url': 'http://localhost:8080/api/dashboard/active',
-        'contentType': 'application/json',
-        'type': 'POST',
-        'data': function(d) {
-          return JSON.stringify(d);
-        }
-      },
-      "scrollY": "200px",
-      "scrollCollapse": true,
-      "paging": false,
-      'processing' : false,
-      "order": [[ 0, "asc" ]],
-      "fnInitComplete": function(oSettings, json) {
-
-      },
-      'columnDefs' : [
-        {"className":"center aligned","targets":[-1]},
-      ],
-      columns : [ 
-      {
-        data : 'period.periodName'
-      },
-      {
-        data : 'course.courseName'
-      },
-      {
-        data : 'trainerMain.name'
-      },
-      {
-        data : 'startTime'
-      },
-      {
-        data : 'endTime'
       },
       {
         data : 'classRoom.location'
