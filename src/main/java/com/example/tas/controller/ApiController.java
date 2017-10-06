@@ -321,6 +321,7 @@ public abstract class ApiController<U> {
 	    	  Date date = new Date();
 	    	  
 	    	  where.add(builder.greaterThanOrEqualTo(root.<Date>get("startTime"), date));
+	    	  where.add(builder.equal(root.join("course").get("courseGroup"), "BCC"));
 	    	  return builder.and(where.toArray(new Predicate[0]));
 	      }
 	    };
