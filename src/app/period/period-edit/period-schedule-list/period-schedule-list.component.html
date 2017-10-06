@@ -1,0 +1,186 @@
+<div class="ui tab active segment">
+    <div class="ui active inverted dimmer" id="loading">
+        <div class="ui text loader">Processing...</div>
+    </div>
+    <div class="ui grid">
+        <div class="one column row">
+            <div class="column">
+                <button class="ui right floated primary button" id="add-schedule-button"><i class="plus icon"></i> Add Schedule</button>
+            </div>
+        </div>
+
+        <div class="one column row">
+            <div class="column"> 
+                <table id="schedule-list-table" class="ui celled table" width="100%" style="table-layout:fixed; word-wrap: break-word;">
+                    <thead>
+                        <tr>
+                            <th class="center aligned">Name</th>
+                            <th class="center aligned">Trainer</th>
+                            <th class="center aligned">Backup Trainer</th>
+                            <th class="center aligned">Classroom</th>
+                            <th class="center aligned">Start Time</th>
+                            <th class="center aligned">End Time</th>
+                            <th class="center aligned">Capacity</th>
+                            <th class="center aligned">All Participant List</th>
+                            <th class="center aligned">Action</th>
+                        </tr>
+                    </thead>
+                </table>
+
+                <!-- Add Schedule Modal -->
+                <div class="ui small modal add schedule">
+                    <div class="ui active inverted dimmer" id="loading-modal1" style="display:none">
+                        <div class="ui text loader">Processing...</div>
+                    </div>
+                    <i class="red close icon" style="top: 0.5rem;right: 0.5rem;"></i>
+                    <div class="header">Add Schedule</div>
+                    <div class="content">
+                        <form class="ui form addSchedule">
+                            <div class="required field">
+                                <label>Course Name</label>
+                                <select class="ui fluid search dropdown" name="courseName" id="course-name-add-schedule">
+                                    <option *ngFor="let data of courseDrop" value="{{data.idCourse}}">{{data.courseName}}</option>
+                                </select>
+                            </div>
+                            <div class="required field">
+                                <label>Course Type</label>
+                                <select name="scheduleType" class="ui dropdown" id="schedule-type-add-schedule">
+                                    <option value="Periodical">Periodical</option>
+                                    <option value="Fixed">Fixed</option>
+                                </select>
+                            </div>
+                            <div class="required field ui calendar" id="start-date-add-schedule">
+                                <label>Start Date</label>
+                                <div class="ui input left icon">
+                                    <i class="calendar icon"></i>
+                                    <input type="text" name="startTime" placeholder="Start Date">
+                                </div>
+                            </div>
+                            <div class="required field ui calendar" id="end-date-add-schedule">
+                                <label>End Date</label>
+                                <div class="ui input left icon">
+                                    <i class="calendar icon"></i>
+                                    <input type="text" name="endTime" placeholder="End Date">
+                                </div>
+                            </div>
+                            <div class="required field">
+                                <label>Capacity</label>
+                                <input type="text" name="capacity" placeholder="Capacity" />
+                            </div>
+                            <div class="required field">
+                                <label>Class Room</label>
+                                <select class="ui fluid search dropdown" name="classRoom" id="class-room-add-schedule">
+                                    <option *ngFor="let data of classDrop" value="{{data.idClass}}">{{data.className}}</option>
+                                </select>
+                            </div>
+                            <div class="required field">
+                                <label>Trainer</label>
+                                <select class="ui fluid search dropdown" name="mainTrainer" id="main-trainer-add-schedule">
+                                    <option *ngFor="let data of trainerDrop" value="{{data.userRole.idUser}}">{{data.userRole.name}}</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>Backup Trainer</label>
+                                <select class="ui fluid search dropdown" name="backupTrainer" id="backup-trainer-add-schedule">
+                                    <option *ngFor="let data of trainerDrop" value="{{data.userRole.idUser}}">{{data.userRole.name}}</option>
+                                </select>
+                            </div>
+                            <input type="hidden" name="idPeriod" value="{{id}}">
+                            <div class="one column row">
+                                <div class="column">    
+                                    <button class="ui floated left positive button">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <div class="actions">
+                        
+                        <div class="ui positive button">Save</div>
+                        <div class="ui cancel button">Cancel</div>
+                    </div> -->
+                </div>
+
+                <!-- Training Class Detail Modal -->
+                <div class="ui small modal training class detail">
+                    <i class="red close icon" style="top: 0.5rem;right: 0.5rem;"></i>
+                    <div class="header">Training Class Detail</div>
+                    <div class="scrolling content">
+                        <table class="ui very basic table">
+                            <tbody>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>{{nameDetail}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Trainer</td>
+                                    <td>{{trainerDetail}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Backup Trainer</td>
+                                    <td>{{backupTrainerDetail}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Classroom</td>
+                                    <td>{{classroomDetail}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Location</td>
+                                    <td>{{locationDetail}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Start Date</td>
+                                    <td>{{startTimeDetail}}</td>
+                                </tr>
+                                <tr>
+                                    <td>End Date</td>
+                                    <td>{{endTimeDetail}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Created By</td>
+                                    <td>{{createdByDetail}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Created At</td>
+                                    <td>{{createdAtDetail}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Updated By</td>
+                                    <td>{{updatedByDetail}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Updated At</td>
+                                    <td>{{updatedAtDetail}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="actions">
+                        <div class="ui green button" id="close-training-class-detail"><i class="check icon"></i> OK</div>
+                    </div>
+                </div>
+
+                <!-- Enroll Participants Modal -->
+                <div class="ui small modal enroll participants">
+                    <div class="ui active inverted dimmer" id="loading-modal3">
+                        <div class="ui text loader">Processing...</div>
+                    </div>
+                    <i class="red close icon" style="top: 0.5rem;right: 0.5rem;"></i>
+                    <div class="header">Eligible Participant</div>
+                    <div class="content">
+                        <table id="eligible-participant-list-table" class="ui celled striped table" width="100%">
+                            <thead>
+                                <tr>
+                                    <th class="center aligned"></th>
+                                    <th class="center aligned">Employee Name</th>                    
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="actions">
+                        <div class="ui green button" id="save-enroll"><i class="check icon"></i> Save</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

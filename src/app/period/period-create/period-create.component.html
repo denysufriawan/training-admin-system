@@ -2,40 +2,44 @@
     <div class="one column row">
         <div class="column">
             <div class="ui raised segment violet">
+                <div class="ui active inverted dimmer" id="loading" style="display:none">
+                    <div class="ui text loader">Processing...</div>
+                </div>
                 <div class="ui grid">
                     <div class="one column row">
                         <div class="column"> 
-                            <a class="ui purple ribbon label"><i class="disabled browser icon"></i>Training Period - Create</a>
+                            <a class="ui purple ribbon label"><i class="disabled plus icon"></i>Training Period - Create</a>
                         </div>
                     </div>
                     <div class="one column row">
                         <div class="column"> 
-                            <form class="ui form">
-                                <div class="field">
-                                    <label>Name</label>
-                                    <input type="text" name="name-add-period" placeholder="Period Name" />
+                            <form class="ui form createPeriod" name="form">
+                                <div class="required field">
+                                    <label>Period Name</label>
+                                    <input type="text" name="periodName" placeholder="Period Name" />
                                 </div>
-                                <div class="field ui calendar" id="start-date-add-period">
+                                <div class="required field ui calendar" id="start-date-add-period">
                                     <label>Start Date</label>
                                     <div class="ui input left icon">
                                         <i class="calendar icon"></i>
-                                        <input type="text" name="start-date-add-period" placeholder="Start Date">
+                                        <input type="text" name="startDate" placeholder="Start Date">
                                     </div>
                                 </div>
-                                <div class="field ui calendar" id="end-date-add-period">
+                                <div class="required field ui calendar" id="end-date-add-period">
                                     <label>End Date</label>
                                     <div class="ui input left icon">
                                         <i class="calendar icon"></i>
-                                        <input type="text" name="end-date-add-period" placeholder="End Date">
+                                        <input type="text" name="endDate" placeholder="End Date">
                                     </div>
                                 </div>
-                                <div class="field">
+                                <div class="required field">
                                     <div class="ui checkbox">
                                         <input type="checkbox" name="active">
                                         <label>Is this enrollment open?</label>
                                     </div>
                                 </div>
-                                <button type="submit" class="ui blue button" role="button">Submit</button>
+                                <button class="ui blue button">Submit</button>
+                                <button class="ui grey button" [routerLink]="['/period/list']">Back</button>
                             </form>
                         </div>
                     </div>

@@ -5,3 +5,7 @@
 .ui.top.attached.menu {
     background-color: #6435c9;
 }
+
+.item.active.selected {
+    border-top-color: #ffffff !important;
+}

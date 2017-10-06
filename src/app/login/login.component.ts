@@ -57,9 +57,9 @@ export class LoginComponent implements OnInit {
             if(data.status=='1')
             {
               this.authService.setUser(JSON.stringify(data.message.user));
-              this.authService.setUserState(JSON.stringify(data.message.user));
-
               this.authService.setActiveRole(data.message.activeRole);
+
+              this.authService.setUserState(JSON.stringify(data.message.user));
               this.authService.setActiveRoleState(data.message.activeRole);
               this.router.navigate(['/dashboard']); 
             }

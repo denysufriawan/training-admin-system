@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadcrumbService } from '../../_services/breadcrumb.service';
 import { HeaderService } from '../../_services/header.service';
+import { Router } from '@angular/router';
 
 declare var $:any;
 declare var swal:any;
@@ -10,6 +11,11 @@ declare var swal:any;
   styleUrls: ['./period-edit.component.css']
 })
 export class PeriodEditComponent implements OnInit {
+  idPeriod : any;
+  active1:string=''
+  active2:string=''
+  active3:string=''
+
   breadcrumbData: any = [
     {link:'/dashboard',title:'Dashboard',icon:'dashboard'},
     {link:'/period',title:'Period',icon:'calendar'},
@@ -17,12 +23,31 @@ export class PeriodEditComponent implements OnInit {
   ];
 
   headerData: any = [ 
-    {title:'Training Period - Edit',subtitle:'Edit period, eligible participant, and schedule',icon:'edit'}
+    {title:'Training Period - Edit',subtitle:'Edit period, eligible participant, and schedule list',icon:'edit'}
   ];
 
-  constructor(private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService) { }
+  constructor(private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService, private route:Router ) { }
 
   ngOnInit() {
+
+    this.idPeriod = this.route.url.split("/")[4];
+    if(this.route.url.match("edit-data")){
+      this.active1='active';this.active2='';this.active3=''
+    } else if(this.route.url.match("eligible-participant")){
+      this.active1='';this.active2='active';this.active3=''
+    } else if(this.route.url.match("schedule-list")){
+      this.active1='';this.active2='';this.active3='active'
+    }
+    this.route.events.subscribe((event)=>{
+      if(this.route.url.match("edit-data")){
+        this.active1='active';this.active2='';this.active3=''
+      } else if(this.route.url.match("eligible-participant")){
+        this.active1='';this.active2='active';this.active3=''
+      } else if(this.route.url.match("schedule-list")){
+        this.active1='';this.active2='';this.active3='active'
+      }
+    })
+
     this.BreadcrumbService.setCurrentBreadcumb(this.breadcrumbData);
     this.HeaderService.setCurrentHeader(this.headerData);
 
@@ -30,53 +55,6 @@ export class PeriodEditComponent implements OnInit {
       history:false,
       cache: false
     });
-
-    $('#eligible-participant-list-table').DataTable();
-    $('#add-eligible-participant-table').DataTable();
-    $('#schedule-list-table').DataTable();
-    $('#enroll-participants-table').DataTable();
-
-    $('#course-name-add-schedule').dropdown();
-    $('#course-type-add-schedule').dropdown();
-    $('#class-room-add-schedule').dropdown();
-    $('#trainer-add-schedule').dropdown();
-    $('#backup-trainer-add-schedule').dropdown();
-
-    $('#start-date-edit-period').calendar({
-      type: 'date'
-    });
-
-    $('#end-date-edit-period').calendar({
-      type: 'date'
-    });
-    
-    $('#delete-ep-user').click(function(){
-      $('.ui.basic.modal.delete.ep.user').modal('show');
-    })
-
-    $('#add-eligible-participant-button').click(function(){
-      $('.large.modal.add.eligible.participant').modal('show');
-    })
-
-    $('#add-schedule-button').click(function(){
-      $('.small.modal.add.schedule').modal('show');
-      $('#start-date-add-schedule').calendar({
-        type: 'datetime'
-      });
-  
-      $('#end-date-add-schedule').calendar({
-        type: 'datetime'
-      });
-    })
-
-    $('#schedule-list-detail-button').click(function(){
-      $('.small.modal.training.class.detail').modal('show');
-    })
-
-    $('#enroll-participants-button').click(function(){
-      $('.small.modal.enroll.participants').modal('show');
-    })
-
   }
 
 }

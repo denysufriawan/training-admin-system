@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BreadcrumbService } from '../_services/breadcrumb.service';
 import { HeaderService } from '../_services/header.service';
-import { Http, Headers, Response, Jsonp, RequestOptions } from '@angular/http';
-import 'rxjs/Rx';
-
 declare var $:any;
 @Component({
   selector: 'app-dashboard',
@@ -22,28 +19,104 @@ export class DashboardComponent implements OnInit {
     {title:'Dashboard',subtitle:'Display training course schedule information',icon:'dashboard'}
   ];
 
-  constructor(private BreadcrumbService:BreadcrumbService, private HeaderService:HeaderService, private http: Http) { 
+  constructor(private BreadcrumbService:BreadcrumbService,
+              private Router:Router,
+              private HeaderService:HeaderService) { 
   }
 
   ngOnInit() {
     this.BreadcrumbService.setCurrentBreadcumb(this.breadcrumbData);
     this.HeaderService.setCurrentHeader(this.headerData);
+    var that = this;
+    
+    var table = $('#active-training-table').on( 'processing.dt', function ( e, settings, processing ) {
+      if(processing)
+        $('#loading').fadeIn('fast');
+      else
+        $('#loading').fadeOut('fast');
+    }).DataTable({
+      'ajax' : {
+        'url': 'http://localhost:8080/api/dashboard/active',
+        'contentType': 'application/json',
+        'type': 'POST',
+        'data': function(d) {
+          return JSON.stringify(d);
+        }
+      },
+      "scrollY": "200px",
+      "scrollCollapse": true,
+      "paging": false,
+      'processing' : false,
+      "order": [[ 0, "asc" ]],
+      "fnInitComplete": function(oSettings, json) {
 
-    this.data = this.http.get('./app/data/ac.json').map(res => res.json());
-    console.log(this.data);
+      },
+      'columnDefs' : [
+        {"className":"center aligned","targets":[-1]},
+      ],
+      columns : [ 
+      {
+        data : 'period.periodName'
+      },
+      {
+        data : 'course.courseName'
+      },
+      {
+        data : 'trainerMain.name'
+      },
+      {
+        data : 'startTime'
+      },
+      {
+        data : 'endTime'
+      },
+      {
+        data : 'classRoom.location'
+      } ]
+    });
 
-    // $('#active-training-table').DataTable({
-    //   ajax: this.data,
-    //   columns: [
-    //     { "data": "course_name" },
-    //     { "data": "main_trainer" },
-    //     { "data": "backup_trainer" },
-    //     { "data": "start_date" },
-    //     { "data": "end_date" },
-    //     { "data": "office" }
-    //   ]
-    // });
-    $('#bcc-schedule-table').DataTable();
+    var tableBCC = $('#bcc-schedule-table').on( 'processing.dt', function ( e, settings, processing ) {
+      if(processing)
+        $('#loading2').fadeIn('fast');
+      else
+        $('#loading2').fadeOut('fast');
+    }).DataTable({
+      'ajax' : {
+        'url': 'http://localhost:8080/api/dashboard/bcc',
+        'contentType': 'application/json',
+        'type': 'POST',
+        'data': function(d) {
+          return JSON.stringify(d);
+        }
+      },
+      "scrollY": "200px",
+      "scrollCollapse": true,
+      "paging": false,
+      'processing' : false,
+      "order": [[ 0, "asc" ]],
+      "fnInitComplete": function(oSettings, json) {
+
+      },
+      'columnDefs' : [
+        {"className":"center aligned","targets":[-1]},
+      ],
+      columns : [ 
+      {
+        data : 'period.periodName'
+      },
+      {
+        data : 'course.courseName'
+      },
+      {
+        data : 'trainerMain.name'
+      },
+      {
+        data : 'startTime'
+      },
+      {
+        data : 'classRoom.location'
+      } ]
+    });
   }
 
 }
