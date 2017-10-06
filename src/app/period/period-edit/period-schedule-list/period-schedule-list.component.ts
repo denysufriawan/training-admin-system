@@ -30,6 +30,7 @@ export class PeriodScheduleListComponent implements OnInit {
   createdAtDetail:any;
   updatedByDetail:any;
   updatedAtDetail:any;
+  idPeriodCourse:any;
 
   //add schedule
   courseDrop=[];
@@ -87,28 +88,33 @@ export class PeriodScheduleListComponent implements OnInit {
         })
 
         //enroll
+        $(".enroll-participants-button").click(function(){
+          $('.small.modal.enroll.participants').attr("data-id",$(this).attr("data-id"));
+        })
+        
         $('.small.modal.enroll.participants')
         .modal({
           onShow: function() {
+            that.idPeriodCourse = $(this).attr("data-id")
             $('.small.modal.enroll.participants').modal('refresh');
             $("#checkAll").prop('checked', false);
             $('#add-eligible-participant-table').DataTable().rows().deselect();
             
             var eplTable = $('#eligible-participant-list-table').on( 'processing.dt', function ( e, settings, processing ) {
               if(processing)
-                $('#loading').fadeIn('fast');
+                $('#loading-modal').fadeIn('fast');
               else
-                $('#loading').fadeOut('fast');
+                $('#loading-modal').fadeOut('fast');
             }).DataTable({
               'ajax' : {
-                'url': 'http://localhost:8080/api/eligible/list/'+that.id,
+                'url': 'http://localhost:8080/api/eligibleCourse/list/'+that.id,
                 'contentType': 'application/json',
                 'type': 'POST',
                 'data': function(d) {
                   return JSON.stringify(d);
                 }
               },
-              'serverSide' : true,
+              'serverSide' : false,
               'processing' : false,
               "destroy": true,
               "fnInitComplete": function(oSettings, json) {
@@ -142,32 +148,25 @@ export class PeriodScheduleListComponent implements OnInit {
                 style: 'multi', selector: 'td:first-child'
               },
               columns : [ {
-                data : 'name',
+                data : 'idUser',
                 orderable : false,
                 searchable : false,
                 render : function(data, type, row) {
                   return ``;
                 }
               }, {
-                data : 'name'
-              }, {
-                data : 'anothercolumn',
-                orderable : false,
-                searchable : false,
-                render : function(data, type, row) {
-                  return `
-                  <div data-tooltip="Enroll" data-position="top center"><i class="sign out red icon" id="enrollButton" data-id="${row.idUser}" data-idperiod="${that.id}" data-name="${row.name}" style="cursor:pointer"></i></div>`;
-                }
+                data : 'user.name'
               } ]
             });
           },
           onHide: function(){
+            $()
             $('#eligible-participant-list-table').DataTable().destroy();
           },
           closable: false,
           autofocus: false
         })
-        .modal('attach events', '#enroll-participants-button');
+        .modal('attach events', '.enroll-participants-button');
 
       },
       'autoWidth': false,
@@ -206,11 +205,11 @@ export class PeriodScheduleListComponent implements OnInit {
         searchable : false,
         render : function(data, type, row) {
           if(row.trainerBackup==null){
-            return `<div data-tooltip="Details" data-position="top center"><i class="blue info icon schedule-list-detail-button" data-nm="${row.course.courseName}" data-tr="${row.trainerMain.name}" data-btr="-" data-cls="${row.classRoom.className}" data-loc="${row.classRoom.location}" data-stm="${row.startTime}" data-etm="${row.endTime}" data-cby="${row.createdBy}" data-cat="${row.createdDate}" data-uby="${row.updatedBy}" data-uat="${row.updatedDate}" style="cursor:pointer"></i></div>
-            <div data-tooltip="Enroll Participants" data-position="top center"><i class="teal users icon" id="enroll-participants-button" data-id="${row.idPeriodCourse}" style="cursor:pointer"></i></div>`;
+            return `<div data-tooltip="Details" data-position="top center"><i class="blue info icon schedule-list-detail-button" data-idpc="${row.idPeriodCourse}" data-nm="${row.course.courseName}" data-tr="${row.trainerMain.name}" data-btr="-" data-cls="${row.classRoom.className}" data-loc="${row.classRoom.location}" data-stm="${row.startTime}" data-etm="${row.endTime}" data-cby="${row.createdBy}" data-cat="${row.createdDate}" data-uby="${row.updatedBy}" data-uat="${row.updatedDate}" style="cursor:pointer"></i></div>
+            <div data-tooltip="Enroll Participants" data-position="top center"><i class="teal users icon enroll-participants-button" data-id="${row.idPeriodCourse}" style="cursor:pointer"></i></div>`;
           } else{
-            return `<div data-tooltip="Details" data-position="top center"><i class="blue info icon schedule-list-detail-button" data-nm="${row.course.courseName}" data-tr="${row.trainerMain.name}" data-btr="${row.trainerBackup.name}" data-cls="${row.classRoom.className}" data-loc="${row.classRoom.location}" data-stm="${row.startTime}" data-etm="${row.endTime}" data-cby="${row.createdBy}" data-cat="${row.createdDate}" data-uby="${row.updatedBy}" data-uat="${row.updatedDate}" style="cursor:pointer"></i></div>
-            <div data-tooltip="Enroll Participants" data-position="top center"><i class="teal users icon" id="enroll-participants-button" data-id="${row.idPeriodCourse}" style="cursor:pointer"></i></div>`;
+            return `<div data-tooltip="Details" data-position="top center"><i class="blue info icon schedule-list-detail-button" data-idpc="${row.idPeriodCourse}" data-nm="${row.course.courseName}" data-tr="${row.trainerMain.name}" data-btr="${row.trainerBackup.name}" data-cls="${row.classRoom.className}" data-loc="${row.classRoom.location}" data-stm="${row.startTime}" data-etm="${row.endTime}" data-cby="${row.createdBy}" data-cat="${row.createdDate}" data-uby="${row.updatedBy}" data-uat="${row.updatedDate}" style="cursor:pointer"></i></div>
+            <div data-tooltip="Enroll Participants" data-position="top center"><i class="teal users icon enroll-participants-button" data-id="${row.idPeriodCourse}" style="cursor:pointer"></i></div>`;
           }
         }
       } ]
@@ -332,6 +331,7 @@ export class PeriodScheduleListComponent implements OnInit {
       var ids = $.map($('#eligible-participant-list-table').DataTable().rows('.selected').data(), function (item) {
           return item.idUser;
       });
+      
       
       $('#loading-modal').fadeIn('fast')
       that.PeriodService.enroll_user({data:ids.join(),id:that.id})
