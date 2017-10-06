@@ -26,4 +26,12 @@ public class DashboardController extends ApiController<PeriodCourse>{
 		response.put("data", data);
 		return ResponseEntity.ok(response);
 	}
+	
+	@PostMapping(value="/dashboard/bcc")
+	public ResponseEntity<JSONObject> getBcc() {
+		JSONObject response = new JSONObject();
+		List<PeriodCourse> data = periodCourseRepo.findAll(ActiveBcc());
+		response.put("data", data);
+		return ResponseEntity.ok(response);
+	}
 }
